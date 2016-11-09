@@ -1,0 +1,13 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_information>
+<div class="ty-sidebox__body" id="sidebox_95">
+
+    <div class="ty-menu ty-menu-vertical">
+        <ul id="vmenu_95" class="ty-menu__items cm-responsive-menu">
+            @foreach (var item in Model)
+            {
+            <li class="ty-menu__item cm-menu-item-responsive menu-level-"><div class="ty-menu__submenu-item-header"><a href="@Url.Action("infomation", "Home", new { id = item.alias })" class="ty-menu__item-link">@item.TenTT</a></div></li>
+            }
+          
+        </ul>
+    </div>
+</div>

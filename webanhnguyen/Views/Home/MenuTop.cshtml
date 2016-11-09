@@ -1,0 +1,33 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_product_type>
+
+
+<div class="main-menu">
+    <ul class="ty-menu__items cm-responsive-menu">
+
+        <li class="ty-menu__item ty-menu__menu-btn visible-phone">
+            <a class="ty-menu__item-link">
+                <i class="ty-icon-short-list"></i>
+                <span>Menu</span>
+            </a>
+        </li>
+        <li class="ty-menu__item-http-hasasavn ty-menu__item  ty-menu__item-nodrop ty-menu__item-active">
+            <a href="@Url.Action("Index","Home")" class="ty-menu__item-link">
+                Trang chủ
+            </a>
+        </li>
+        <li class="ty-menu__item-http-hasasavn-hai-san-tuoi-songhtml ty-menu__item  ty-menu__item-nodrop ">
+            <a href="@Url.Action("Laycatuoi","Home")" class="ty-menu__item-link">
+                Cá tươi mỗi ngày
+            </a>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="ty-menu__item-http-hasasavn-hai-san-tuoi-songhtml ty-menu__item  ty-menu__item-nodrop ">
+                <a href="@Url.Action("ProductType","Home",new {id = item.alias })" class="ty-menu__item-link">
+                    @item.TenLoaiSP
+                </a>
+            </li>
+        }
+    </ul>
+
+</div>

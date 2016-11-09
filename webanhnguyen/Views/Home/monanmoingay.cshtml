@@ -1,0 +1,43 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_new>
+<div class="ty-mainbox-body">
+    <div class="ty-news-sidebox">
+        <div class="row-fluid">
+            @foreach (var item in ViewBag.tinmoinhat)
+            {
+            <div class="span8 main-news">
+                <div class="news-image">
+                    <img class="ty-pict" id="det_img_67_0" src="~/@item.UrlHinh" style="width: 587.22px; height: 370.2px" alt="@ViewBag.shoptitle" title="" />
+                </div>
+
+                <div class="news-description">
+                    <h3><a href="@Url.Action("Reader", "Home", new { id = item.alias})">@item.TieuDe</a></h3>
+                    <div class="excerpt">
+                        @Html.Raw(item.TomTat)
+                    </div>
+                </div>
+            </div>
+            }
+          
+            <div class="span8 list-news">
+                <div class="grid-list">
+@foreach (var item in Model)
+{
+                    <div class="ty-column2">
+                        <div class="ty-grid-list__item">
+                            <div class="news-image">
+                                <img class="ty-pict" id="det_img_66_0" src="~/@item.UrlHinh" style="width: 286.11px; height: 188.56px" alt="@ViewBag.shoptitle" title="" />
+
+                            </div>
+                            <div class="news-description">
+                                <h3><a href="@Url.Action("Reader", "Home", new { id = item.alias })">@item.TieuDe</a></h3>
+                                                           </div>
+                        </div>
+                    </div>
+}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

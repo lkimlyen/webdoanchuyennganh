@@ -1,0 +1,37 @@
+﻿
+@{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 main-content-grid">
+                <div id="breadcrumbs_73">
+                    <div class="ty-breadcrumbs clearfix">
+                        <a href="/Home/Index" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">Registration</span>
+                    </div>
+                    <!--breadcrumbs_73-->
+                </div><div class="ty-mainbox-container clearfix">
+                    <h1 class="ty-mainbox-title">
+                       Đăng ký thành viên thành công
+                        </h1>
+                    <div class="ty-mainbox-body">
+                        <span class="ty-success-registration__text">Chúng mừng bạn. Bạn đã đăng ký thành viên thành công. Thả ga mua sắm, rinh quà liền tay.</span>
+                        <ul class="success-registration__list">
+
+                            <li class="ty-success-registration__item">
+                                <a href="@Url.Action("ProfileUpdate","User")" class="success-registration__a">Thay đổi thông tin</a>
+                                <span class="ty-success-registration__info">Thay đổi email, mật khẩu, thông tin vận chuyển và thanh toán...</span>
+                            </li>
+                            <li class="ty-success-registration__item">
+                                <a href="@Url.Action("Order","User")" class="success-registration__a">Đơn hàng</a>
+                                <span class="ty-success-registration__info">Theo dõi đơn hàng</span>
+                            </li>
+                         
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

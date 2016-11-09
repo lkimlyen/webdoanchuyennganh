@@ -1,0 +1,177 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<webanhnguyen.Models.tbl_Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 breadcrumbs-grid">
+                <div id="breadcrumbs_73">
+
+                    <div class="ty-breadcrumbs clearfix">
+                        <a href="@Url.Action("Index","Home")" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">
+                           Khuyến mãi
+                        </span>
+                    </div>
+
+                    <!--breadcrumbs_73-->
+                </div>
+            </div>
+        </div><div class="row-fluid ">
+            <div class="span16 main-content-grid">
+                <div class="ty-mainbox-container clearfix">
+                    <h1 class="ty-mainbox-title">
+
+                        <span>
+                           Khuyến mãi
+                        </span>
+
+
+                    </h1>
+                    <div class="ty-mainbox-body">
+                        <div id="category_products_74">
+                            <script type="text/javascript" src="~/Scripts/exceptions.js"></script>
+                            <div class="ty-pagination-container cm-pagination-container" id="pagination_contents">
+                                <div class="ty-sort-container">
+                                    <div class="ty-sort-container__views-icons">
+                                        <a class="ty-sort-container__views-a " data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai","Home")" rel="nofollow">
+                                            <i class="ty-icon-products-multicolumns"></i>
+                                        </a>
+                                        <a class="ty-sort-container__views-a " data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai1","Home")" rel="nofollow">
+                                            <i class="ty-icon-products-without-options"></i>
+                                        </a>
+                                        <a class="ty-sort-container__views-a active" data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai2","Home")" rel="nofollow">
+                                            <i class="ty-icon-short-list"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="ty-sort-dropdown">
+                                        <a id="sw_elm_sort_fields" class="ty-sort-dropdown__wrapper cm-combination">@ViewBag.TenSapXep<i class="ty-sort-dropdown__icon ty-icon-down-micro"></i></a>
+                                        <ul id="elm_sort_fields" class="ty-sort-dropdown__content cm-popup-box hidden">
+                                            <li class="sort-by-timestamp-desc ty-sort-dropdown__content-item">
+                                                <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai2","Home", new {sorting = ViewBag.DateSortParm })" rel="nofollow">Sản phẩm mới</a>
+                                            </li>
+                                            <li class="sort-by-product-desc ty-sort-dropdown__content-item">
+                                                <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai2","Home", new {sorting = ViewBag.NameSortParmasc })" rel="nofollow">Sắp xếp: A đến Z</a>
+                                            </li>
+                                            <li class="sort-by-product-desc ty-sort-dropdown__content-item">
+                                                <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai2","Home", new {sorting = ViewBag.NameSortParm })" rel="nofollow">Sắp xếp: Z to A</a>
+                                            </li>
+                                            <li class="sort-by-price-asc ty-sort-dropdown__content-item">
+                                                <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai2","Home", new {sorting = ViewBag.PriceSortPasc })" rel="nofollow">Sắp xếp Giá: Thấp đến Cao</a>
+                                            </li>
+                                            <li class="sort-by-price-desc ty-sort-dropdown__content-item">
+                                                <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("khuyenmai2","Home", new {sorting = ViewBag.PriceSortParm })" rel="nofollow">Sắp xếp Giá: Cao Đến Thấp</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="ty-sort-dropdown">
+                                </div>
+                                    </div>
+
+
+                                <script type="text/javascript" src="~/Scripts/product_image_gallery.js"></script>
+                                <div class="ty-compact-list">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div itemscope="" itemtype="http://schema.org/Product" style="display: none">
+                                            <meta itemprop="sku" content="COM5CAN">
+                                            <meta itemprop="name" content="@item.TenSP">
+                                            <meta itemprop="description" content="@item.MoTaCT">
+                                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                                <link itemprop="availability" href="http://schema.org/OutOfStock" rel="t">
+                                                <meta itemprop="priceCurrency" content="VNĐ">
+                                                <meta itemprop="price" content="@item.GiaHienTai">
+                                            </div>
+                                        </div>
+                                        <div class="ty-compact-list__item">
+                                            <div class="ty-compact-list__content">
+
+                                                <div class="ty-compact-list__image">
+                                                    <a href="@Url.Action("Details", "Home", new { id = item.alias })">
+                                                        <img class="ty-pict   " id="det_img_298" src="~/@item.UrlHinh" style="height: 80px; width: 80px" alt="@item.TenSP" title="" />
+                                                    </a>
+                                                    @if (item.KhuyenMai > 0)
+                                                    {
+                                                        <ul class="ty-discount-label cm-reload-298" id="discount_label_update_298">
+                                                            <li class="ty-discount-label__item" id="line_prc_discount_value_298"><span class="ty-discount-label__value" id="prc_discount_value_label_298">Giảm @item.KhuyenMai%</span></li>
+                                                            <!--discount_label_update_298-->
+                                                        </ul>}
+
+                                                </div>
+
+                                                <div class="ty-compact-list__title">
+
+                                                    <h2><a href="@Url.Action("Details", "Home", new { id = item.alias })" class="product-title">@item.TenSP</a></h2>
+
+
+
+                                                    <br />
+                                                    @if (item.KhuyenMai > 0)
+                                                    {
+                                                        <span class="cm-reload-298" id="old_price_update_298">
+
+                                                            <span class="ty-list-price ty-nowrap" id="line_list_price_298"><span class="ty-strike"><span id="sec_list_price_298" class="ty-list-price ty-nowrap">@string.Format("{0: #,##0}", item.GiaCu)</span><span class="ty-list-price ty-nowrap"> đ</span></span></span>
+                                                        </span>
+
+
+                                                    <!--old_price_update_298-->
+
+                                                    }
+                                                    <span class="cm-reload-298 ty-price-update" id="price_update_298">
+                                                        <input type="hidden" name="appearance[show_price_values]" value="1" />
+                                                        <input type="hidden" name="appearance[show_price]" value="1" />
+
+                                                        <span class="ty-price" id="line_discounted_price_298"><span id="sec_discounted_price_298" class="ty-price-num">@string.Format("{0: #,##0}", item.GiaHienTai)</span><span class="ty-price-num"> đ</span></span>
+
+
+                                                        <!--price_update_298-->
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="ty-compact-list__controls">
+
+
+                                                    <div class="cm-reload-298 " id="add_to_cart_update_298">
+                                                        <div class="ty-product-block__button">
+                                                            <a type="button" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp = item.ID, @strURL = Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')" class="call-request-btn cm-dialog-auto-size ty-btn"><span style="font-weight: bold; font-size: 18px;">Thêm vào giỏ</span></a>
+
+
+                                                        </div>
+                                                        <!--add_to_cart_update_298-->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                                
+                            </div>
+@if (Model.PageCount > 1)
+{
+                                <div class="ty-pagination__bottom">
+                                    <div class="MenuTrang">
+                                        @Html.PagedListPager(Model, page => Url.Action("khuyenmai2", new { page = page }))
+
+                                    </div>
+                                    <style>
+                                        .MenuTrang li {
+                                            display: inline;
+                                        }
+                                    </style>
+                                </div>
+}
+                                               </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

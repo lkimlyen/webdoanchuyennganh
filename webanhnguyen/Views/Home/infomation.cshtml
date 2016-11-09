@@ -1,0 +1,57 @@
+﻿@model webanhnguyen.Models.tbl_information
+@{
+    ViewBag.Title = Model.TenTT;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 breadcrumbs-grid">
+                <div id="breadcrumbs_73">
+
+                    <div class="ty-breadcrumbs clearfix">
+                        <a href="@Url.Action("Index","Home")" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">@Session["tenmuinfo"]</span>
+                    </div>
+
+                    <!--breadcrumbs_73-->
+                </div>
+            </div>
+        </div>
+        
+            <div class="row-fluid ">
+            <div class="span4 side-grid">
+                <div class="ty-sidebox">
+                    <h2 class="ty-sidebox__title ">
+
+                        <span class="ty-sidebox__title-wrapper">Nội dung</span>
+                        <div class="ty-sidebox__title-toggle cm-combination visible-phone" id="sw_sidebox_95">
+                            <i class="ty-sidebox__icon-open ty-icon-down-open"></i>
+                            <i class="ty-sidebox__icon-hide ty-icon-up-open"></i>
+                        </div>
+                    </h2>
+                    @Html.Action("menuinfo", "Home")
+                </div>
+            </div><div class="span12 main-content-grid">
+                <div class="ty-mainbox-container clearfix">
+                    <h1 class="ty-mainbox-title">
+
+                        <span>@Model.TenTT</span>
+
+
+                    </h1>
+                    <div class="ty-mainbox-body">
+                        <div class="ty-wysiwyg-content">
+                            <div>
+                                @Html.Raw(Model.NoiDung)
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

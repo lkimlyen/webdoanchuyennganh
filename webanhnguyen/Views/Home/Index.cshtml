@@ -1,0 +1,63 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 ">
+                <div class="ty-mainbox-simple-container clearfix homepage-on-sale">
+                    <h2 class="ty-mainbox-simple-title">
+                        Sản phẩm bán chạy
+                    </h2>
+                    <div class="ty-mainbox-simple-body">
+                        <script type="text/javascript" src="~/Scripts/exceptions.js"></script>
+                        <script type="text/javascript" src="~/Scripts/product_image_gallery.js"></script>
+                        <div class="grid-list">
+                            @{ Html.RenderAction("Hot_Product", "Home");}
+                        </div>
+                    </div>
+                </div>
+                <div class="ty-mainbox-simple-container clearfix homepage-fresh-seafoods">
+                    <h2 class="ty-mainbox-simple-title">
+                        Hải sản tươi sống
+                    </h2>
+                    <div class="ty-mainbox-simple-body">
+                        <div class="grid-list">
+                            @{ Html.RenderAction("HaiSanTuoiSong", "Home");}
+                        </div>
+                    </div>
+                </div>
+                <div class="ty-mainbox-simple-container clearfix homepage-frozen-seafoods">
+                    <h2 class="ty-mainbox-simple-title">
+                        Hải sản đông lạnh
+                    </h2>
+                    <div class="ty-mainbox-simple-body">
+                        <div class="grid-list">
+                           @{ Html.RenderAction("HaiSanDongLanh", "Home");}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ty-mainbox-simple-container clearfix homepage-dried-seafoods">
+                <h2 class="ty-mainbox-simple-title">
+                    Hải sản khô
+                </h2>
+                <div class="ty-mainbox-simple-body">
+                    <div class="grid-list">
+                       @{ Html.RenderAction("HaiSanKho", "Home");}
+                    </div>
+                </div>
+            </div>
+            <div class="ty-mainbox-container clearfix">
+                <h1 class="ty-mainbox-title">
+
+                    Món ngon <font color="#07ca75">mỗi ngày</font>
+
+                </h1>
+                @{ Html.RenderAction("monanmoingay", "Home");}
+        </div>
+    </div>
+</div>
+</div>
+

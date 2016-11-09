@@ -1,0 +1,26 @@
+﻿
+<div class="ty-login-popup">
+    @using (Html.BeginForm("Login","User",FormMethod.Post))
+    {
+    <form name="popup139_form" action="" method="post" class="cm-processed-form">
+        <input type="hidden" name="return_url" value="/Home/Index">
+        <input type="hidden" name="redirect_url" value="/Home/Index">
+        <div class="ty-control-group">
+            <label for="login_popup139" class="ty-login__filed-label ty-control-group__label cm-required cm-trim cm-email">Email</label>
+            <input type="text" id="email" name="email" size="30" value="" class="ty-login__input">
+        </div>
+        <div class="ty-control-group password-forgot">
+            <label for="psw_popup139" class="ty-login__filed-label ty-control-group__label ty-password-forgot__label cm-required">Mật khẩu</label>
+            <input type="password" id="password" name="password" size="30" value="" class="ty-login__input" maxlength="32">
+        </div>
+        <div class="buttons-container clearfix">
+            <div class="ty-float-right">
+                <button class="ty-btn__login ty-btn__secondary ty-btn" type="submit" name="login">Đăng nhập</button>
+            </div>
+            @*<div class="ty-login__remember-me">
+                <label for="remember_me_popup139" class="ty-login__remember-me-label"><input class="checkbox" type="checkbox" name="remember_me" id="remember_me_popup139" value="Y">Ghi nhớ đăng nhập cho lần sau</label>
+            </div>*@
+        </div>
+    </form>
+    }
+</div>

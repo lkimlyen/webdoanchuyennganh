@@ -1,0 +1,44 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_information>
+<div class="span3 ">
+    <div class="footer-no-wysiwyg">
+        <div class="ty-wysiwyg-content">
+            <p class="ty-footer-menu__header cm-combination" id="sw_about_links"><span>Giới thiệu</span><i class="ty-footer-menu__icon-open ty-icon-down-open"></i><i class="ty-footer-menu__icon-hide ty-icon-up-open"></i></p>
+            <ul id="about_links" class="ty-footer-menu__items">
+                @foreach (var item in Model)
+                {
+                    if (item.GioiThieu.Value)
+                    {
+                        <li class="ty-footer-menu__item"><a href="@Url.Action("infomation","Home",new {id = item.alias })">@item.TenTT</a></li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div><div class="span3 ">
+    <div class="footer-no-wysiwyg">
+        <div class="ty-wysiwyg-content">
+            <p class="ty-footer-menu__header cm-combination" id="sw_useful_links"><span>Thông tin hữu ích</span><i class="ty-footer-menu__icon-open ty-icon-down-open"></i><i class="ty-footer-menu__icon-hide ty-icon-up-open"></i></p>
+            <ul id="useful_links" class="ty-footer-menu__items">
+                @foreach (var item in Model)
+                {
+                    if (item.GioiThieu == false)
+                    {
+                        <li class="ty-footer-menu__item"><a href="@Url.Action("infomation","Home",new {id = item.alias })">@item.TenTT</a></li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div><div class="span3 ">
+    <div class="footer-no-wysiwyg">
+        <div class="ty-wysiwyg-content">
+            <p class="ty-footer-menu__header cm-combination" id="sw_customer_service_links"><span>Khách hàng</span><i class="ty-footer-menu__icon-open ty-icon-down-open"></i><i class="ty-footer-menu__icon-hide ty-icon-up-open"></i></p>
+            <ul id="customer_service_links" class="ty-footer-menu__items">
+               
+                    <li class="ty-footer-menu__item"><a href="@Url.Action("Order", "User")">Đơn hàng của tôi</a></li>
+                            
+               
+            </ul>
+        </div>
+    </div>
+</div>

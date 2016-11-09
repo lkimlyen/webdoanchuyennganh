@@ -1,0 +1,61 @@
+﻿@model  webanhnguyen.Models.tbl_information
+    @{
+        ViewBag.Title = "Chỉnh sửa thông tin";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    <div class="content" style="min-height: 530px;">
+        <h3>Tùy chỉnh thông tin</h3>
+        <div class="bs-example bs-example-bg-classes">
+            @if (ViewData["Error"] != null)
+            {
+                <p class="bg-warning">@ViewData["Error"]</p>
+            }
+            else
+            {
+                <p class="bg-warning">Lưu ý: Những ô có dấu (<font color="red">*</font>) là bắt buộc</p>
+            }
+        </div>
+        <div class="block">
+            <div class="block-content">
+                <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                    <input type="hidden" name="id" value="@Model.id" />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            Tên thông tin <font color="red">*</font>
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" name="TenTT" class="form-control" value="@Model.TenTT" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            Nội dung
+                        </label>
+                        <div class="col-sm-6">
+                            <textarea name="NoiDung" class="form-control" id="NoiDung" style="height:350px;">@Model.NoiDung</textarea>
+
+                            <script>
+                                CKEDITOR.replace('NoiDung', {
+                                    filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                    filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                    filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                    filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                    filebrowserWindowWidth: '1000',
+                                    filebrowserWindowHeight: '700'
+                            });
+                            </script>  
+
+</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-4 btn-gr">
+                            <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>
+                            <button onclick="goBack()" type="button" name="goback" class="btn btn-default">Quay lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,76 @@
+﻿@model webanhnguyen.Models.tbl_shop
+<div class="tygh-footer clearfix" id="tygh_footer">
+    <div class="container-fluid  ty-footer-grid">
+        <div class="row-fluid ">
+            <div class="span16 ty-footer-grid__full-width" style="height: 20px; min-height:20px; background: #69be2b">
+                <div class="row-fluid ">
+                    <div class="span16 ">
+                        <div class="ty-footer-form-block">
+                            @*<form action="index.html" method="post" name="subscribe_form" class="cm-processed-form">
+                                    <input type="hidden" name="redirect_url" value="index.php">
+                                    <input type="hidden" name="newsletter_format" value="2">
+                                    <h3 class="ty-footer-form-block__title">Nhập địa chỉ email để nhận khuyến mãi HOT mỗi ngày</h3>
+                                    <div class="ty-footer-form-block__form ty-control-group ty-input-append">
+                                        <label class="cm-required cm-email hidden" for="subscr_email75">Email</label>
+                                        <input type="text" name="hint_subscribe_email" id="subscr_email75" size="20" value="Nhập địa chỉ email" class="ty-input-text cm-hint">
+                                        <button title="Go" class="ty-btn-go" type="submit"><i class="ty-btn-go__icon ty-icon-right-dir"></i></button>
+                                        <input type="hidden" name="dispatch" value="newsletters.add_subscriber">
+                                    </div>
+                                </form>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row-fluid ">
+            <div class="span16 ty-footer-grid__full-width ty-footer-menu">
+                <div class="row-fluid ">
+                    @{Html.RenderAction("MenuBottom", "Home");}
+                    <div class="span7 ">
+                        <div class="footer-no-wysiwyg">
+                            <div class="ty-wysiwyg-content">
+                                <p class="ty-footer-menu__header cm-combination" id="sw_store_links"><span>Cửa hàng</span><i class="ty-footer-menu__icon-open ty-icon-down-open"></i><i class="ty-footer-menu__icon-hide ty-icon-up-open"></i></p>
+                                <ul id="store_links" class="ty-footer-menu__items">
+                                    <li>@Model.addressshop</li>
+                                    <li><a href="mailto:@Model.emailshop"><i class="fa fa-envelope"></i> @Model.emailshop</a> | <a href="http://maps.google.com/?q=@Model.lattitude,@Model.longtitude" target="_blank"><i class="fa fa-map-marker"></i> Xem bản đồ</a> | <i class="fa fa-phone"></i><a href="callto:@Model.phoneshop1" target="_blank"> @Model.phoneshop1</a> - <a href="callto:@Model.phoneshop2" target="_blank"> @Model.phoneshop2</a></li>
+                                    <li style="margin-top: 8px;">
+                                        <div class="row-fluid">
+                                            <div class="span8">
+                                                @Html.Raw(Model.thoigianlamviec1)
+                                            </div>
+                                            <div class="span8">
+                                                @Html.Raw(Model.thoigianlamviec2)
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="row-fluid ">
+            <div class="span16 ty-footer-grid__full-width footer-copyright">
+                <div class="row-fluid ">
+                    <div class="span12 ">
+                        <div class="footer-copyright">
+                            <div class="ty-wysiwyg-content">
+                                <span style="font-size: 18px;
+font-weight: normal;
+color: #fafafa;
+font-family: &#39;Open Sans&#39;;">Copyright@Thuyhaisancamau.com</span><br>
+                                Mã số doanh nghiệp: @Model.masodoanhnghiep<br>
+                                Tel: @Model.phoneshop1 - Email: @Model.emailshop
+                            </div>
+                        </div>
+                    </div><div class="span4 ">
+                        <div class="ty-float-right">
+                            <div class="ty-wysiwyg-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

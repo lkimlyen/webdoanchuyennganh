@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 breadcrumbs-grid">
+                <div id="breadcrumbs_73">
+
+                    <div class="ty-breadcrumbs clearfix">
+                        <a href="/Home/Index" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">Đăng nhập</span>
+                    </div>
+
+                    <!--breadcrumbs_73-->
+                </div>
+            </div>
+        </div>
+        <h2 class="hidden">Thủy hải sản cà mau</h2>
+        <h3 class="hidden">Thủy hải sản cà mau</h3>
+        <div class="row-fluid ">
+            <div class="span8 main-content-grid">
+                <div class="ty-mainbox-container clearfix">
+                    <h1 class="ty-mainbox-title">
+                        Đăng nhập
+                    </h1>
+                    <div class="ty-mainbox-body">
+                        <div class="ty-login">
+                            @using (Html.BeginForm())
+                            {
+                            <form name="main_login_form" action="/Home/Index" method="post">
+                                <input type="hidden" name="return_url" value="" />
+                                <input type="hidden" name="redirect_url" value="" />
+                                <div class="ty-control-group">
+                                    <label for="login_main_login" class="ty-login__filed-label ty-control-group__label cm-required cm-trim cm-email">Email</label>
+                                    <input type="text" id="email" name="email" size="30" value="" class="ty-login__input" />
+                                </div>
+
+                                <div class="ty-control-group password-forgot">
+                                    <label for="psw_main_login" class="ty-login__filed-label ty-control-group__label ty-password-forgot__label cm-required">Mật khẩu</label>
+                                    
+                                    <input type="password" id="password" name="password" size="30" value="" class="ty-login__input" maxlength="32" />
+                                </div>
+                                <div class="buttons-container clearfix">
+                                    <div class="ty-float-right">
+                                        <button class="ty-btn__login ty-btn__secondary ty-btn" type="submit" name="login">Đăng nhập</button>
+                                    </div>
+                                </div>
+                            </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div><div class="span8 auth-information-grid">
+                <div class="ty-login-info">
+                    <div class="ty-login-info__txt">
+                        <h4>Bạn chưa đăng ký?</h4><p>Tạo tài khoản ngay trong vòng 50 giây và nhận khuyến mãi giá tốt.</p>
+                        <a href="@Url.Action("Register","User")">Đăng ký tài khoản mới</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

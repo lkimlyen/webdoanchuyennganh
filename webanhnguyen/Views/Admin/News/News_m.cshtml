@@ -1,0 +1,117 @@
+﻿@model  webanhnguyen.Models.tbl_new
+@{
+    ViewBag.Title = "News_m";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content" style="min-height: 530px;">
+    <h3>Tùy chỉnh tin tức</h3>
+    <div class="bs-example bs-example-bg-classes">
+        @if (ViewData["Error"] != null)
+        {
+            <p class="bg-warning">@ViewData["Error"]</p>
+        }
+        else
+        {
+            <p class="bg-warning">Lưu ý: Những ô có dấu (<font color="red">*</font>) là bắt buộc</p>
+        }
+    </div>
+    <div class="block">
+        <div class="block-content">
+            <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                <input type="hidden" name="id" value="@Model.id" />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Tên tin tức <font color="red">*</font>
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="name" class="form-control" value="@Model.TieuDe" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Tóm tắt
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea name="detail_short" class="form-control" id="detail_short" style="height:150px;">@Model.TomTat</textarea>
+                        <script>
+                            CKEDITOR.replace('detail_short', {
+                                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                filebrowserWindowWidth: '1000',
+                                filebrowserWindowHeight: '700'
+                            });
+                        </script>  
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Nội dung
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea name="detail" class="form-control" id="detail" style="height:350px;">@Model.NoiDung</textarea>
+                        <script>
+                            CKEDITOR.replace( 'detail', {
+                                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                filebrowserWindowWidth: '1000',
+                                filebrowserWindowHeight: '700'
+});
+                        </script>
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Chọn file
+                    </label>
+                    <div class="col-sm-6">
+                        <div class="file-input file-input-new">
+                            <div class="btn btn-primary btn-file btn-image-">
+                                <i class="glyphicon glyphicon-folder-open">
+                                    Browse ...
+                                </i>
+                                <input name="fileupload" type="file" class="" id="txtImage" onchange="readURL(this);" style="width: 100%; height: 100%;" /><br />
+                            </div>
+                            <input type="checkbox" name="chkClearImg" value="on" /> Xóa bỏ hình ảnh
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Title
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="title" class="form-control" value="@Model.title" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Description
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="description" class="form-control" value="@Model.description" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Keyword
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="keyword" class="form-control" value="@Model.keyword" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4 btn-gr">
+                        <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>
+                        <button onclick="goBack()" type="button" name="goback" class="btn btn-default">Quay lại</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

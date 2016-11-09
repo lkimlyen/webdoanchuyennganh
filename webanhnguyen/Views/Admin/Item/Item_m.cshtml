@@ -1,0 +1,231 @@
+﻿@model Tuple<webanhnguyen.Models.tbl_Product, List<webanhnguyen.Models.tbl_product_type>>
+@{
+    ViewBag.Title = "Item_m";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="content" style="min-height: 530px;">
+    <h3>Tùy chỉnh sản phẩm</h3>
+    <div class="bs-example bs-example-bg-classes">
+        @if (ViewData["Error"] != null)
+        {
+            <p class="bg-warning">@ViewData["Error"]</p>
+        }
+        else
+        {
+            <p class="bg-warning">Lưu ý: Những ô có dấu (<font color="red">*</font>) là bắt buộc</p>
+        }
+    </div>
+    <div class="block">
+        <div class="block-content">
+            <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                <input type="hidden" name="id" value="@Model.Item1.ID" />
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Tên sản phẩm<font color="red">*</font>
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="name" class="form-control" value="@Model.Item1.TenSP" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <script language="javascript">
+                        var menus = new Array();
+                    </script>
+                    <label class="col-sm-3 control-label">
+                        Danh mục<font color="red">*</font>
+                    </label>
+                    <div class="col-sm-6">
+                        <script language="javascript">
+                            @functions{
+                                public class ComboboxModel
+                                {
+                                    public int id;
+                                    public string name;
+                                    public int parent;
+
+                                    public ComboboxModel(int id, string name, int parent)
+                                        {
+                                            this.id = id;
+                                            this.name = name;
+                                            this.parent = parent;
+                                        }
+
+                                    public static List<ComboboxModel> getListComboboxModelsFromListItemCategories(List<webanhnguyen.Models.tbl_product_type> listCategories)
+                                        {
+                                            List<ComboboxModel> result = new List<ComboboxModel>();
+                                            foreach (webanhnguyen.Models.tbl_product_type category in listCategories)
+                                        {
+                                                result.Add(new ComboboxModel(category.ID, category.TenLoaiSP, 0));
+                                        }
+                                        return result;
+                                    }
+
+                                    public static ComboboxModel getComboboxModelFromItem(webanhnguyen.Models.tbl_Product item)
+                                        {
+                                            return new ComboboxModel(item.ID, item.TenSP, item.IDLoaiSP == null ? 0 : item.IDLoaiSP.Value);
+                                        }
+                                    }
+                                }
+                            @{
+                                var serializer=new System.Web.Script.Serialization.JavaScriptSerializer();
+                                var jsonListItem=serializer.Serialize(ComboboxModel.getListComboboxModelsFromListItemCategories(Model.Item2));
+                                var jsonItem = serializer.Serialize(ComboboxModel.getComboboxModelFromItem(Model.Item1));
+                            }
+                            var models=@Html.Raw(jsonListItem);
+                            var menus = new Array();
+                            models.forEach(function(eachModel){
+                                menus.push({
+                                    menu_id             : eachModel.id,
+                                    menu_name           : eachModel.name,
+                                    menu_parent_id      : eachModel.parent,
+                                });
+                            });
+                        </script>
+                        <select name="parent" class="form-control" id="menu_parent_id_@Model.Item1.ID">
+                            <option value="0">Chọn danh mục</option>
+                        </select>
+                        <script language="javascript">
+                            var html = '';
+                            function get_parent(menu, parent_id, current_id, current_parent_id, string) {
+                                // Bước 1
+                                if (string == undefined) string = '===';
+                                var loop = new Array();
+                                var contin = new Array();
+                                for (var i = 0; i < menu.length; i++) {
+                                    // trường hợp current_id == menu[i].menu_id không lấy chính nó làm menu cha trong option
+                                    // trường hợp current_id == menu[i].menu_parent_id
+                                    if (parseInt(menu[i].menu_parent_id) == parseInt(parent_id)) {
+                                        loop.push(menu[i]);
+                                    } else {
+                                        contin.push(menu[i]);
+                                    }
+                                }
+                                // Bước 2
+                                for (var i = 0; i < loop.length; i++) {
+                                    html += '<option ' + ((current_parent_id == loop[i].menu_id) ? 'selected' : '') + ' value="' + loop[i].menu_id + '">' + string + " " + loop[i].menu_name + '</option>';
+                                    get_parent(contin, loop[i].menu_id, current_id, current_parent_id, string + '===');
+                                }
+                            }
+                            $(document).ready(function(){
+                                var modelItem=@Html.Raw(jsonItem);
+                                var id = modelItem.id;
+                                var id_parent = modelItem.parent;
+                                get_parent(menus, 0, id, id_parent, '===');
+                                $('#menu_parent_id_' + id).append(html);
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Giá
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="number" min="0" name="price" class="form-control" value="@Model.Item1.GiaCu" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Giá khuyến mãi
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="number" min="0" name="price2" class="form-control" value="@Model.Item1.GiaHienTai" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Tóm tắt
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea name="detail_short" class="form-control" id="detail_short" style="height:150px;">@Model.Item1.MoTa</textarea>
+                        <script>
+                            CKEDITOR.replace( 'detail_short', {
+                                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                filebrowserWindowWidth : '1000',
+                                filebrowserWindowHeight : '700'
+                            });
+                        </script>  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Nội dung
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea name="detail" class="form-control" id="detail" style="height:350px;">@Model.Item1.MoTaCT</textarea>
+                        <script>
+                            CKEDITOR.replace( 'detail', {
+                                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                filebrowserWindowWidth : '1000',
+                                filebrowserWindowHeight : '700'
+                            });
+                        </script>
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Chọn file
+                    </label>
+                    <div class="col-sm-6">
+                        <div class="file-input file-input-new">
+                            <div class="btn btn-primary btn-file btn-image-">
+                                <i class="glyphicon glyphicon-folder-open">
+                                    Browse ...
+                                </i>
+                                <input name="fileupload" type="file" class="" id="txtImage" onchange="readURL(this);" style="width: 100%; height: 100%;" /><br />
+                            </div>
+                            <input type="checkbox" name="chkClearImg" value="on" /> Xóa bỏ hình ảnh
+                        </div>
+                        <!--<div class="img-demo" style="line-height: 0; font-size: 0; margin-top: 10px;">
+                            @if (!String.IsNullOrEmpty(Model.Item1.UrlHinh))
+                            {
+                                <img class="img-responsive" id="blah" src="../../../@Model.Item1.UrlHinh" />
+                            }
+                            else
+                            {
+                                <img class="img-responsive" id="blah" src="" />
+                            }
+                        </div>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Title
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="title" class="form-control" value="@Model.Item1.title" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Description
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="description" class="form-control" value="@Model.Item1.description" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Keyword
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="keyword" class="form-control" value="@Model.Item1.keyword" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4 btn-gr">
+                        <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>
+                        <button onclick="goBack()" type="button" name="goback" class="btn btn-default">Quay lại</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

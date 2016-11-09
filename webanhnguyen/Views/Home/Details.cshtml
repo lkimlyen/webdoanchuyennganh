@@ -1,0 +1,452 @@
+﻿@model webanhnguyen.Models.tbl_Product
+@{
+    ViewBag.Title = Model.TenSP;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 breadcrumbs-grid">
+                <div id="breadcrumbs_73">
+                    <div class="ty-breadcrumbs clearfix">
+                        <a href="@Url.Action("Index","Home")" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><a href="" class="ty-breadcrumbs__a">
+                            @foreach (var item in ViewBag.TenLoai)
+                            { @item.TenLoaiSP}
+                        </a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">@Model.TenSP</span>
+                    </div>
+                    <!--breadcrumbs_73-->
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="row-fluid ">
+                <div class="span16 main-content-grid">
+                    <script type="text/javascript" src="~/Scrips/exceptions.js"></script>
+                    <div class="ty-product-block">
+                        <div class="ty-product-block__wrapper clearfix">
+                            <div itemscope="" itemtype="http://schema.org/Product">
+                                <meta itemprop="sku" content="COM5CAN">
+                                <meta itemprop="name" content="@Model.TenSP">
+                                <meta itemprop="description" content="@Model.MoTaCT">
+                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                    <link itemprop="availability" href="http://schema.org/OutOfStock" rel="t">
+                                    <meta itemprop="priceCurrency" content="VNĐ">
+                                    <meta itemprop="price" content="@Model.GiaHienTai">
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span7">
+                                    <div class="ty-product-block__img-wrapper">
+                                        <div class="ty-product-block__img cm-reload-249" id="product_images_249_update">
+
+                                            @if (@Model.KhuyenMai > 0)
+                                            {
+                                                <ul class="ty-discount-label cm-reload-103000392" id="discount_label_update_103000392">
+                                                    <li class="ty-discount-label__item" id="line_prc_discount_value_103000392"><span class="ty-discount-label__value" id="prc_discount_value_label_103000392">Giảm @Model.KhuyenMai %</span></li>
+                                                    <!--discount_label_update_103000392-->
+                                                </ul>
+                                            }
+
+                                            <div class="ty-product-img cm-preview-wrapper">
+                                                <a id="det_img_link_24957f7509d1c96a_1683" data-ca-image-id="preview[product_images_24957f7509d1c96a]" class="cm-image-previewer cm-previewer ty-previewer" href="~/@Model.UrlHinh" title=""><img class="ty-pict   " id="det_img_24957f7509d1c96a_1683" src="~/@Model.UrlHinh" alt="@Model.TenSP" title="" data-cloudzoom="zoomImage: ~/@Model.UrlHinh;" style="-webkit-user-select: none;width: 488.63px; height: 366.47px"><span class="ty-previewer__icon hidden-phone"></span></a>
+                                            </div>
+
+                                            <script type="text/javascript" src="~/Scripts/magnific.previewer.js"></script>
+                                            <script type="text/javascript" src="~/Scripts/product_image_gallery.js"></script>
+                                            <script type="text/javascript" src="~/Scripts/cloudzoom.js"></script>
+                                            <script type="text/javascript">
+                                                (function (_, $) {
+
+                                                    $.ceEvent('on', 'ce.commoninit', function (context) {
+
+                                                        // Disable Cloud zoom on mobile devices
+                                                        if ($(window).width() > 767) {
+
+                                                            context.find('.cm-previewer').each(function () {
+                                                                var elm = $(this).find('img');
+                                                                if (elm.data('CloudZoom') == undefined) {
+                                                                    elm.attr('data-cloudzoom', 'zoomImage: "' + $(this).prop('href') + '"')
+                                                                        .CloudZoom({
+                                                                            tintColor: '#ffffff',
+                                                                            tintOpacity: 0.6,
+                                                                            animationTime: 200,
+                                                                            easeTime: 200,
+                                                                            zoomFlyOut: true,
+                                                                            zoomSizeMode: 'zoom',
+                                                                            captionPosition: 'bottom',
+                                                                            zoomPosition: '3',
+                                                                            autoInside: 767,
+                                                                            disableOnScreenWidth: 767
+                                                                        });
+                                                                }
+                                                            });
+
+                                                        }
+                                                    });
+
+                                                }(Tygh, Tygh.$));
+                                            </script>
+                                            <!--product_images_249_update-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span9">
+                                    <div class="ty-product-block__left" style="display: block;">
+                                        <h1 class="ty-product-block-title">@Model.TenSP</h1>
+
+                                        <div class="brand">
+
+                                        </div>
+
+                                        <div class="ty-discussion__rating-wrapper" id="average_rating_product">
+
+
+                                        </div>
+
+                                        <div class="product-short-description">
+                                            @Html.Raw(Model.MoTa)
+                                        </div>
+
+
+                                        <div class="row-fluid">
+                                            <div class="span8">
+                                                <div class="prices-container price-wrap">
+                                                    <div class="ty-product-prices">
+                                                        <span class="cm-reload-249" id="old_price_update_249">
+                                                            @if (Model.KhuyenMai != 0)
+                                                            {
+                                                                <span class="ty-list-price ty-nowrap" id="line_list_price_392"><span class="list-price-label">Giá gốc:</span> <span class="ty-strike"><span id="sec_list_price_392" class="ty-list-price ty-nowrap">@string.Format("{0:#,##0}", Model.GiaCu)</span><span class="ty-list-price ty-nowrap"> đ</span></span></span>
+
+                                                                <span class="ty-list-price save-price ty-nowrap" id="line_discount_value_392">(<label class="save-price-label"> Giảm:</label><span id="prc_discount_value_392" class="ty-list-price ty-list-discount-prc ty-nowrap"> @Model.KhuyenMai</span>%)</span>
+                                                            }
+                                                            <!--old_price_update_249-->
+                                                        </span>
+
+
+                                                        <div class="ty-product-block__price-actual">
+                                                            <span class="cm-reload-249 ty-price-update" id="price_update_249">
+                                                                <span class="ty-price" id="line_discounted_price_249"><span id="sec_discounted_price_249" class="ty-price-num">@string.Format("{0:#,##0}", Model.GiaHienTai)</span><span class="ty-price-num"> đ</span></span>
+                                                                <!--price_update_249-->
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="ty-product-block__option">
+                                                    <div class="cm-reload-249" id="product_options_update_249">
+                                                        <input type="hidden" name="appearance[show_product_options]" value="1">
+
+                                                        <input type="hidden" name="appearance[details_page]" value="1">
+                                                        <input type="hidden" name="additional_info[info_type]" value="D">
+                                                        <input type="hidden" name="additional_info[get_icon]" value="1">
+                                                        <input type="hidden" name="additional_info[get_detailed]" value="1">
+                                                        <input type="hidden" name="additional_info[get_additional]" value="">
+                                                        <input type="hidden" name="additional_info[get_options]" value="1">
+                                                        <input type="hidden" name="additional_info[get_discounts]" value="1">
+                                                        <input type="hidden" name="additional_info[get_features]" value="">
+                                                        <input type="hidden" name="additional_info[get_extra]" value="">
+                                                        <input type="hidden" name="additional_info[get_taxed_prices]" value="1">
+                                                        <input type="hidden" name="additional_info[get_for_one_product]" value="1">
+                                                        <input type="hidden" name="additional_info[detailed_params]" value="1">
+                                                        <input type="hidden" name="additional_info[features_display_on]" value="C">
+                                                        <script type="text/javascript">
+                                                            (function (_, $) {
+                                                                $.ceEvent('on', 'ce.formpre_product_form_249', function (frm, elm) {
+                                                                    if ($('.cm-no-combinations-249').length) {
+                                                                        $.ceNotification('show', {
+                                                                            type: 'W',
+                                                                            title: _.tr('warning'),
+                                                                            message: _.tr('cannot_buy'),
+                                                                        });
+
+                                                                        return false;
+                                                                    }
+
+                                                                    return true;
+                                                                });
+                                                            }(Tygh, Tygh.$));
+                                                        </script>
+                                                        <!--product_options_update_249-->
+                                                    </div>
+                                                </div>
+                                                <div class="ty-product-block__advanced-option">
+                                                    <div class="cm-reload-249" id="advanced_options_update_249">
+
+                                                        <input type="hidden" name="appearance[dont_show_points]" value="1">
+                                                        <!--advanced_options_update_249-->
+                                                    </div>
+                                                </div>
+                                                <div class="ty-product-block__sku">
+                                                </div>
+                                                <div class="ty-product-block__field-group">
+                                                    <div class="cm-reload-249 stock-wrap" id="product_amount_update_249">
+                                                        <input type="hidden" name="appearance[show_product_amount]" value="1">
+                                                        <div class="label-qty_in_stock ty-control-group product-list-field">
+                                                            <label class="ty-control-group__label">Tình trạng:</label>
+                                                            @if (@Model.SoLuongTon != 0)
+                                                            {
+                                                                <span class="ty-qty-in-stock ty-control-group__item" id="in_stock_info_249">Còn hàng</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="ty-qty-in-stock ty-control-group__item" id="in_stock_info_249">Hết hàng</span>
+                                                            }
+                                                        </div>
+                                                        <!--product_amount_update_249-->
+                                                    </div>
+
+                                                    <div class="cm-reload-249" id="qty_update_249">
+                                                        <input type="hidden" name="appearance[show_qty]" value="1">
+                                                        <input type="hidden" name="appearance[capture_options_vs_qty]" value="">
+                                                        <div class="ty-qty clearfix changer" id="qty_249">
+
+                                                        </div>
+                                                        <!--qty_update_249-->
+                                                    </div>
+
+                                                </div>
+                                                <div class="ty-product-block__button">
+                                                    <a type="button" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= Model.ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')" class="call-request-btn cm-dialog-auto-size ty-btn"><span style="font-weight: bold; font-size: 18px;">Thêm vào giỏ</span></a>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row-fluid">
+                                            <div class="span16">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row-fluid">
+                            <div class="span11">
+
+
+                                <script type="text/javascript" src="~/Scripts/tabs.js"></script>
+                                <div class="ty-tabs cm-j-tabs clearfix">
+                                    <ul class="ty-tabs__list">
+                                        <li id="description" class="ty-tabs__item cm-js active"><a class="ty-tabs__a">Description</a></li>
+
+                                    </ul>
+                                </div>
+                                <div class="cm-tabs-content ty-tabs__content clearfix" id="tabs_content">
+
+                                    <div id="content_description" class="ty-wysiwyg-content content-description" style="display: block;">
+                                        @Html.Raw(Model.MoTaCT)
+                                    </div>
+
+                                    <div id="content_features" class="ty-wysiwyg-content content-features">
+
+                                    </div>
+
+                                    <div id="content_files" class="ty-wysiwyg-content content-files">
+
+                                    </div>
+
+                                    <div id="content_discussion" class="ty-wysiwyg-content content-discussion">
+
+                                    </div>
+
+                                    <div id="content_required_products" class="ty-wysiwyg-content content-required_products">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                    </div>
+
+                </div>
+            </div>
+
+        }
+        <div class="ty-mainbox-simple-container clearfix">
+            <h2 class="ty-mainbox-simple-title">
+                Sản phẩm được mua cùng
+            </h2>
+            <div class="ty-mainbox-simple-body">
+                <div class="grid-list">
+                    @foreach (var it in ViewBag.SP_khac)
+                    {
+                        <div class="ty-column4">
+                            <div class="ty-grid-list__item ty-quick-view-button__wrapper">
+                                <div class="ty-grid-list__image">
+                                    <a href="@Url.Action("Details","Home",new { id=it.alias})">
+                                        <img class="ty-pict" src="~/@it.UrlHinh" alt="@it.TenSP" title="">
+                                    </a>
+                                    @if (@it.KhuyenMai > 0)
+                                    {
+                                        <ul class="ty-discount-label cm-reload-103000392" id="discount_label_update_103000392">
+                                            <li class="ty-discount-label__item" id="line_prc_discount_value_103000392"><span class="ty-discount-label__value" id="prc_discount_value_label_103000392">Giảm @it.KhuyenMai %</span></li>
+                                            <!--discount_label_update_103000392-->
+                                        </ul>
+                                    }
+                                    <div class="product-hover"><div class="product-shipping-free"><i class="fa fa-truck"></i> Miễn phí</div><a href="@Url.Action("Details","Home",new { id=it.alias})" class="product-view">Mua&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></a></div>
+                                </div><div class="ty-grid-list__item-name">
+                                    <a href="@Url.Action("Details","Home",new { id=it.alias})" class="product-title" title="@it.TenSP">@it.TenSP</a>
+                                </div><div class="ty-grid-list__price ">
+                                    <span class="cm-reload-122000404" id="old_price_update_122000404">
+
+                                        @if (@it.KhuyenMai > 0)
+                                        {
+                                            <span class="ty-list-price ty-nowrap" id="line_list_price_103000392"><span class="ty-strike"><span id="sec_list_price_103000392" class="ty-list-price ty-nowrap">@string.Format("{0:#,##0}", it.GiaCu) đ</span></span></span>
+                                        }
+
+
+
+                                        <!--old_price_update_122000404-->
+                                    </span>
+                                    <span class="cm-reload-122000404 ty-price-update" id="price_update_122000404">
+                                        <span class="ty-price" id="line_discounted_price_122000404"><span id="sec_discounted_price_122000404" class="ty-price-num">@string.Format("{0:#,##0}", it.GiaHienTai) đ</span></span>
+
+                                        <!--price_update_122000404-->
+                                    </span>
+                                </div><div class="ty-grid-list__control"></div>
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="ty-mainbox-simple-container clearfix">
+            <h2 class="ty-mainbox-simple-title">
+                Sản phẩm cùng danh mục
+            </h2>
+            <div class="ty-mainbox-simple-body">
+                <div class="grid-list">
+                    @foreach (var it in ViewBag.SP_cungloai)
+                    {
+                        <div class="ty-column4">
+                            <div class="hidden" id="content_call_request_122000404" title="Đặt mua ngay">
+                                <div class="call_requests">
+                                    <form name="call_requests_form" id="form_call_request_122000404" action="index.html" method="post" class="cm-processed-form">
+                                        <input type="hidden" name="call_data[product_id]" value="404">
+                                        <div class="ty-cr-product-info-container">
+                                            <div class="ty-cr-product-info-image">
+                                                <img class="ty-pict   " src="~/@it.UrlHinh" alt="@it.TenSP" title="">
+                                            </div>
+                                            <div class="ty-cr-product-info-header">
+                                                <h2 class="ty-product-block-title">@it.TenSP</h2>
+
+
+                                                &nbsp;&nbsp;
+                                                <span class="ty-price" id="line_discounted_price_122000404"><span id="sec_discounted_price_122000404" class="ty-price-num">@string.Format("{0:#,##0}", it.GiaHienTai)</span><span class="ty-price-num"> đ</span></span>
+                                            </div>
+                                            <p style="color: #F00; margin-bottom: 10px;">
+                                                Vui lòng nhập thông tin. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+                                            </p>
+                                        </div>
+
+                                        <div class="ty-control-group">
+                                            <label class="ty-control-group__title cm-required" for="call_data_call_request_122000404_name">Tên của bạn</label>
+                                            <input id="call_data_call_request_122000404_name" size="50" class="ty-input-text-full" type="text" name="call_data[name]" value="">
+                                        </div>
+                                        <div class="ty-control-group">
+                                            <label for="call_data_call_request_122000404_phone" class="ty-control-group__title cm-required">SĐT</label>
+                                            <input id="call_data_call_request_122000404_phone" class="ty-input-text-full" size="50" type="text" name="call_data[phone]" value="">
+                                        </div>
+
+
+                                        <div class="ty-control-group">
+                                            <label for="call_data_call_request_122000404_email" class="ty-control-group__title cm-required cm-email">Email</label>
+                                            <input id="call_data_call_request_122000404_email" class="ty-input-text-full" size="50" type="text" name="call_data[email]" value="">
+                                        </div>
+                                        <div class="ty-control-group">
+                                            <label for="call_data_call_request_122000404_address" class="ty-control-group__title cm-required">Địa chỉ</label>
+                                            <input id="call_data_call_request_122000404_address" class="ty-input-text-full" size="50" type="text" name="call_data[address]" value="">
+                                        </div>
+                                        <div class="ty-control-group">
+                                            <label for="call_data_call_request_122000404_quantity" class="ty-control-group__title">Số lượng</label>
+                                            <select id="call_data_call_request_122000404_quantity" name="call_data[quantity]">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                            </select>
+                                        </div>
+                                        <div class="cr-popup-error-box">
+                                            <div class="hidden cm-cr-error-box help-inline">
+                                                <p>Vui lòng nhập thông tin. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons-container">
+
+
+                                            <button class="ty-btn__primary ty-btn__big cm-form-dialog-closer ty-btn ty-btn" type="submit" name="dispatch[call_requests.request]">Gửi thông tin</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="ty-grid-list__item ty-quick-view-button__wrapper">
+                                <form action="/Home/Index" method="post" name="product_form_122000404" enctype="multipart/form-data" class="cm-disable-empty-files  cm-ajax cm-ajax-full-render cm-ajax-status-middle  cm-processed-form">
+                                    <input type="hidden" name="result_ids" value="cart_status*,wish_list*,checkout*,account_info*">
+                                    <input type="hidden" name="redirect_url" value="index.php">
+                                    <input type="hidden" name="product_data[404][product_id]" value="404">
+                                    <div class="ty-grid-list__image">
+                                        <a href="@Url.Action("Details","Home",new { id=it.alias})">
+                                            <img class="ty-pict" src="~/@it.UrlHinh" alt="@it.TenSP" title="">
+                                        </a>
+                                        @if (@it.KhuyenMai > 0)
+                                        {
+                                            <ul class="ty-discount-label cm-reload-103000392" id="discount_label_update_103000392">
+                                                <li class="ty-discount-label__item" id="line_prc_discount_value_103000392"><span class="ty-discount-label__value" id="prc_discount_value_label_103000392">Giảm @it.KhuyenMai %</span></li>
+                                                <!--discount_label_update_103000392-->
+                                            </ul>
+                                        }
+                                        <div class="product-hover"><div class="product-shipping-free"><i class="fa fa-truck"></i> Miễn phí</div><a href="@Url.Action("Details","Home",new { id=it.alias})" class="product-view">Mua&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></a></div>
+                                    </div><div class="ty-grid-list__item-name">
+                                        <a href="@Url.Action("Details","Home",new { id=it.alias})" class="product-title" title="@it.TenSP">@it.TenSP</a>
+                                    </div><div class="ty-grid-list__price ">
+                                        <span class="cm-reload-122000404" id="old_price_update_122000404">
+
+                                            @if (@it.KhuyenMai > 0)
+                                            {
+                                                <span class="ty-list-price ty-nowrap" id="line_list_price_103000392"><span class="ty-strike"><span id="sec_list_price_103000392" class="ty-list-price ty-nowrap">@string.Format("{0:#,##0}", it.GiaCu) đ</span></span></span>
+                                            }
+
+
+
+                                            <!--old_price_update_122000404-->
+                                        </span>
+                                        <span class="cm-reload-122000404 ty-price-update" id="price_update_122000404">
+                                            <input type="hidden" name="appearance[show_price_values]" value="1">
+                                            <input type="hidden" name="appearance[show_price]" value="1">
+
+                                            <span class="ty-price" id="line_discounted_price_122000404"><span id="sec_discounted_price_122000404" class="ty-price-num">@string.Format("{0:#,##0}", it.GiaHienTai) đ</span></span>
+
+                                            <!--price_update_122000404-->
+                                        </span>
+                                    </div><div class="ty-grid-list__control"></div>
+                                </form>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

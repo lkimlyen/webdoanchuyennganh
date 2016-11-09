@@ -1,0 +1,153 @@
+﻿@model  webanhnguyen.Models.tbl_shop
+@{
+    ViewBag.Title = "Thông tin shop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="content" style="min-height: 530px;">
+    <h3>Tùy chỉnh thông tin shop</h3>
+    <div class="bs-example bs-example-bg-classes">
+        @if (ViewData["Error"] != null)
+        {
+            <p class="bg-warning">@ViewData["Error"]</p>
+        }
+    </div>
+    <div class="block">
+        <div class="block-content">
+            <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Tên shop
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="tenshop" class="form-control" value="@Model.tenshop" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Email shop
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="emailshop" class="form-control" value="@Model.emailshop" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Địa chỉ shop
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="addressshop" class="form-control" value="@Model.addressshop" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Vĩ độ
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="lattitude" class="form-control" value="@Model.lattitude" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Kinh độ
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="longtitude" class="form-control" value="@Model.longtitude" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Thông tin về thuế
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="masodoanhnghiep" class="form-control" value="@Model.masodoanhnghiep" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Hotline
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="phoneshop1" class="form-control" value="@Model.phoneshop1" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Số điện thoại
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="phoneshop2" class="form-control" value="@Model.phoneshop2" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Thời gian làm việc trong tuần
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea name="thoigianlamviec1" class="form-control" id="thoigianlamviec1" style="height:150px;">@Model.thoigianlamviec1</textarea>
+                        <script>
+                            CKEDITOR.replace('thoigianlamviec1', {
+                                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                filebrowserWindowWidth: '1000',
+                                filebrowserWindowHeight: '700'
+                            });
+                        </script>
+
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Thời gian làm việc cuối tuần
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea name="thoigianlamviec2" class="form-control" id="thoigianlamviec2" style="height:150px;">@Model.thoigianlamviec2</textarea>
+                        <script>
+                            CKEDITOR.replace('thoigianlamviec2', {
+                                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+                                filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                                filebrowserImageUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                                filebrowserWindowWidth: '1000',
+                                filebrowserWindowHeight: '700'
+                            });
+                        </script>
+
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Title
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="title" class="form-control" value="@Model.title" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Description
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="description" class="form-control" value="@Model.description" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        Keyword
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="keyword" class="form-control" value="@Model.keyword" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4 btn-gr">
+                        <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>
+                        <button onclick="goBack()" type="button" name="goback" class="btn btn-default">Quay lại</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

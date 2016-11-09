@@ -1,0 +1,263 @@
+﻿@using webanhnguyen.Models
+@model List<ShoppingCart>
+@{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tygh-content clearfix">
+    <div class="container-fluid  content-grid">
+        <div class="row-fluid ">
+            <div class="span16 breadcrumbs-grid">
+                <div id="breadcrumbs_73">
+
+                    <div class="ty-breadcrumbs clearfix">
+                        <a href="/Home/Index" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><a href="@Url.Action("Order","User")" class="ty-breadcrumbs__a">Đơn hàng</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">Thông tin đơn hàng</span>
+                    </div>
+
+                    <!--breadcrumbs_73-->
+                </div>
+            </div>
+        </div><div class="row-fluid ">
+            <div class="span16 main-content-grid">
+                <div class="ty-mainbox-container clearfix">
+                    <h1 class="ty-mainbox-title">
+                        Đơn hàng
+                        <em class="ty-date"></em>
+                        <em class="ty-status">
+                            Trang thái:
+                            Đang đặt
+                        </em>
+                    </h1>
+                    <div class="ty-mainbox-body">
+                        <div class="ty-orders-detail">
+                            <div class="ty-orders__actions">
+
+                            </div>
+
+                            <div class="ty-tabs cm-j-tabs clearfix">
+                                <ul class="ty-tabs__list">
+                                    <li id="general" class="ty-tabs__item cm-js active"><a class="ty-tabs__a" href="">Thông tin chung</a></li>
+                                </ul>
+                            </div>
+                            @{
+                                Customer kh = (Customer)Session["Email"];
+                            }
+                            <div class="cm-tabs-content ty-tabs__content clearfix" id="tabs_content">
+
+                                <div id="content_general" class="">
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+                                    <div class="orders-customer">
+                                        <h3 class="ty-subheader">
+
+                                            Thông tin khách hàng
+
+                                        </h3>
+
+
+                                        <div class="ty-profiles-info">
+                                            <div id="tygh_order_billing_adress" class="ty-profiles-info__item ty-profiles-info__billing">
+                                                <h5 class="ty-profiles-info__title">Thông tin người nhận</h5>
+                                                <div class="ty-profiles-info__field">
+                                                    <div class="ty-info-field b-firstname"> <a class="ty-profiles-info__title">Tên người nhận:</a><input type="text" id="name" name="name" style="float: right" class="ty-input-text" value="@kh.name"></div>
+
+                                                    <div class="ty-info-field b-phone"><a class="ty-profiles-info__title">Số điện thoại:</a><input type="text" id="phonenumber" name="phonenumber" class="ty-input-text" style="float: right" value="@kh.moblie"></div>
+
+                                                    <div class="ty-info-field b-address"><a class="ty-profiles-info__title">Địa chỉ:</a><input type="text" id="address" name="address" class="ty-input-text" style="float: right" value="@kh.address"></div>
+
+                                                    <div class="ty-info-field b-state"><a class="ty-profiles-info__title">Email:</a><input type="text" id="email" name="email" class="ty-input-text" style="float: right" value="@kh.email"> </div>
+                                                </div>
+                                            </div>
+                                            <div id="tygh_order_shipping_adress" class="ty-profiles-info__item ty-profiles-info__shipping">
+                                                <h5 class="ty-profiles-info__title">Thông tin khách hàng</h5>
+                                                <div class="ty-profiles-info__field">
+                                                    <div class="ty-info-field b-firstname"> <a class="ty-profiles-info__title">Tên người đặt:</a><input type="text" style="float: right" class="ty-input-text" readonly value="@kh.name"></div>
+
+                                                    <div class="ty-info-field b-phone"><a class="ty-profiles-info__title">Số điện thoại:</a><input type="text"  class="ty-input-text" style="float: right" readonly value="@kh.moblie"></div>
+
+                                                    <div class="ty-info-field b-address"><a class="ty-profiles-info__title">Địa chỉ:</a><input type="text" class="ty-input-text" style="float: right" readonly value="@kh.address"></div>
+
+                                                    <div class="ty-info-field b-state"><a class="ty-profiles-info__title">Email:</a><input type="text" class="ty-input-text" style="float: right" readonly value="@kh.email"> </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    
+                                    <div class="ty-orders-detail__products orders-product">
+                                        <div>
+                                            <div class="ty-subheaders-group">
+                                                <h3 class="ty-subheader">
+
+                                                    Thông tin sản phẩm
+
+                                                </h3>
+                                                <table class="ty-orders-detail__table ty-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ty-orders-detail__table-product" style="width: 40%; text-align: center">Sản phẩm</th>
+                                                            <th class="ty-orders-detail__table-price" style="width: 20%; text-align: center">Giá</th>
+                                                            <th class="ty-orders-detail__table-quantity" style="width: 20%; text-align: center">Số lượng</th>
+                                                            <th class="ty-orders-detail__table-subtotal"style="width: 20%; text-align: center">Thành tiền</th>
+                                                        </tr>
+                                                    </thead>
+
+
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        
+                                                        <tr class="ty-valign-top">
+                                                            <td>
+                                                                <h2>
+                                                                    <a href="@Url.Action("Details","Home",new { id = item.salias})">
+                                                                        @item.sTensp
+
+                                                                    </a>
+                                                                </h2>
+                                                        </td>
+                                                        <td class="ty-right">
+                                                            <span>@item.dDongia</span>&nbsp;đ
+                                                        </td>
+                                                        <td class="ty-center">&nbsp;@item.iSoluong</td>
+                                                        <td class="ty-right">
+                                                            &nbsp;<span>@item.dThanhtien</span>&nbsp;đ
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    }
+
+                                                </table>
+
+
+
+
+                                                <div class="ty-orders-summary clearfix">
+                                                    <h3 class="ty-subheader">
+
+                                                        Tổng kết
+
+                                                    </h3>
+
+                                                    <div class="ty-orders-summary__right">
+
+                                                        <div class="ty-barcode ty-center"></div>
+                                                    </div>
+
+                                                    <div class="ty-orders-summary__wrapper">
+                                                        <table class="ty-orders-summary__table">
+
+                                                            
+                                                            <tr class="ty-orders-summary__row">
+                                                                <td class="ty-orders-summary__total">Tổng cộng:&nbsp;</td>
+                                                                <td class="ty-orders-summary__total" data-ct-orders-summary="summary-total"><span>@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</span> đ</td>
+                                                            </tr>
+
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="ty-orders-repay">
+
+
+
+                                                    
+                                                    <div class="ty-repay" id="elm_payments_list">
+                                                        <script type="text/javascript" src="~/Scripts/tabs.js"></script>
+                                                                                                                <script type="text/javascript">
+                                                            (function (_, $) {
+                                                                $(_.doc).on('click', '.cm-select-payment', function () {
+                                                                    var self = $(this);
+
+                                                                    $.ceAjax('request', fn_url('orders.details?order_id=10427&payment_id=' + self.val()), {
+                                                                        result_ids: 'elm_payments_list',
+                                                                        full_render: true
+                                                                    });
+                                                                });
+
+                                                                $(_.doc).ready(function () {
+                                                                    $('.payments-form').each(function (index, form) {
+                                                                        $.ceEvent('on', 'ce.formpost_' + $(form).attr('name'), function () {
+                                                                            $('#ajax_overlay').show();
+                                                                            $('#ajax_loading_box').html('<span class="ty-ajax-loading-box-with__text-wrapper">Placing the order</span>').addClass('ty-ajax-loading-box_text_block');
+                                                                            $.toggleStatusBox('show');
+                                                                        });
+                                                                    });
+                                                                });
+                                                            }(Tygh, Tygh.$));
+                                                        </script>
+
+
+
+                                                        <div class="cm-tabs-content tabs-content clearfix">
+                                                            <div class="" id="content_payments_tab3">
+                                                                <form name="payments_form_tab3" action="/Home/Index" method="post" class="payments-form">
+                                                                    <input type="hidden" name="payment_id" value="6" />
+                                                                    <input type="hidden" name="result_ids" value="elm_payments_list" />
+
+                                                                    <input type="hidden" name="order_id" value="10427" />
+
+
+
+                                                                   
+<div class="ty-checkout-buttons">
+                                                                        <div class="ty-repay-button">
+
+
+                                                                            <button class="ty-btn__big ty-btn__primary ty-btn" type="Submit" name="dathang">Đặt hàng</button>
+                                                                            <a class="ty-btn__big ty-btn__primary ty-btn" type="button" href="@Url.Action("Index","Home")" name="home">Tiếp tục mua hàng</a>
+
+
+                                                                        </div>
+                                                                        
+
+                                                                    </div>
+
+
+                                                                    <div class="processor-buttons hidden"></div>
+                                                                </form>
+
+                                                                
+                                                                <!--content_payments_tab3-->
+                                                            </div>
+                                                        </div>
+
+                                                        <!--elm_payments_list-->
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+}
+                                </div><!-- main order info -->
+
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

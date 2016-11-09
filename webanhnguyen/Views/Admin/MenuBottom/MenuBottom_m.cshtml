@@ -1,0 +1,58 @@
+﻿@model  webanhnguyen.Models.tbl_menubottom
+    @{
+        ViewBag.Title = "Chỉnh sửa menu bên dưới";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    <div class="content" style="min-height: 530px;">
+        <h3>Tùy chỉnh menu bên dưới</h3>
+        <div class="bs-example bs-example-bg-classes">
+            @if (ViewData["Error"] != null)
+            {
+                <p class="bg-warning">@ViewData["Error"]</p>
+            }
+            else
+            {
+                <p class="bg-warning">Lưu ý: Những ô có dấu (<font color="red">*</font>) là bắt buộc</p>
+            }
+        </div>
+        <div class="block">
+            <div class="block-content">
+                <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                    <input type="hidden" name="id" value="@Model.id" />
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            Tên menu <font color="red">*</font>
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" name="TenMenu" class="form-control" value="@Model.tenmenu" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            URL
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" name="url" class="form-control" value="@Model.url" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            Thứ tự
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="number" min="1" name="ThuTu" class="form-control" value="@Model.thutu" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-4 btn-gr">
+                            <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>
+                            <button onclick="goBack()" type="button" name="goback" class="btn btn-default">Quay lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

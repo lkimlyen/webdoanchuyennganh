@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Tùy chỉnh CSS";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="content" style="min-height: 530px;">
+    <h3>Tùy chỉnh CSS</h3>
+    <div class="bs-example bs-example-bg-classes">
+        @if (ViewData["Error"] != null)
+        {
+            <p class="bg-warning">@ViewData["Error"]</p>
+        }
+    </div>
+    <div class="block">
+        <div class="block-content">
+            <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">
+                        CSS
+                    </label>
+                    <script src="~/codemirror/lib/codemirror.js"></script>
+                    <link href="~/codemirror/lib/codemirror.css" rel="stylesheet" />
+                    <script src="~/codemirror/mode/javascript/javascript.js"></script>
+                    <link href="~/codemirror/theme/darkpastel.css" rel="stylesheet" />
+
+                    <div class="col-sm-6">
+                        <textarea name="css" class="form-control" id="css" style="height:150px;">@ViewBag.Css</textarea>
+                    </div>
+
+                    <script>
+                        window.onload = function () {
+                            var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
+                                mode: 'css',
+                                theme: 'darkpastel',
+                                extraKeys: {
+                                    "Ctrl-Space": "autocomplete",
+                                    "Ctrl-F": "findPersistent"
+                                },
+                                tabSize: 2,
+                                lineNumbers: true,
+                                lineWrapping: true,
+                                styleActiveLine: true,
+                                styleSelectedText: true,
+                                matchBrackets: true,
+                                autoCloseBrackets: true,
+                            });
+                        };
+                    </script>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4 btn-gr">
+                        <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>
+                        <button onclick="goBack()" type="button" name="goback" class="btn btn-default">Quay lại</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
