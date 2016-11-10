@@ -642,7 +642,7 @@
 
         $(function () {
 
-            $('body').append('<img src="/images/hw_top.png" id="scroll_to_top" alt="@Session["title"]" style="margin:0px 10px 10px 0px;cursor:pointer; position:fixed; ' + _position[3] + '">');
+            $('body').append('<img src="/images/hw_top.png" id="scroll_to_top" alt="@ViewBag.shoptitle" style="margin:0px 10px 10px 0px;cursor:pointer; position:fixed; ' + _position[3] + '">');
             _scroll = $('#scroll_to_top');
             _scroll.fadeOut().click(function (event) {
                 event.preventDefault();
