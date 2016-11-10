@@ -1,5 +1,4 @@
 
-
 .wysiwyg-content #hw-faqs,
 .ty-wysiwyg-content #hw-faqs{}
 .wysiwyg-content div.hw-faq,
@@ -4709,7 +4708,7 @@ hr {
   margin: 0 auto;
 }
 .tygh-top-panel {
-  background: #0f7fae !important;
+  background: #034EA1 !important;
 }
 .tygh-header > div {
   background: transparent !important;
@@ -5784,7 +5783,7 @@ textarea:focus {
   outline: 0;
 }
 .top-menu-grid {
-  border-bottom: 3px solid #69be2b;
+  border-bottom: 3px solid #034EA1;
 }
 .ty-menu__item .ty-menu__item-link {
   padding: 16px 20px 15px !important;
@@ -5800,7 +5799,7 @@ textarea:focus {
   padding: 0 !important;
 }
 .main-menu .ty-menu__items .ty-menu__item:nth-child(2) a:hover {
-  background-color: #94d659 !important;
+  background-color: #034EA1 !important;
   background-position: 10px -35px !important;
 }
 .main-menu .ty-menu__items .ty-menu__item.ty-menu__item-active:nth-child(2) a {
@@ -5824,7 +5823,7 @@ textarea:focus {
 }
 .snag-panel .ty-dropdown-box__title > a > span,
 .snag-panel .ty-dropdown-box__title > a > i {
-  color: #82c619 !important;
+  color: #034EA1 !important;
 }
 .grid-list .ty-grid-list__item {
   background: none !important;

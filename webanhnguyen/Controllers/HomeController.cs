@@ -35,7 +35,7 @@ namespace webanhnguyen.Controllers
         public ActionResult HaiSanTuoiSong()
         {
             var TuoiSong = (from sp in db.tbl_Products
-                            where sp.Status == true && sp.IDLoaiSP == 1
+                            where sp.Status == true && sp.IDLoaiSP == 6
                             select sp).Skip(0).Take(12).ToList();
 
             return PartialView(TuoiSong);
@@ -46,7 +46,7 @@ namespace webanhnguyen.Controllers
         public ActionResult HaiSanDongLanh()
         {
             var dong = (from sp in db.tbl_Products
-                        where sp.Status == true && sp.IDLoaiSP == 2
+                        where sp.Status == true && sp.IDLoaiSP == 7
                         select sp).Skip(0).Take(12).ToList();
             return PartialView(dong);
         }
@@ -503,15 +503,15 @@ namespace webanhnguyen.Controllers
         {
             
             //Lấy ra tin tức từ mã tin truyền vào
-            var CT_Tin = (db.tbl_news.First(tt => tt.alias == id));
+            var CT_Tin = (db.tbl_news.First(tt => tt.alias.Equals(id)));
 
             //Lấy ra 10 tin khác (10 tin trong đó không có tin đang đọc)
 
             //Bộ đếm lượt xem cho Tin tức
-            CT_Tin.LuotXem += 1;
-            UpdateModel(CT_Tin);
-            db.SubmitChanges();
-            ViewBag.Title = CT_Tin.title;
+            //CT_Tin.LuotXem = CT_Tin.LuotXem + 1;
+            //UpdateModel(CT_Tin);
+            //db.SubmitChanges();
+            //ViewBag.Title = CT_Tin.title;
             ViewBag.keyword = CT_Tin.keyword;
             ViewBag.description = CT_Tin.description;
 
