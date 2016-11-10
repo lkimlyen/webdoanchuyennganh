@@ -15,11 +15,6 @@
                 Trang chủ
             </a>
         </li>
-        <li class="ty-menu__item-http-hasasavn-hai-san-tuoi-songhtml ty-menu__item  ty-menu__item-nodrop ">
-            <a href="@Url.Action("Laycatuoi","Home")" class="ty-menu__item-link">
-                Cá tươi mỗi ngày
-            </a>
-        </li>
         @foreach (var item in Model)
         {
             <li class="ty-menu__item-http-hasasavn-hai-san-tuoi-songhtml ty-menu__item  ty-menu__item-nodrop ">
@@ -28,6 +23,16 @@
                 </a>
             </li>
         }
+        <li class="ty-menu__item-http-hasasavn-hai-san-tuoi-songhtml ty-menu__item  ty-menu__item-nodrop ">
+            <a href="@Url.Action("KhuyenMai","Home")" class="ty-menu__item-link">
+                Khuyến mãi
+            </a>
+        </li>
+        <li class="ty-menu__item-http-hasasavn-hai-san-tuoi-songhtml ty-menu__item  ty-menu__item-nodrop ">
+            <a href="@Url.Action("tintuc","Home")" class="ty-menu__item-link">
+                Tin hay
+            </a>
+        </li>
     </ul>
 
 </div>
