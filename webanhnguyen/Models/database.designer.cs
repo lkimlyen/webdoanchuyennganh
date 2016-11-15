@@ -3073,7 +3073,7 @@ namespace webanhnguyen.Models
 		
 		private System.Nullable<int> _KhuyenMai;
 		
-		private System.Nullable<bool> _CaTuoiMoiNgay;
+		private System.Nullable<bool> _Sanphambanchay;
 		
 		private string _title;
 		
@@ -3117,8 +3117,8 @@ namespace webanhnguyen.Models
     partial void OnGiaCuChanged();
     partial void OnKhuyenMaiChanging(System.Nullable<int> value);
     partial void OnKhuyenMaiChanged();
-    partial void OnCaTuoiMoiNgayChanging(System.Nullable<bool> value);
-    partial void OnCaTuoiMoiNgayChanged();
+    partial void OnSanphambanchayChanging(System.Nullable<bool> value);
+    partial void OnSanphambanchayChanged();
     partial void OntitleChanging(string value);
     partial void OntitleChanged();
     partial void OndescriptionChanging(string value);
@@ -3416,22 +3416,22 @@ namespace webanhnguyen.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CaTuoiMoiNgay", DbType="Bit")]
-		public System.Nullable<bool> CaTuoiMoiNgay
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sanphambanchay", DbType="Bit")]
+		public System.Nullable<bool> Sanphambanchay
 		{
 			get
 			{
-				return this._CaTuoiMoiNgay;
+				return this._Sanphambanchay;
 			}
 			set
 			{
-				if ((this._CaTuoiMoiNgay != value))
+				if ((this._Sanphambanchay != value))
 				{
-					this.OnCaTuoiMoiNgayChanging(value);
+					this.OnSanphambanchayChanging(value);
 					this.SendPropertyChanging();
-					this._CaTuoiMoiNgay = value;
-					this.SendPropertyChanged("CaTuoiMoiNgay");
-					this.OnCaTuoiMoiNgayChanged();
+					this._Sanphambanchay = value;
+					this.SendPropertyChanged("Sanphambanchay");
+					this.OnSanphambanchayChanged();
 				}
 			}
 		}

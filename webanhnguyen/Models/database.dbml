@@ -165,7 +165,7 @@
       <Column Name="IDLoaiSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GiaCu" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="KhuyenMai" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CaTuoiMoiNgay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Sanphambanchay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="keyword" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />

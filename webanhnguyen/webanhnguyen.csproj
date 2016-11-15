@@ -200,6 +200,7 @@
     <Compile Include="Controllers\DataHelper.cs" />
     <Compile Include="Controllers\EmailHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\URLHelper.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -3078,6 +3079,7 @@
     <Content Include="Views\Admin\NewsCategory\NewsCategory_m.cshtml" />
     <Content Include="Views\Admin\Producer\Producer_m.cshtml" />
     <Content Include="Views\Admin\Producer\Producer.cshtml" />
+    <Content Include="Views\Home\Topbanchay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

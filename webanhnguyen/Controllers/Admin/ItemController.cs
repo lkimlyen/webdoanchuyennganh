@@ -117,10 +117,10 @@ namespace webanhnguyen.Controllers.Admin
         }
 
 
-        public ActionResult ItemSetCaTuoiMoiNgayEnable(int id)
+        public ActionResult ItemSetSanPhamBanChayEnable(int id)
         {
             tbl_Product tic = getOneItem(id);
-            tic.CaTuoiMoiNgay = !tic.CaTuoiMoiNgay;
+            tic.Sanphambanchay = !tic.Sanphambanchay;
             UpdateModel(tic);
             data.SubmitChanges();
             return RedirectToAction("itemView");
@@ -236,7 +236,7 @@ namespace webanhnguyen.Controllers.Admin
 
             tic.TenSP = name;
             tic.Status = true;
-            tic.CaTuoiMoiNgay = true;
+            tic.Sanphambanchay = true;
             tic.NgayCapNhat = DateTime.Now;
             if (!String.IsNullOrEmpty(price))
                 tic.GiaCu = Int32.Parse(price);

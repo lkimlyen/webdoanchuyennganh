@@ -23,6 +23,8 @@ namespace webanhnguyen.Controllers
             ViewBag.keyword = shop.keyword;
             ViewBag.shoptitle = shop.title;
             ViewBag.description = shop.description;
+            ViewBag.CurrentNumberFormat = new System.Globalization.CultureInfo("de-DE", false).NumberFormat;
+
             base.OnActionExecuting(filterContext);
         }
     }

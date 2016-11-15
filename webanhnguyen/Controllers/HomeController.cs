@@ -19,14 +19,13 @@ namespace webanhnguyen.Controllers
             Session["icon"] = hea.shortcuticon;
             return View();
         }
-        #region sản phẩm hot
+        #region sản phẩm bán chạy
         [ChildActionOnly]
-        public ActionResult Hot_Product()
+        public ActionResult Topbanchay()
         {
             var SP_hot = (from sp in db.tbl_Products
-                          where sp.Status == true
-                          orderby sp.SLDaBan descending
-                          select sp).Skip(0).Take(8).ToList();
+                          where sp.Status == true && sp.Sanphambanchay == true
+                          select sp).Take(7).ToList();
             return PartialView(SP_hot);
         }
         #endregion
@@ -262,152 +261,6 @@ namespace webanhnguyen.Controllers
         #endregion
 
         #region sản phẩm theo loại
-        public ActionResult Laycatuoi(int? page, string sorting)
-        {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["icon"] = hea.shortcuticon;
-            Session["title"] = ViewBag.shoptitle;
-            int pageSize = 20;
-            int pageNum = (page ?? 1);
-            var laysp = from g in db.tbl_Products
-                        where g.CaTuoiMoiNgay == true && g.Status == true
-                        orderby g.NgayCapNhat descending
-                        select g;
-
-            tbl_menu tenmenu = db.tbl_menus.SingleOrDefault(n => n.id == 5);
-            Session["TenMenu"] = tenmenu.TenMenu;
-            ViewBag.TenSapXep = "Sắp xếp: A đến Z";
-
-            ViewBag.NameSortParm = "Name_desc";
-            ViewBag.NameSortParmasc = "Name_asc";
-            ViewBag.DateSortParm = "Date_desc";
-            ViewBag.PriceSortParm = "Price_desc";
-            ViewBag.PriceSortPasc = "Price";
-            if (sorting == "Name_desc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp: Z đến A";
-                return View(laysp.OrderByDescending(n => n.TenSP).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Name_asc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp: A đến Z";
-                return View(laysp.OrderBy(n => n.TenSP).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Date_desc")
-            {
-                ViewBag.TenSapXep = "Sản phẩm mới";
-                return View(laysp.OrderByDescending(n => n.NgayCapNhat).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Price_desc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp Giá: Cao Đến Thấp";
-                return View(laysp.OrderByDescending(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
-            }
-
-            if (sorting == "Price")
-            {
-                ViewBag.TenSapXep = "Sắp xếp Giá: Thấp đến Cao";
-                return View(laysp.OrderBy(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
-            }
-            return View(laysp.ToPagedList(pageNum, pageSize));
-        }
-
-        public ActionResult hienthica2(int? page, string sorting)
-        {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["icon"] = hea.shortcuticon;
-            Session["title"] = ViewBag.shoptitle;
-            int pageSize = 20;
-            int pageNum = (page ?? 1);
-
-            var laysp = from g in db.tbl_Products
-                        where g.CaTuoiMoiNgay == true && g.Status == true
-                        orderby g.NgayCapNhat descending
-                        select g;
-            ViewBag.tenmenu = (from s in db.tbl_menus where s.id == 5 select s);
-            ViewBag.TenSapXep = "Sắp xếp: A đến Z";
-
-            ViewBag.NameSortParm = "Name_desc";
-            ViewBag.NameSortParmasc = "Name_asc";
-            ViewBag.DateSortParm = "Date_desc";
-            ViewBag.PriceSortParm = "Price_desc";
-            ViewBag.PriceSortPasc = "Price";
-            if (sorting == "Name_desc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp: Z đến A";
-                return View(laysp.OrderByDescending(n => n.TenSP).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Name_asc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp: A đến Z";
-                return View(laysp.OrderBy(n => n.TenSP).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Date_desc")
-            {
-                ViewBag.TenSapXep = "Sản phẩm mới";
-                return View(laysp.OrderByDescending(n => n.NgayCapNhat).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Price_desc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp Giá: Cao Đến Thấp";
-                return View(laysp.OrderByDescending(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
-            }
-
-            if (sorting == "Price")
-            {
-                ViewBag.TenSapXep = "Sắp xếp Giá: Thấp đến Cao";
-                return View(laysp.OrderBy(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
-            }
-            return View(laysp.ToPagedList(pageNum, pageSize));
-        }
-        public ActionResult hienthica3(int? page, string sorting)
-        {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["icon"] = hea.shortcuticon;
-
-            int pageSize = 20;
-            int pageNum = (page ?? 1);
-
-            var laysp = from g in db.tbl_Products
-                        where g.CaTuoiMoiNgay == true && g.Status == true
-                        orderby g.NgayCapNhat descending
-                        select g;
-            ViewBag.tenmenu = (from s in db.tbl_menus where s.id == 5 select s);
-            ViewBag.TenSapXep = "Sắp xếp: A đến Z";
-
-            ViewBag.NameSortParm = "Name_desc";
-            ViewBag.NameSortParmasc = "Name_asc";
-            ViewBag.DateSortParm = "Date_desc";
-            ViewBag.PriceSortParm = "Price_desc";
-            ViewBag.PriceSortPasc = "Price";
-            if (sorting == "Name_desc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp: Z đến A";
-                return View(laysp.OrderByDescending(n => n.TenSP).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Name_asc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp: A đến Z";
-                return View(laysp.OrderBy(n => n.TenSP).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Date_desc")
-            {
-                ViewBag.TenSapXep = "Sản phẩm mới";
-                return View(laysp.OrderByDescending(n => n.NgayCapNhat).ToPagedList(pageNum, pageSize));
-            }
-            if (sorting == "Price_desc")
-            {
-                ViewBag.TenSapXep = "Sắp xếp Giá: Cao Đến Thấp";
-                return View(laysp.OrderByDescending(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
-            }
-
-            if (sorting == "Price")
-            {
-                ViewBag.TenSapXep = "Sắp xếp Giá: Thấp đến Cao";
-                return View(laysp.OrderBy(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
-            }
-            return View(laysp.ToPagedList(pageNum, pageSize));
-        }
         #endregion
         #region Sản phẩm tìm kiếm (Search)
         [HttpGet]
@@ -457,29 +310,6 @@ namespace webanhnguyen.Controllers
                 return View(sp.OrderBy(n => n.GiaHienTai).ToPagedList(pageNum, pageSize));
             }
             return View(sp.OrderBy(n => n.TenSP).ToPagedList(pageNum, pageSize));
-        }
-        #endregion
-        #region menutop
-        [ChildActionOnly]//Gọi từ View sang Controll
-        public ActionResult MenuTop()
-        {
-            //Lấy ra danh sách Menu
-            var MenuTop = (from mn in db.tbl_product_types
-                           where mn.Status == true
-                           select mn).ToList();
-            return PartialView(MenuTop);
-        }
-        #endregion
-        #region header
-        [ChildActionOnly]//Gọi từ View sang Controll
-        public ActionResult header()
-        {
-            //Lấy ra danh sách Menu
-            var header = (from mn in db.tbl_headers
-                          where mn.id == 1
-                          select mn);
-
-            return PartialView(header.Single());
         }
         #endregion
         #region tintuc
@@ -664,19 +494,19 @@ namespace webanhnguyen.Controllers
         }
 
         #endregion
-        #region menubottom
+
+        #region header
         [ChildActionOnly]//Gọi từ View sang Controll
-        public ActionResult MenuBottom()
+        public ActionResult header()
         {
             //Lấy ra danh sách Menu
-            var menu = (from mn in db.tbl_informations
-                        where mn.Status == true
+            var header = (from mn in db.tbl_headers
+                          where mn.id == 1
+                          select mn);
 
-                        select mn).ToList();
-            return PartialView(menu);
+            return PartialView(header.Single());
         }
         #endregion
-
         #region information
         public ActionResult infomation(string id)
         {
