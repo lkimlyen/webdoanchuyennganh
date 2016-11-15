@@ -1,0 +1,665 @@
+﻿.fshop-chinhsach {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.shop-cs-sitebar {
+    margin: 0 -15px;
+}
+
+.shop-cs-sbartitlebox a {
+    position: relative;
+    display: block;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 10px 0 10px 3px;
+    background-color: #eeeeee;
+}
+
+    .shop-cs-sbartitlebox a:hover,
+    .shop-cs-sbartitlebox a:focus,
+    .shop-cs-sbartitlebox a:active {
+        text-decoration: none;
+    }
+
+.shop-cs-sbarlist ul {
+    list-style: none;
+}
+
+    .shop-cs-sbarlist ul li a {
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 20px;
+    }
+
+        .shop-cs-sbarlist ul li a.active,
+        .shop-cs-sbarlist ul li a:hover {
+            color: #51b848;
+            text-decoration: none;
+        }
+
+.shop-cs-mainbox {
+    margin-left: 20px;
+}
+
+.shop-cs-maintitle {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+
+.policy-container {
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+}
+
+    .policy-container p {
+        margin: 10px 0;
+    }
+
+.policy-special {
+    background: #fffcfc;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px 0 10px;
+}
+
+.policy-container .policy-special ul {
+    margin-left: 50px;
+}
+
+    .policy-container .policy-special ul > li {
+        list-style-image: url("../../images/chinhsach/ticked.png");
+    }
+
+.policy-title {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.poli-listct {
+    margin-left: 50px;
+}
+
+    .poli-listct > li {
+        list-style-image: url("../../images/chinhsach/ticked.png");
+    }
+
+.poli-red {
+    color: #d41212;
+}
+
+.poli-xanh {
+    color: #034ea1;
+}
+
+.poli-inlblock {
+    display: inline-block;
+    width: 48%;
+    font-size: 13px;
+}
+
+.polis-img {
+    margin: 15px 0;
+}
+
+.policy-sub-title {
+    margin-top: 20px;
+}
+
+.orange {
+    color: #f37021;
+}
+
+.policy-container ul {
+    margin: 10px;
+}
+
+    .policy-container ul > li {
+        line-height: 26px;
+    }
+
+.policy-sub-content {
+    margin-left: 15px;
+    margin-top:10px;
+}
+
+    .policy-sub-content label {
+        display: inline-block;
+        width: 140px;
+    }
+
+.policy-input {
+    width: 250px;
+    border: 1px solid #b8b8b8;
+    padding: 5px 10px;
+}
+
+    .policy-input.policy-drop {
+        width: 250px;
+    }
+
+.policy-table {
+    border: 1px solid #afafaf;
+}
+
+    .policy-table table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .policy-table thead {
+        background: #d9eede;
+        color: #3b9233;
+    }
+
+    .policy-table tr {
+        background: #d9eede;
+        border-bottom: 1px solid #fff;
+    }
+
+    .policy-table th, .policy-table td {
+        padding: 10px;
+        border-right: 1px solid #fff;
+    }
+
+    .policy-table tbody tr:nth-child(odd) {
+        background: #e9f4eb;
+    }
+
+    .policy-table tbody tr:nth-child(even) {
+        background: #f5fbf6;
+    }
+
+.guarantee-tbl td {
+    border-right: 1px solid #EEDCDC;
+}
+
+.guarantee-tr {
+    border-bottom: 1px solid #EEDCDC !important;
+}
+
+.col-main {
+    background: #fff;
+}
+
+.guarantee-td {
+    background: #fff;
+}
+
+.gray {
+    color: #c0c0c0;
+}
+
+.policy-table tr.border td {
+    border-top: 1px solid #afafaf;
+}
+
+.policy-container .left h3 {
+    font-size: 18px;
+    font-weight: normal;
+    border-bottom: 2px solid #dbdbdb;
+}
+
+.policy-menu {
+    margin-top: 10px;
+}
+
+    .policy-menu li {
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 35px;
+    }
+
+        .policy-menu li a:hover, .policy-menu li a.active {
+            color: #51b848;
+        }
+
+.calendar-icon {
+    background: url("../../images/chinhsach/calendar.png") 225px 3px no-repeat;
+    padding-right: 25px;
+}
+
+.vnd-icon {
+    background: url("../../images/chinhsach/vnd.png") 216px 9px no-repeat;
+    padding-right: 40px;
+}
+
+#msg-not-apple {
+    display: none;
+}
+
+#msg-apple {
+    display: none;
+}
+
+.lnd-row {
+    width: 100%;
+    position: relative;
+    clear: both;
+    float: left;
+}
+
+
+/*Tra gop*/
+.tragop_table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ded9c6;
+    table-layout: fixed;
+}
+
+    .tragop_table td {
+        padding: 5px;
+        border: 1px solid #ffffff;
+    }
+
+.tragop_tr1 td {
+    text-align: center;
+    background: #d9eede;
+}
+
+.tragop_tr2 td {
+    background: #e9f4eb;
+}
+
+.tragop_tr3 td {
+    background: #f5fbf6;
+}
+
+
+/*CSS CS BAO HANH*/
+.csbh_hang ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+    .csbh_hang ul li {
+        float: left;
+        list-style: none;
+        margin-bottom: 15px;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+#csbh-scroller {
+    height: 200px;
+    overflow: auto;
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.csbh_hang ul li a {
+    display: block;
+    width: 140px;
+    height: 43px;
+    border: 1px solid #898989;
+    box-shadow: 0 1px 5px 4px #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+    .csbh_hang ul li a img {
+        display: block;
+        width: 140px;
+        height: 40px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+    }
+
+.csbh_hang ul li:hover a {
+    border: 1px solid #dc0000;
+}
+
+.csbh_lihide {
+    display: none;
+}
+
+.csbh_limore {
+    color: #0ea1fe;
+    cursor: pointer;
+}
+
+.csbh_list_firm {
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.csbh_lfirm_head { 
+    background: #ebebeb;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -webkit-border-radius-topleft: 10px;
+    -webkit-border-radius-topright: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+}
+.clear {
+    clear:both;
+}
+
+.csbh_lfirm_main {
+    padding: 15px;
+    max-height: 400px;
+    min-height: 50px;
+    overflow: auto;
+}
+
+.csbh_lfirm_ul {
+    padding: 0 10px;
+}
+
+.csbh_lfirm_uldot {
+    position: relative;
+}
+
+    .csbh_lfirm_uldot i {
+        position: absolute;
+        top: 10px;
+        left: -15px;
+        width: 7px;
+        height: 7px;
+        background: url("../../images/chinhsach/doter.jpg") no-repeat center;
+    }
+
+#load-ajax {
+    display: none;
+}
+
+#ntc-wrapper-all-warranty {
+    display: none;
+}
+
+.link-underline {
+    font-weight: bold;
+}
+
+    .link-underline:hover {
+        text-decoration: underline;
+    }
+
+.clearboth {
+    clear: both;
+}
+.left-total-wrantycenter {
+    float: left;
+}
+    .left-total-wrantycenter p {
+        padding-left: 10px;
+    }
+.right-select-region {
+    float:right;
+}
+.right-select-region select{
+    margin: 10px 5px 10px 0; 
+}
+
+@media (min-width: 1230px) {
+    #ChinhSachPages .fshop-mainbox {
+        margin: 0 auto;
+        width: 1000px;
+    }
+}
+
+@media (max-width: 1040px) {
+    #ChinhSachPages .fshop-mainbox {
+        width: 100%;
+        padding: 0 15px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .shop-cs-mainbox {
+        margin: 20px -15px;
+    }
+
+    .csbh_lfirm_head {
+        height: auto;
+    }
+}
+
+/**style menu parent child**/
+.fshop-subm-cs li {
+    border-bottom: 0;
+}
+
+    .fshop-subm-cs li a {
+        padding: 10px 0 10px 20px !important;
+    }
+
+        .fshop-subm-cs li a::before {
+            content: "↪";
+            padding-right: 5px;
+        }
+
+    .fshop-subm-cs li:last-child a {
+        border-bottom: 0 !important;
+    }
+/**Style common question apple**/
+.shop-cs-tabmain {
+}
+
+    .shop-cs-tabmain.panel-group .panel {
+        border-radius: 0;
+        border: 0;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .shop-cs-tabmain .panel-default > .panel-heading {
+        background-color: #fff;
+        padding: 0;
+    }
+
+        .shop-cs-tabmain .panel-default > .panel-heading .panel-title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+            .shop-cs-tabmain .panel-default > .panel-heading .panel-title a {
+                display: block;
+                padding: 10px 15px;
+                position: relative;
+            }
+
+                .shop-cs-tabmain .panel-default > .panel-heading .panel-title a:after {
+                    content: "-";
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    font-size: 18px;
+                    font-weight: normal;
+                }
+
+                .shop-cs-tabmain .panel-default > .panel-heading .panel-title a.collapsed:after {
+                    content: "+";
+                }
+
+                .shop-cs-tabmain .panel-default > .panel-heading .panel-title a:hover,
+                .shop-cs-tabmain .panel-default > .panel-heading .panel-title a:focus,
+                .shop-cs-tabmain .panel-default > .panel-heading .panel-title a:active {
+                    text-decoration: none;
+                    color: #F37021;
+                }
+
+    .shop-cs-tabmain.panel-group .panel-heading + .panel-collapse > .panel-body,
+    .shop-cs-tabmain.panel-group .panel-heading + .panel-collapse > .list-group {
+        border-top: 1px solid #fff;
+    }
+
+.fshop-cstg-item {
+    border-bottom: 1px solid #e3e3e3;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.fshop-cstg-img {
+    float: left;
+    width: 200px;
+    text-align: center;
+}
+
+.fshop-cstg-info {
+    display: block;
+    margin-left: 200px;
+}
+
+    .fshop-cstg-info ul {
+        list-style: none;
+    }
+
+        .fshop-cstg-info ul li {
+            margin-bottom: 8px;
+        }
+
+            .fshop-cstg-info ul li p {
+                margin: 5px 0 5px 20px;
+            }
+
+                .fshop-cstg-info ul li p:before {
+                    content: "• ";
+                    font-size: 17px;
+                    color: #CCCCCC;
+                }
+
+@media (max-width: 490px) {
+    .fshop-cstg-img {
+        float: none;
+        width: 100%;
+    }
+
+    .fshop-cstg-info {
+        margin-left: 0;
+    }
+}
+
+.ntc-bold {
+    font-weight:bold;
+}
+
+
+/*09032016*/
+.csbh-scroll{
+    margin-top: 20px;
+}
+.csbh-scroll ul{
+    margin: 0 -5px;
+}
+.csbh-scroll ul li{
+    padding: 0 5px;
+    float: left; 
+    width: 25%;
+    margin-bottom: 10px;
+}
+.csbh-scroll ul li a{
+    display: table; 
+    height: 78px;
+    width: 100%; 
+}
+.csbh-scroll ul li a span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height: 78px;
+    width: 100%;
+    background: #f3f3f3;
+}
+.csbh-scroll ul{
+    height: 260px;
+    overflow: hidden;
+}
+.csbh-scall ul {
+    height: auto;
+}
+.csbh-more{
+    text-align: center;
+    padding: 5px 0;
+}
+.csbh-more span{
+    font-size: 12px;
+    font-style: italic;
+    color: #db0404;
+    display: inline-block;
+    cursor: pointer;
+}
+.csbh-tittt {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.csbh-tittt strong{
+    color: #db0404; 
+    text-transform: uppercase;
+}
+.csbh-chselect{
+    width: 180px;
+}
+.csbh-tblmain{
+    margin-bottom: 40px;
+}
+.csbh-phnum{
+    white-space: nowrap;
+}
+@media (max-width: 992px) {
+    .csbh-scroll ul li { 
+        width: 33.3333%;
+    }
+}
+
+@media (max-width: 768px) {
+    .csbh-more span { 
+        color: #fff; 
+        background: #db0404;
+        padding: 5px 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    .csbh-scroll ul li { 
+        width: 50%;
+    } 
+    .csbh-tblmain table tr td:nth-child(1),
+    .csbh-tblmain table tr th:nth-child(1){
+        display: none;
+    }
+    
+}
+@media (max-width: 430px) {
+    .csbh-tbboxs{
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: auto; 
+    }
+    .csbh-tbboxs table{
+        width: 560px;
+    } 
+}
+
+@media (max-width: 380px) {
+    .csbh-chselect {
+    width: 90px;
+    padding: 4px;
+    font-size: 12px;
+}
+    .policy-container p {
+        font-size: 12px;
+    }
+    .csbh-phnum {
+    white-space: inherit;
+}
+}

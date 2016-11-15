@@ -63,16 +63,12 @@ namespace webanhnguyen.Controllers
         #endregion
         #region món ăn mỗi ngày
         [ChildActionOnly]
-        public ActionResult monanmoingay()
+        public ActionResult tincongnghe()
         {
-            ViewBag.tinmoinhat = (from sp in db.tbl_news
-                                  where sp.status == true
-                                  orderby sp.NgayCapNhat descending
-                                  select sp).Skip(0).Take(1).ToList();
             var tt = (from sp in db.tbl_news
                       where sp.status == true
                       orderby sp.NgayCapNhat descending
-                      select sp).Skip(1).Take(4).ToList();
+                      select sp).Take(5).ToList();
             return PartialView(tt);
         }
         #endregion
@@ -508,10 +504,15 @@ namespace webanhnguyen.Controllers
             //Lấy ra 10 tin khác (10 tin trong đó không có tin đang đọc)
 
             //Bộ đếm lượt xem cho Tin tức
-            //CT_Tin.LuotXem = CT_Tin.LuotXem + 1;
+            //if (CT_Tin.LuotXem == null)
+            //{
+            //    CT_Tin.LuotXem = 0;
+            //}
+            //else
+            //    CT_Tin.LuotXem += 1;
             //UpdateModel(CT_Tin);
             //db.SubmitChanges();
-            //ViewBag.Title = CT_Tin.title;
+            ViewBag.Title = CT_Tin.title;
             ViewBag.keyword = CT_Tin.keyword;
             ViewBag.description = CT_Tin.description;
 

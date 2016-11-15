@@ -11,6 +11,23 @@ namespace webanhnguyen.Controllers.Admin
 {
     public class NewsController : BaseAdminController
     {
+        private List<tbl_new_type> getNewsCategories(int count)
+        {
+            return getNewsCategories(count, "");
+        }
+        private List<tbl_new_type> getAllNewsCategories()
+        {
+            return getNewsCategories(-1, "");
+        }
+        private List<tbl_new_type> getNewsCategories(int count, String keyword)
+        {
+            var result = data.tbl_new_types;
+            if (!String.IsNullOrEmpty(keyword))
+                result.Where(a => a.TenLoaiTT.Contains(keyword));
+            if (count != -1)
+                result.Take(count);
+            return result.ToList();
+        }
         // GET: News
         private List<tbl_new> getNews(int count)
         {
@@ -120,7 +137,8 @@ namespace webanhnguyen.Controllers.Admin
         [HttpGet]
         public ActionResult newsCreate()
         {
-            return View(URLHelper.URL_ADMIN_NEWS_M, new tbl_new());
+            var news = new tbl_new();
+            return View(URLHelper.URL_ADMIN_NEWS_M, new Tuple<tbl_new, List<tbl_new_type>>(news, getAllNewsCategories()));
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult newsCreate(FormCollection form, HttpPostedFileBase fileUpload)
@@ -146,6 +164,16 @@ namespace webanhnguyen.Controllers.Admin
                 err = true;
                 ViewData["Error"] += "Vui lòng nhập tên tin tức!\n";
             }
+            if (form["parent"].ToString().Equals("0"))
+            {
+                err = true;
+                ViewData["Error"] += "Vui lòng chọn danh mục!\n";
+            }
+            else
+            {
+                tic.idloaitt = Int32.Parse(form["parent"]);
+            }
+
             tic.TieuDe = name;
             tic.status = true;
             tic.NgayCapNhat = DateTime.Now;
@@ -176,7 +204,7 @@ namespace webanhnguyen.Controllers.Admin
             }
             else
             {
-                return View(URLHelper.URL_ADMIN_NEWS_M, tic);
+                return View(URLHelper.URL_ADMIN_NEWS_M, new Tuple<tbl_new, List<tbl_new_type>>(tic, getAllNewsCategories()));
             }
         }
         /*
@@ -187,7 +215,7 @@ namespace webanhnguyen.Controllers.Admin
         [HttpGet]
         public ActionResult newsEdit(String id)
         {
-            return View(URLHelper.URL_ADMIN_NEWS_M, getOneNews(Int32.Parse(id)));
+            return View(URLHelper.URL_ADMIN_NEWS_M, new Tuple<tbl_new, List<tbl_new_type>>(getOneNews(Int32.Parse(id)), getAllNewsCategories()));
         }
 
         [HttpPost, ValidateInput(false)]
@@ -222,6 +250,16 @@ namespace webanhnguyen.Controllers.Admin
                     err = true;
                     ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
                 }
+                if (form["parent"].ToString().Equals("0"))
+                {
+                    err = true;
+                    ViewData["Error"] += "Vui lòng chọn danh mục!\n";
+                }
+                else
+                {
+                    tic.idloaitt = Int32.Parse(form["parent"]);
+                }
+
                 tic.TieuDe = name;
                 tic.NgayCapNhat = DateTime.Now;
                 tic.NoiDung = detail;
@@ -254,7 +292,7 @@ namespace webanhnguyen.Controllers.Admin
                 }
                 else
                 {
-                    return View(URLHelper.URL_ADMIN_NEWS_M, tic);
+                    return View(URLHelper.URL_ADMIN_NEWS_M, new Tuple<tbl_new, List<tbl_new_type>>(tic, getAllNewsCategories()));
                 }
             }
         }

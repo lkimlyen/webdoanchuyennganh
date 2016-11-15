@@ -8,7 +8,7 @@ namespace webanhnguyen.Controllers
     public class URLHelper
     {
         //Image paths
-        public const String URL_IMAGE_PATH = "~/";
+        public const String URL_IMAGE_PATH = "~/cdn.fptshop.com.vn/Uploads/Thumbs/";
 
         //Home URL
         public const String URL_HOME_ALL_PRODUCTS = "~/Views/Home/AllProducts.cshtml";

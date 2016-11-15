@@ -1,0 +1,1 @@
+if(typeof window.FPTSHOP == 'undefined' || (window.FPTSHOP && typeof window.FPTSHOPExcuted != 'undefined'))document.write('<script type="text/javascript" src="../../e-vcdn.anthill.vn/delivery-fptshop/asset/1.0/fptshop.js"></script>');document.write('<div class="512075715" data-fptshop-zone-id="512075715"></div>')

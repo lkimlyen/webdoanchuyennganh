@@ -78,7 +78,25 @@ namespace webanhnguyen.Controllers
 
                 return alias;
             }
+            public string getAliasFromNewTypeName(Models.databaseDataContext data, String name)
+            {
+                if (String.IsNullOrEmpty(name))
+                    return "";
+                String alias = RemoveUnicode(name);
+                var record = from ic in data.tbl_new_types
+                             where ic.alias.Equals(alias)
+                             select ic;
+                if (record != null)
+                {
+                    int count = record.Count();
+                    if (count > 0)
+                    {
+                        alias += "-" + count;
+                    }
+                }
 
+                return alias;
+            }
             public string getAliasFromProductName(Models.databaseDataContext data, String name)
             {
                 if (String.IsNullOrEmpty(name))
@@ -160,6 +178,13 @@ namespace webanhnguyen.Controllers
                 }
                 return instance;
             }
+            public void deleteAllNewsCategory(Models.databaseDataContext data)
+            {
+                deleteAllNews(data);
+
+                data.tbl_new_types.DeleteAllOnSubmit(data.tbl_new_types);
+                data.SubmitChanges();
+            }
 
             public void deleteAllNews(Models.databaseDataContext data)
             {
@@ -171,11 +196,35 @@ namespace webanhnguyen.Controllers
             {
                 return data.tbl_news.Count();
             }
+            public int getNewsCategoryAmount(Models.databaseDataContext data)
+            {
+                return data.tbl_new_types.Count();
+            }
 
             public Models.tbl_new getNewsById(Models.databaseDataContext data, int id)
             {
                 Models.tbl_new result = data.tbl_news.Where(n => n.id == id).Single();
                 return result;
+            }
+            public Models.tbl_new_type getNewsCategoryById(Models.databaseDataContext data, int id)
+            {
+                Models.tbl_new_type result = data.tbl_new_types.Where(n => n.Id == id).Single();
+                return result;
+            }
+
+            public List<Models.tbl_new> getListAllNews(Models.databaseDataContext data)
+            {
+                return data.tbl_news.OrderByDescending(a => a.NgayCapNhat).ToList();
+            }
+
+            public List<Models.tbl_new> getListNewsByCategory(Models.databaseDataContext data, int idNewType)
+            {
+                return data.tbl_news.OrderByDescending(a => a.NgayCapNhat).Where(n => n.idloaitt == idNewType).ToList();
+            }
+
+            public List<Models.tbl_new> getListOtherNewsByCategory(Models.databaseDataContext data, int id, int idNewType)
+            {
+                return data.tbl_news.OrderByDescending(a => a.NgayCapNhat).Where(n => n.id == idNewType && n.id != id).ToList();
             }
         }
 
@@ -198,7 +247,7 @@ namespace webanhnguyen.Controllers
                 data.tbl_product_types.DeleteAllOnSubmit(data.tbl_product_types);
                 data.SubmitChanges();
             }
-
+           
             public void deleteAllProduct(Models.databaseDataContext data)
             {
                 //ShoppingCardHelper.getInstance().deleteAllOrderDetails(data);

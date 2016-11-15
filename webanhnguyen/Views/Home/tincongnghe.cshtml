@@ -1,0 +1,10 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_new>
+
+<div class="news-box-content">
+    <ul>
+        @foreach (var item in Model)
+        {
+        <li> <a href="@Url.Action("Reader", "Home", new { id = item.alias})" title="@item.TieuDe" class="clearfix"> <span> <img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" data-original="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="@item.TieuDe"> </span> <h3>@item.TieuDe</h3> </a> </li>
+        }
+    </ul>
+</div>

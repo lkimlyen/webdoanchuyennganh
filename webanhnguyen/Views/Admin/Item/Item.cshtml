@@ -63,7 +63,6 @@
                                 <td style="width: 50px;" class="text-center">ID</td>
                                 <td style="width: 150px;" class="text-center">Hình đại diện</td>
                                 <td class="text-center">Tên sản phẩm</td>
-                                <td style="width: 100px;" class="text-center">Cá tươi mỗi ngày</td>
                                 <td style="width: 100px;" class="text-center">Ẩn/Hiện</td>
                                 <td style="width: 100px;" class="text-center">Tùy chọn</td>
                             </tr>
@@ -91,11 +90,7 @@
                                     <td class="text-center name-to-confirm">
                                         @item.TenSP
                                     </td>
-                                    <td class="text-center">
-                                        <a href='@Url.Action("ItemSetCaTuoiMoiNgayEnable", "Item", new { id = @item.ID})' title="Reverse">
-                                            <div class="check tool @(item.CaTuoiMoiNgay.HasValue && item.CaTuoiMoiNgay.Value?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Cá tươi mỗi ngày" value="@item.ID"></div>
-                                        </a>
-                                    </td>
+                                    
                                     <td class="text-center">
                                         <a href='@Url.Action("ItemSetStatusEnable", "Item", new { id = @item.ID})' title="Reverse">
                                             <div class="check tool @(item.Status?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@item.ID"></div>

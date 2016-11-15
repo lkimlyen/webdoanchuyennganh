@@ -158,12 +158,20 @@
                             </li>
                             <!-- produtcs -->
                             <li>
-                                <a href="@Url.Action("newsView","News")">
-                                    <i class="si si-list"></i>
+                                <a href="#" class="nav-submenu" data-toggle="nav-submenu">
+                                    <i class="si si-grid"></i>
                                     <span class="sidebar-mini-hide">Tin tức</span>
                                 </a>
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Danh mục", "newsCategoryView", "NewsCategory")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Danh sách tin tức", "newsView", "News")
+                                    </li>
+                                </ul>
                             </li>
-                            <!-- member -->
+                               <!-- member -->
                             <li>
                                 <a href="@Url.Action("MemberView","Member")">
                                     <i class="fa fa-smile-o"></i>

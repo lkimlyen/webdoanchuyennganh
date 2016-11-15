@@ -1,0 +1,69 @@
+.fshop-tagsmain{}
+.fshop-tags-head{
+    margin: 15px 0;
+}
+.fshop-tags-title{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #d41212;
+}
+.fshop-tags-alphabet{
+    display: inline-block;
+    list-style: none;
+}
+.fshop-tags-alphabet li{
+    display: inline-block;
+}
+.fshop-tags-alphabet li a{
+    font-size: 15px;
+    font-weight: bold;
+    color: #d41212;
+    border: 1px solid #CF2121;
+    padding: 0 2px;
+}
+.fshop-tags-alphabet li a.active,
+.fshop-tags-alphabet li a:hover{
+    color: #FFFFFF;
+    font-size: 15px;
+    background: #d41212;
+    text-decoration: none;
+}
+.fshop-tagsbox{
+    border: 1px solid #e2e2e2;
+    background-color: #f2f2f2;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.fshop-tagsitem a{
+    font-size: 12px;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: clip;
+    -moz-transition: all .3s ease 0s;
+    -webkit-transition: all .3s ease 0s;
+    -o-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+}
+.fshop-tagsitem a:hover{
+    padding-left: 5px;
+    background-color: #ffffff;
+}
+.fshop-tagsitem a:before{
+    content: "» ";
+}
+
+
+@media (max-width: 500px) {
+    .fshop-tagsitem{
+        width: 100%;
+    }
+}
+
+.tabs_link_item>p {
+  text-align: center;
+  font-size: 18px;
+  padding-top: 20px;
+}
