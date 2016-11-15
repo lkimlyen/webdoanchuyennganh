@@ -14,63 +14,28 @@ namespace webanhnguyen.Controllers
     {
         public ActionResult Index()
         {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["title"] = ViewBag.shoptitle;
-            Session["icon"] = hea.shortcuticon;
             return View();
         }
+        #region lấy sản phẩm show lên trang chủ
+        public ActionResult Laysanpham()
+        {
+            var sp = from n in db.tbl_Products 
+                     where n.Status == true && n.Sanphambanchay == false
+                     select n;
+            return PartialView(sp);
+        }
+        #endregion
         #region sản phẩm bán chạy
         [ChildActionOnly]
         public ActionResult Topbanchay()
         {
             var SP_hot = (from sp in db.tbl_Products
                           where sp.Status == true && sp.Sanphambanchay == true
-                          select sp).Take(7).ToList();
+                          select sp).Take(6).ToList();
             return PartialView(SP_hot);
         }
         #endregion
-        #region sản phẩm tươi sống
-        [ChildActionOnly]
-        public ActionResult HaiSanTuoiSong()
-        {
-            var TuoiSong = (from sp in db.tbl_Products
-                            where sp.Status == true && sp.IDLoaiSP == 6
-                            select sp).Skip(0).Take(12).ToList();
-
-            return PartialView(TuoiSong);
-        }
-        #endregion
-        #region sản phẩm đông lạnh
-        [ChildActionOnly]
-        public ActionResult HaiSanDongLanh()
-        {
-            var dong = (from sp in db.tbl_Products
-                        where sp.Status == true && sp.IDLoaiSP == 7
-                        select sp).Skip(0).Take(12).ToList();
-            return PartialView(dong);
-        }
-        #endregion
-        #region sản phẩm khô
-        [ChildActionOnly]
-        public ActionResult HaiSanKho()
-        {
-            var Kho = (from sp in db.tbl_Products
-                       where sp.Status == true && sp.IDLoaiSP == 3
-                       select sp).Skip(0).Take(12).ToList();
-            return PartialView(Kho);
-        }
-        #endregion
-        #region món ăn mỗi ngày
-        [ChildActionOnly]
-        public ActionResult tincongnghe()
-        {
-            var tt = (from sp in db.tbl_news
-                      where sp.status == true
-                      orderby sp.NgayCapNhat descending
-                      select sp).Take(5).ToList();
-            return PartialView(tt);
-        }
-        #endregion
+        
         #region chi tiết sản phẩm
         public ActionResult Details(string id)
         {
@@ -312,44 +277,7 @@ namespace webanhnguyen.Controllers
             return View(sp.OrderBy(n => n.TenSP).ToPagedList(pageNum, pageSize));
         }
         #endregion
-        #region tintuc
-        public ActionResult tintuc(int? page)
-        {  int pageNume = (page ?? 1);
-            int pageSize = 20;
-            var tintuc = (from tt in db.tbl_news
-                          where tt.status == true
-                          orderby tt.NgayCapNhat descending
-                          select tt);
-
-            return View(tintuc.ToPagedList(pageNume, pageSize));
-        }
-        #endregion
-        #region Chi tiết tin (Reader)
-        public ActionResult Reader(string id)
-        {
-            
-            //Lấy ra tin tức từ mã tin truyền vào
-            var CT_Tin = (db.tbl_news.First(tt => tt.alias.Equals(id)));
-
-            //Lấy ra 10 tin khác (10 tin trong đó không có tin đang đọc)
-
-            //Bộ đếm lượt xem cho Tin tức
-            //if (CT_Tin.LuotXem == null)
-            //{
-            //    CT_Tin.LuotXem = 0;
-            //}
-            //else
-            //    CT_Tin.LuotXem += 1;
-            //UpdateModel(CT_Tin);
-            //db.SubmitChanges();
-            ViewBag.Title = CT_Tin.title;
-            ViewBag.keyword = CT_Tin.keyword;
-            ViewBag.description = CT_Tin.description;
-
-            return View(CT_Tin);
-        }
-
-        #endregion
+       
         #region khuyenmai
         public ActionResult khuyenmai(int? page, string sorting)
         {
@@ -522,5 +450,55 @@ namespace webanhnguyen.Controllers
             return PartialView(info);
         }
         #endregion
+        #region tintuc
+        public ActionResult tintuc(int? page)
+        {
+            int pageNume = (page ?? 1);
+            int pageSize = 20;
+            var tintuc = (from tt in db.tbl_news
+                          where tt.status == true
+                          orderby tt.NgayCapNhat descending
+                          select tt);
+
+            return View(tintuc.ToPagedList(pageNume, pageSize));
+        }
+        #endregion
+        #region tincongnghe
+        public ActionResult tincongnghe()
+        {
+            var tin = from m in db.tbl_news
+                      where m.status == true
+                      orderby m.NgayCapNhat descending
+                      select m;
+            return PartialView(tin.Take(5).ToList());
+        }
+        #endregion
+        #region Chi tiết tin (Reader)
+        public ActionResult Reader(string id)
+        {
+
+            //Lấy ra tin tức từ mã tin truyền vào
+            var CT_Tin = (db.tbl_news.First(tt => tt.alias.Equals(id)));
+
+            //Lấy ra 10 tin khác (10 tin trong đó không có tin đang đọc)
+
+            //Bộ đếm lượt xem cho Tin tức
+            //if (CT_Tin.LuotXem == null)
+            //{
+            //    CT_Tin.LuotXem = 0;
+            //}
+            //else
+            //    CT_Tin.LuotXem += 1;
+            //UpdateModel(CT_Tin);
+            //db.SubmitChanges();
+            ViewBag.Title = CT_Tin.title;
+            ViewBag.keyword = CT_Tin.keyword;
+            ViewBag.description = CT_Tin.description;
+
+            return View(CT_Tin);
+        }
+
+        #endregion
+
     }
 }

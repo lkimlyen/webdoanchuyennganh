@@ -261,7 +261,7 @@ namespace webanhnguyen.Controllers
             public void deleteAllProductCategory(Models.databaseDataContext data)
             {
                 deleteAllProduct(data);
-
+                deleteAllProducer(data);
                 data.tbl_product_types.DeleteAllOnSubmit(data.tbl_product_types);
                 data.SubmitChanges();
             }

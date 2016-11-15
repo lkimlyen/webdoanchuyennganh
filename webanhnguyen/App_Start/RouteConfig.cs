@@ -18,6 +18,7 @@ namespace webanhnguyen
                 url: "{controller}/{action}/{id}/{ignoreThisBit}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, ignoreThisBit = UrlParameter.Optional }
             );
+            
             routes.MapRoute(
                 name: "Admin",
                 url: "Admin/{controller}/{action}/{id}",

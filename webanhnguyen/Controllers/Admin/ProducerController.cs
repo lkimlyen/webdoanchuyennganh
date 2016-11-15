@@ -10,7 +10,26 @@ namespace webanhnguyen.Controllers.Admin
 {
     public class ProducerController : BaseAdminController
     {
+        // GET: ItemCategories
+        private List<tbl_product_type> getItemCategories(int count)
+        {
+            return getItemCategories(count, "");
+        }
+        private List<tbl_product_type> getAllItemCategories()
+        {
+            return getItemCategories(-1, "");
+        }
+        private List<tbl_product_type> getItemCategories(int count, String keyword)
+        {
+            var result = data.tbl_product_types;
+            if (!String.IsNullOrEmpty(keyword))
+                result.Where(a => a.TenLoaiSP.Contains(keyword));
+            if (count != -1)
+                result.Take(count);
+            return result.ToList();
+        }
         // GET: Producer
+
         private List<tbl_producer> getProducer(int count)
         {
             return getProducer(count, "");
@@ -120,7 +139,8 @@ namespace webanhnguyen.Controllers.Admin
         [HttpGet]
         public ActionResult producerCreate()
         {
-            return View(URLHelper.URL_ADMIN_PRODUCER_M, new tbl_producer());
+            var producer = new tbl_producer();
+            return View(URLHelper.URL_ADMIN_PRODUCER_M, new Tuple<tbl_producer,List<tbl_product_type>>(producer,getAllItemCategories()));
         }
         [HttpPost]
         public ActionResult producerCreate(FormCollection form, HttpPostedFileBase fileUpload)
@@ -133,6 +153,16 @@ namespace webanhnguyen.Controllers.Admin
                 err = true;
                 ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
             }
+            if (form["parent"].ToString().Equals("0"))
+            {
+                err = true;
+                ViewData["Error"] += "Vui lòng chọn danh mục!\n";
+            }
+            else
+            {
+                tic.Idloaisp = Int32.Parse(form["parent"]);
+            }
+
             tic.Tenhangsx = name;
             tic.alias = DataHelper.GeneralHelper.getInstance().getAliasFromProducerName(data, name);
             if (err == false)
@@ -143,7 +173,7 @@ namespace webanhnguyen.Controllers.Admin
             }
             else
             {
-                return View(URLHelper.URL_ADMIN_PRODUCER_M, tic);
+                return View(URLHelper.URL_ADMIN_PRODUCER_M, new Tuple<tbl_producer, List<tbl_product_type>>(tic, getAllItemCategories()));
             }
         }
         /*
@@ -154,7 +184,7 @@ namespace webanhnguyen.Controllers.Admin
         [HttpGet]
         public ActionResult producerEdit(String id)
         {
-            return View(URLHelper.URL_ADMIN_PRODUCER_M, getOneProducer(Int32.Parse(id)));
+            return View(URLHelper.URL_ADMIN_PRODUCER_M, new Tuple<tbl_producer, List<tbl_product_type>>( getOneProducer(Int32.Parse(id)), getAllItemCategories()));
         }
         [HttpPost]
         public ActionResult producerEdit(FormCollection form, HttpPostedFileBase fileUpload)
@@ -174,6 +204,16 @@ namespace webanhnguyen.Controllers.Admin
                     err = true;
                     ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
                 }
+                if (form["parent"].ToString().Equals("0"))
+                {
+                    err = true;
+                    ViewData["Error"] += "Vui lòng chọn danh mục!\n";
+                }
+                else
+                {
+                    tic.Idloaisp = Int32.Parse(form["parent"]);
+                }
+
                 if (!tic.Tenhangsx.Equals(name))
                     tic.alias = DataHelper.GeneralHelper.getInstance().getAliasFromProducerName(data, name);
 
@@ -186,7 +226,7 @@ namespace webanhnguyen.Controllers.Admin
                 }
                 else
                 {
-                    return View(URLHelper.URL_ADMIN_PRODUCER_M, tic);
+                    return View(URLHelper.URL_ADMIN_PRODUCER_M, new Tuple<tbl_producer, List<tbl_product_type>>(tic, getAllItemCategories()));
                 }
             }
         }

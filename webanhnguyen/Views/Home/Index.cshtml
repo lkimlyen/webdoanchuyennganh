@@ -2,53 +2,45 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 @Html.Action("Topbanchay","Home")
-
-@*<div class="tygh-content clearfix">
-    <div class="container-fluid  content-grid">
-        <div class="row-fluid ">
-            <div class="span16 ">
-                <div class="ty-mainbox-simple-container clearfix homepage-on-sale">
-                    <h2 class="ty-mainbox-simple-title">
-                        Top bán chạy nhất
-                    </h2>
-                    <div class="ty-mainbox-simple-body">
-                        <script type="text/javascript" src="~/Scripts/exceptions.js"></script>
-                        <script type="text/javascript" src="~/Scripts/product_image_gallery.js"></script>
-                        <div class="grid-list">
-                            @{ Html.RenderAction("Hot_Product", "Home");}
-                        </div>
-                    </div>
-                </div>
-                <div class="ty-mainbox-simple-container clearfix homepage-fresh-seafoods">
-                    <h2 class="ty-mainbox-simple-title">
-                        Điện thoại
-                    </h2>
-                    <div class="ty-mainbox-simple-body">
-                        <div class="grid-list">
-                            @{ Html.RenderAction("HaiSanTuoiSong", "Home");}
-                        </div>
-                    </div>
-                </div>
-                <div class="ty-mainbox-simple-container clearfix homepage-frozen-seafoods">
-                    <h2 class="ty-mainbox-simple-title">
-                        Tablet
-                    </h2>
-                    <div class="ty-mainbox-simple-body">
-                        <div class="grid-list">
-                           @{ Html.RenderAction("HaiSanDongLanh", "Home");}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ty-mainbox-container clearfix">
-                <h1 class="ty-mainbox-title">
-
-                    Tin <font color="#07ca75">công nghệ</font>
-
-                </h1>
-                @{ Html.RenderAction("monanmoingay", "Home");}
+<div class="row main-content">
+    <!--product list box-->
+    @Html.Action("Laysanpham","Home")
+    <!--end product list box-->
+    <!--right sidebar box-->
+    <div class="col-md-4 hidden-sm hidden-xs right-sidebar">
+        @Html.Action("tincongnghe","Home")
+        <div class="deliver-box">
+            <img src="~/Content/v3/images/ads/201406051806116130_Giao-hang.gif" title="" alt="" />
         </div>
+        <!--free consulting box-->
+        <div class="free-consulting">
+            <h3>Tư vấn miễn phí</h3>
+            <div class="free-consulting-content">
+                <p>
+                    Nhập thông tin của bạn để được tư vấn miễn phí và nhận những thông tin ưu đãi,
+                    khuyến mại đặc biệt dành cho thành viên của FPT Shop!
+                </p>
+                <p>
+                    <input type="text" placeholder="Nhập số điện thoại của bạn" id="txtConsultingPhone" />
+                </p>
+                <p>
+                    <a href="javascript:jfpts.homepage.call();" class="receive-call-button">Nhận cuộc gọi</a>
+
+                </p>
+            </div>
+        </div>
+        <!--end free consulting box-->
+        <!--news box-->
+        <!--end news box-->
+        <!--ads box-->
+        <div class="ads-box">
+            <div class="ad-item">
+                <script type="text/javascript" src="~/e-vcdn.anthill.vn/delivery-fptshop/zone/512075597.js"></script>
+            </div>
+
+        </div>
+        <!--end ads box-->
     </div>
+    <!--end right sidebar box-->
 </div>
-</div>*@
 
