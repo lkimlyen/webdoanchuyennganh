@@ -28,6 +28,32 @@ namespace webanhnguyen.Controllers.Admin
                 result.Take(count);
             return result.ToList();
         }
+        // GET: Producer
+        private List<tbl_producer> getProducer(int count)
+        {
+            return getProducer(count, "");
+        }
+        private List<tbl_producer> getAllProducer()
+        {
+            return getProducer(-1, "");
+        }
+        private List<tbl_producer> getProducer(int count, String keyword)
+        {
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                var result = data.tbl_producers.Where(a => a.Tenhangsx.Contains(keyword));
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_producers;
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+        }
         // GET: Item
         private List<tbl_Product> getItem(int count)
         {
@@ -157,7 +183,7 @@ namespace webanhnguyen.Controllers.Admin
             var product = new tbl_Product();
             product.GiaCu = 0;
             product.GiaHienTai = 0;
-            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>>(product, getAllItemCategories()));
+            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>,List<tbl_producer>>(product, getAllItemCategories(),getAllProducer()));
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult itemCreate(FormCollection form, HttpPostedFileBase fileUpload)
@@ -198,6 +224,16 @@ namespace webanhnguyen.Controllers.Admin
             {
                 tic.IDLoaiSP = Int32.Parse(form["parent"]);
             }
+            if (form["parent1"].ToString().Equals("0"))
+            {
+                err = true;
+                ViewData["Error"] += "Vui lòng chọn hãng sản xuất!\n";
+            }
+            else
+            {
+                tic.Idhangsx = Int32.Parse(form["parent1"]);
+            }
+
             tic.TenSP = name;
             tic.Status = true;
             tic.CaTuoiMoiNgay = true;
@@ -246,7 +282,7 @@ namespace webanhnguyen.Controllers.Admin
             }
             else
             {
-                return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>>(tic, getAllItemCategories()));
+                return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>,List<tbl_producer>>(tic, getAllItemCategories(),getAllProducer()));
             }
         }
         /*
@@ -257,7 +293,7 @@ namespace webanhnguyen.Controllers.Admin
         [HttpGet]
         public ActionResult itemEdit(String id)
         {
-            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>>(getOneItem(Int32.Parse(id)), getAllItemCategories()));
+            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>,List<tbl_producer>>(getOneItem(Int32.Parse(id)), getAllItemCategories(),getAllProducer()));
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult itemEdit(FormCollection form, HttpPostedFileBase fileUpload)
@@ -305,6 +341,16 @@ namespace webanhnguyen.Controllers.Admin
                 {
                     tic.IDLoaiSP = Int32.Parse(form["parent"]);
                 }
+                if (form["parent1"].ToString().Equals("0"))
+                {
+                    err = true;
+                    ViewData["Error"] += "Vui lòng chọn danh mục!\n";
+                }
+                else
+                {
+                    tic.Idhangsx = Int32.Parse(form["parent1"]);
+                }
+
                 tic.TenSP = name;
                 tic.NgayCapNhat = DateTime.Now;
                 if (!String.IsNullOrEmpty(price))
@@ -357,7 +403,7 @@ namespace webanhnguyen.Controllers.Admin
                 }
                 else
                 {
-                    return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>>(tic, getAllItemCategories()));
+                    return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_Product, List<tbl_product_type>,List<tbl_producer>>(tic, getAllItemCategories(),getAllProducer()));
                 }
             }
         }

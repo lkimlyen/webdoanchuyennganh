@@ -78,6 +78,24 @@ namespace webanhnguyen.Controllers
 
                 return alias;
             }
+            public string getAliasFromProducerName(Models.databaseDataContext data, String name)
+            {
+                if (String.IsNullOrEmpty(name))
+                    return "";
+                String alias = RemoveUnicode(name);
+                var record = from ic in data.tbl_producers                             where ic.alias.Equals(alias)
+                             select ic;
+                if (record != null)
+                {
+                    int count = record.Count();
+                    if (count > 0)
+                    {
+                        alias += "-" + count;
+                    }
+                }
+
+                return alias;
+            }
             public string getAliasFromNewTypeName(Models.databaseDataContext data, String name)
             {
                 if (String.IsNullOrEmpty(name))
@@ -247,7 +265,12 @@ namespace webanhnguyen.Controllers
                 data.tbl_product_types.DeleteAllOnSubmit(data.tbl_product_types);
                 data.SubmitChanges();
             }
-           
+            public void deleteAllProducer(Models.databaseDataContext data)
+            {
+                deleteAllProduct(data);
+                data.tbl_producers.DeleteAllOnSubmit(data.tbl_producers);
+                data.SubmitChanges();
+            }
             public void deleteAllProduct(Models.databaseDataContext data)
             {
                 //ShoppingCardHelper.getInstance().deleteAllOrderDetails(data);
@@ -266,6 +289,10 @@ namespace webanhnguyen.Controllers
                 return data.tbl_product_types.Count();
             }
 
+            public int getProducerAmount(Models.databaseDataContext data)
+            {
+                return data.tbl_producers.Count();
+            }
 
             public Models.tbl_Product getProductById(Models.databaseDataContext data, int id)
             {
@@ -278,6 +305,11 @@ namespace webanhnguyen.Controllers
                 Models.tbl_product_type result = data.tbl_product_types.Where(n => n.ID == id).Single();
                 return result;
             }
+            public Models.tbl_producer getProducerById(Models.databaseDataContext data, int id)
+            {
+                Models.tbl_producer result = data.tbl_producers.Where(n => n.Id == id).Single();
+                return result;
+            }
 
             public List<Models.tbl_Product> getListAllProducts(Models.databaseDataContext data)
             {
@@ -288,10 +320,17 @@ namespace webanhnguyen.Controllers
             {
                 return data.tbl_Products.OrderByDescending(a => a.NgayCapNhat).Where(n => n.IDLoaiSP == idProductType).ToList();
             }
-
+            public List<Models.tbl_Product> getListProductsByProducer(Models.databaseDataContext data, int idProducer)
+            {
+                return data.tbl_Products.OrderByDescending(a => a.NgayCapNhat).Where(n => n.Idhangsx == idProducer).ToList();
+            }
             public List<Models.tbl_Product> getListOtherProductsByCategory(Models.databaseDataContext data, int id, int idProductType)
             {
                 return data.tbl_Products.OrderByDescending(a => a.NgayCapNhat).Where(n => n.IDLoaiSP == idProductType && n.ID != id).ToList();
+            }
+            public List<Models.tbl_Product> getListOtherProductsByProducer(Models.databaseDataContext data, int id, int idProducer)
+            {
+                return data.tbl_Products.OrderByDescending(a => a.NgayCapNhat).Where(n => n.Idhangsx == idProducer && n.ID != id).ToList();
             }
         }
 

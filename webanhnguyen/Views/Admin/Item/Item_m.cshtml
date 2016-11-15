@@ -1,4 +1,4 @@
-﻿@model Tuple<webanhnguyen.Models.tbl_Product, List<webanhnguyen.Models.tbl_product_type>>
+﻿@model Tuple<webanhnguyen.Models.tbl_Product, List<webanhnguyen.Models.tbl_product_type>, List<webanhnguyen.Models.tbl_producer>>
 @{
     ViewBag.Title = "Item_m";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -117,6 +117,96 @@
                         </script>
                     </div>
                 </div>
+                <div class="form-group">
+                    <script language="javascript">
+                        var menup = new Array();
+                    </script>
+                    <label class="col-sm-3 control-label">
+                        Hãng sản xuất<font color="red">*</font>
+                    </label>
+                    <div class="col-sm-6">
+                        <script language="javascript">
+                            @functions{
+                                public class ComboboxProducerModel
+                                {
+                                    public int id1;
+                                    public string name1;
+                                    public int parent1;
+
+                                    public ComboboxProducerModel(int id1, string name1, int parent1)
+                                        {
+                                            this.id1 = id1;
+                                            this.name1 = name1;
+                                            this.parent1 = parent1;
+                                        }
+
+                                    public static List<ComboboxProducerModel> getListComboboxProducerModelsFromListProducers(List<webanhnguyen.Models.tbl_producer> listProducers)
+                                        {
+                                            List<ComboboxProducerModel> result = new List<ComboboxProducerModel>();
+                                            foreach (webanhnguyen.Models.tbl_producer producer in listProducers)
+                                        {
+                                                result.Add(new ComboboxProducerModel(producer.Id, producer.Tenhangsx, 0));
+                                        }
+                                        return result;
+                                    }
+
+                                    public static ComboboxProducerModel getComboboxProducerModelFromItem(webanhnguyen.Models.tbl_Product item)
+                                        {
+                                            return new ComboboxProducerModel(item.ID, item.TenSP, item.Idhangsx == null ? 0 : item.Idhangsx.Value);
+                                        }
+                                    }
+                                }
+                            @{
+                                var serializer1=new System.Web.Script.Serialization.JavaScriptSerializer();
+                                var jsonListItem1=serializer1.Serialize(ComboboxProducerModel.getListComboboxProducerModelsFromListProducers(Model.Item3));
+                                var jsonItem1 = serializer1.Serialize(ComboboxProducerModel.getComboboxProducerModelFromItem(Model.Item1));
+                            }
+                            var modelp=@Html.Raw(jsonListItem1);
+                            var menup = new Array();
+                            modelp.forEach(function(eachModel1){
+                                menup.push({
+                                    menu_id1             : eachModel1.id1,
+                                    menu_name1           : eachModel1.name1,
+                                    menu_parent1_id      : eachModel1.parent1,
+                                });
+                            });
+                        </script>
+                        <select name="parent1" class="form-control" id="menu_parent1_id_@Model.Item1.ID">
+                            <option value="0">Chọn danh mục</option>
+                        </select>
+                        <script language="javascript">
+                            var html1 = '';
+                            function get_parent1(menu1, parent_id1, current_id1, current_parent_id1, string1) {
+                                // Bước 1
+                                if (string1 == undefined) string1 = '===';
+                                var loop1 = new Array();
+                                var contin1 = new Array();
+                                for (var i = 0; i < menu1.length; i++) {
+                                    // trường hợp current_id == menu[i].menu_id không lấy chính nó làm menu cha trong option
+                                    // trường hợp current_id == menu[i].menu_parent_id
+                                    if (parseInt(menu1[i].menu_parent1_id) == parseInt(parent_id1)) {
+                                        loop1.push(menu1[i]);
+                                    } else {
+                                        contin1.push(menu1[i]);
+                                    }
+                                }
+                                // Bước 2
+                                for (var i = 0; i < loop1.length; i++) {
+                                    html1 += '<option ' + ((current_parent_id1 == loop1[i].menu_id1) ? 'selected' : '') + ' value="' + loop1[i].menu_id1 + '">' + string1 + " " + loop1[i].menu_name1 + '</option>';
+                                    get_parent1(contin1, loop1[i].menu_id1, current_id1, current_parent_id1, string1 + '===');
+                                }
+                            }
+                            $(document).ready(function(){
+                                var modelItem1=@Html.Raw(jsonItem1);
+                                var id1 = modelItem1.id1;
+                                var id_parent1 = modelItem1.parent1;
+                                get_parent1(menup, 0, id1, id_parent1, '===');
+                                $('#menu_parent1_id_' + id1).append(html1);
+                            });
+                        </script>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-sm-3 control-label">
                         Giá

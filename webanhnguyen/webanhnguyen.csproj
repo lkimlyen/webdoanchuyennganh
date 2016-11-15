@@ -191,6 +191,7 @@
     <Compile Include="Controllers\Admin\HeaderController.cs" />
     <Compile Include="Controllers\Admin\CssController.cs" />
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
+    <Compile Include="Controllers\Admin\ProducerController.cs" />
     <Compile Include="Controllers\Admin\ShopController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\OrderController.cs" />
@@ -3075,6 +3076,8 @@
     <Content Include="Views\Home\tincongnghe.cshtml" />
     <Content Include="Views\Admin\NewsCategory\NewsCategory.cshtml" />
     <Content Include="Views\Admin\NewsCategory\NewsCategory_m.cshtml" />
+    <Content Include="Views\Admin\Producer\Producer_m.cshtml" />
+    <Content Include="Views\Admin\Producer\Producer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3098,7 +3101,7 @@
     <Folder Include="js.knowlead.io\" />
     <Folder Include="Scripts\Product\" />
     <Folder Include="Scripts\v3\" />
-    <Folder Include="Views\NewsCategory\" />
+    <Folder Include="Views\Producer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

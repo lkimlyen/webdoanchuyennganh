@@ -58,6 +58,9 @@ namespace webanhnguyen.Controllers
         public const String URL_ADMIN_MEMBER_DETAIL = "~/Views/Admin/Member/MemberDetail.cshtml";
         public const String URL_ADMIN_ORDER = "~/Views/Admin/Order/Order.cshtml";
         public const String URL_ADMIN_ORDER_DETAIL = "~/Views/Admin/Order/OrderDetail.cshtml";
+        public const String URL_ADMIN_PRODUCER = "~/Views/Admin/Producer/Producer.cshtml";
+        public const String URL_ADMIN_PRODUCER_M = "~/Views/Admin/Producer/Producer_m.cshtml";
+
         public const String URL_ADMIN_SHOP_INFORMATION = "~/Views/Admin/ShopInformation/ShopInformation_m.cshtml";
         public const String URL_ADMIN_CSS_EDITING = "~/Views/Admin/Css/Css_m.cshtml";
         public const String URL_ADMIN_HEADER = "~/Views/Admin/Header/Header_m.cshtml";
