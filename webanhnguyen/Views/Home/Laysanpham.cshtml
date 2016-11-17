@@ -8,11 +8,11 @@
             <div class="p-item cell-1">
                 <div class="p-badge">  </div>
                 <div class="p-item-bound" style="background: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') no-repeat center top">
-                    <a href="@Url.Action("Details","Home",new {id = item.alias})" class="p-link-prod" title="@item.ID"></a>
+                    @*<a href="@Url.Action("Details","Home",new {id = item.alias})" class="p-link-prod" title="@item.ID"></a>*@
                     <figure class="p-image">
                         <span>
                             <a href="@Url.Action("Details","Home",new {id = item.alias})" title="@item.ID">
-                                <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-original="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TenSP">
+                                <img class="lazy" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TenSP">
                             </a>
                         </span>
                     </figure>
@@ -25,7 +25,9 @@
                                     </a>
                                 </div> 
                                 <div class="p-price">
-                                <span class="p-current-price">@(((int)(item.GiaCu)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>    </div>
+                                <span class="p-current-price">@(((int)(item.GiaCu)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>  
+                                    <a type="button" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= item.ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')" class="p-current-price right"><img src="~/Content/cart.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Thêm giỏ hàng" /></a>
+  </div>
                             </div>
                         </div> <div class="p-hide-info">
                             <div class="best-seller-order">

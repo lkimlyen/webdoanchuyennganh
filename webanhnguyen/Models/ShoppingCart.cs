@@ -30,7 +30,7 @@ namespace webanhnguyen.Models
             sAnhbia = sp.UrlHinh;
             dGiaban = double.Parse(sp.GiaCu.ToString());
             iKhuyenmai = int.Parse(sp.KhuyenMai.ToString());
-            dDongia = double.Parse(sp.GiaHienTai.ToString());
+            dDongia = double.Parse(sp.GiaCu.ToString());
             iSoluong = 1;
             salias = sp.alias;
         }

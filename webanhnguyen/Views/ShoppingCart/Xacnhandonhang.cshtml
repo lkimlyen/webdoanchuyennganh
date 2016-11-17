@@ -1,40 +1,36 @@
-﻿
+﻿@using webanhnguyen.Models
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-}<div class="modal fade ck2-s2pop in" id="ktrCtyOk" tabindex="-1" role="dialog" aria-hidden="false" style="display: none;">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="ck2-s2pophder">
-                <span class="ck2-s2popclose" data-dismiss="modal">✕</span>
-                <h4>THÔNG BÁO HOÀN THÀNH</h4>
-            </div>
+}<div class="ck-main">
+    <div class="ck-menu">
+        <ul class="ck-menuul">
+            <li class=""><a href="javascript:;" title=""><span>1</span> Nhập thông tin mua hàng</a></li>
+            <li class="ck-mnli2 active"><a href="javascript:;" title=""><span>2</span> Hoàn tất mua hàng online</a> </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+       
+        <div class="tab-pane active" id="tab2" style="display: block;">
 
-            <div class="modal-body">
-                <div class="ck2-s2popmain">
-                    <p class="ck2-s2pop-l3">Cảm ơn bạn đã để lại thông tin</p>
-                    <p class="ck2-s2pop-l4">Chúng tôi sẽ liên lạc với bạn trong vòng 15 phút để trao đổi chi tiết</p>
-
-                    <ul class="ck2-s2pop-ul ck2-s2pop-uls2">
-                        <style>
-                        </style>
-
-                        <li class="ck2-s2pop-btnt2 clearfix">
-                            <p class="ck2-s2pop-btn1"><a class="ck2-s2pop-ttk btn btn-default" href="/gio-hang/them-vao-don-hang?product=13302" title="">Thanh toán bằng phương thức khác</a></p>
-                            <p class="ck2-s2pop-btn2"><a href="/" class="ck2-s2pop-gui btn btn-danger">Quay lại mua sắm</a></p>
-                        </li>
-                    </ul>
+            <div class="ck-tab2-s1">
+                <div class="ck-tab2-s1ok">
+                    <p class="ck-tab2-s1i"><img src="~/Content/v2/images/icon-ok.png" alt="@ViewBag.shoptitle"></p>
+                    <p>Đặt hàng thành công!</p>
                 </div>
-
-                <div class="clearfix">
-                    <a class="ck2-s2pop-lg" href="" title=""><img src="/gio-hang/Content/v2/images/flogo.png"></a>
-                    <div class="ck2-s2pop-call">
-                        <label>Tư vấn miễn phí <strong>1800 6601</strong></label>
-                        <p>Chọn nhánh số 3</p>
-                    </div>
+                
+                <p class="ck-tab2-s1tha">Cám ơn bạn đã mua sắm tại cửa hàng của chúng tôi. Hy vọng bạn hài lòng với những sản phẩm đã mua.</p>
+                <div class="ck-tab2-btn clearfix">
+                    <a href="@Url.Action("Index","Home")" class="ck-tab2-btnrep">quay lại trang chủ</a>
                 </div>
             </div>
+            <div class="ckt-footer">
+                <p class="ckt2-fcall">Nếu bạn có thắc mắc thêm về sản phẩm, xin hãy gọi ngay tổng đài <strong>01669380986</strong> hoặc email <span class="ckt2-fem">lkimlyen2912@gmail.com</span></p>
+                <p class="ckt2-fcall">Đội ngũ Chăm sóc Khách hàng chúng tôi luôn sẵn sàng hỗ trợ bạn mỗi ngày.</p>
+                <p class="ckt2-fthank">CÁM ƠN BẠN ĐÃ LỰA CHỌN CHÚNG TÔI HÔM NAY!  </p>
+            </div>
 
+         
+         
         </div>
     </div>
 </div>
-/div>

@@ -4,7 +4,6 @@
     <div class="best-seller">
         <div class="best-seller-title clearfix">
             <h3 class="left">Top bán chạy nhất</h3>
-            <a href="@Url.Action("Bangxephang","Home")" target="_blank" class="best-seller-more right">Xem thêm <i class="fa fa-angle-right"></i> </a>
         </div>
         <div class="best-seller-content">
             <div class="best-seller-list">
@@ -19,7 +18,7 @@
 
                             <div class="swiper-slide p-item col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                 <div class="p-label icons best-seller-label">@(i+1)</div>
-                                <a href="@Url.Action("Details","Home",new { id = Model.ElementAt(i).alias})" title="@Model.ElementAt(i).TenSP" class="p-link-prod"></a>
+                                @*<a href="@Url.Action("Details","Home",new { id = Model.ElementAt(i).alias})" title="@Model.ElementAt(i).TenSP" class="p-link-prod"></a>*@
                                 <figure class="p-image">
                                     <span>
                                         <a href="@Url.Action("Details","Home",new { id = Model.ElementAt(i).alias})" title="@Model.ElementAt(i).TenSP">
@@ -36,7 +35,9 @@
                                         </div>
                                         <div class="p-price">
                                             <span class="p-current-price">@(((int)(Model.ElementAt(i).GiaCu)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>
+                                            <a type="button" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= Model.ElementAt(i).ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')" class="p-current-price right"><img src="~/Content/cart.png" style="width:29px;height:29px" alt="@ViewBag.shoptitle" class="p-current-price" title="Thêm giỏ hàng" /></a>
                                         </div>
+                                        
                                     </div>
                                     <div class="p-hide-info">
                                         <div class="p-promotion">

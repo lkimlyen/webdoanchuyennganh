@@ -92,8 +92,10 @@
 
                 <h2 class="ck-tit-prod">2.Thông tin khách hàng</h2>
                 <p class="ck-s2-ibb">Bạn vui lòng nhập thông tin cá nhân của bạn (những ô có dấu * là những ô bắt buộc)</p>
-               @using (Html.BeginForm())
-               {
+@if (Session["Email"] != null)
+{
+    using (Html.BeginForm())
+    {
     @Html.ValidationSummary(true)
 
                     <ul class="ck-s2-iul clearfix" id="ck-ifkh">
@@ -114,15 +116,41 @@
                         </li>
                     </ul>
 
-               }
+    }
+}
+else
+{
+    using (Html.BeginForm("GioHang", "GioHang", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <ul class="ck-s2-iul clearfix" id="ck-ifkh">
+            <li>
+                <div class="ck-s2-form ck-s2-frm">
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên">
+                </div>
+            </li>
+            <li>
+                <div class="ck-s2-form ck-s2-frm">
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại">
+                </div>
+            </li>
+            <li>
+                <div class="ck-s2-form">
+                    <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+                </div>
+            </li>
+        </ul>
+    }
+}
             <!--Kiem tra cty ok-->
-            
+
             <div class="ck-s3">
                 <h2 class="ck-tit-prod">3.Phương thức nhận hàng</h2>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="tt-tienmat">
-                         @using (Html.BeginForm())
+                         @if (Session["Email"] != null)
                          {
+                             using (Html.BeginForm())
+                             {
                             @Html.ValidationSummary(true)
 
                                 <p><strong>Địa điểm nhận hàng:</strong></p>
@@ -135,6 +163,23 @@
                                     </div>
                                 </div>
 
+                             }
+                         }
+                         else
+                         {
+                             using (Html.BeginForm("GioHang", "GioHang", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                             {
+                            <p><strong>Địa điểm nhận hàng:</strong></p>
+                            <div class="row ck-s2-frow" data-city="">
+
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="form-group ck-s2-form">
+                                        <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ">
+                                    </div>
+                                </div>
+                            </div>
+
+                             }
                          }
                                                 </div>
 
@@ -142,16 +187,10 @@
                     </div>
                     <ul class="ck-s3-btn">
                         <li>
-                            <input type="submit" id="dathang" name="dathang" class="btn btn-danger ck-s3-btntt">
-                                <p><b>Đặt hàng</b></p>
-                            
+                            <input type="submit" id="dathang" name="dathang" class="btn btn-danger ck-s3-btntt" value="Đặt hàng">
+                             
                         </li>
-                        <li>
-                            <input type="submit" id="dathangonline" class="btn btn-success ck-s3-btntt">
-                                <p><b>THANH TOÁN ONLINE</b></p>
-                         
-                        </li>
-                    </ul>
+                                            </ul>
                 </div>
             </div>
             <div class="ckt-footer">

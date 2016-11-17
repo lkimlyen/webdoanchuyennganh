@@ -243,7 +243,17 @@ namespace webanhnguyen.Controllers
         }
         public ActionResult Xacnhandonhang()
         {
-           return View();
+            if (Session["ShoppingCart"] == null)
+
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            List<ShoppingCart> lstGiohang = Laygiohang();
+            ViewBag.Tongsoluong = TongSoLuong();
+            ViewBag.Tongtien = TongTien();
+
+            return View();
         }
 
 
