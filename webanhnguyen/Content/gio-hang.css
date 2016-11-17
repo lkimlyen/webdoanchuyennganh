@@ -8471,7 +8471,7 @@ form .error {
     margin: 80px auto 30px;
 }
 .fi{
-    background-image: url("~/Content/v2/images/fis3860.png?v=1");
+    background-image: url("v2/images/fis3860.png");
     background-repeat: no-repeat;
 }
 .fs-header{

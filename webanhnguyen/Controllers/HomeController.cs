@@ -7,7 +7,6 @@ using webanhnguyen.Models;
 using PagedList.Mvc;
 using PagedList;
 
-
 namespace webanhnguyen.Controllers
 {
     public class HomeController : BaseController
@@ -25,6 +24,7 @@ namespace webanhnguyen.Controllers
             return PartialView(sp);
         }
         #endregion
+
         #region sản phẩm bán chạy
         [ChildActionOnly]
         public ActionResult Topbanchay()
@@ -35,7 +35,7 @@ namespace webanhnguyen.Controllers
             return PartialView(SP_hot);
         }
         #endregion
-        
+
         #region chi tiết sản phẩm
         public ActionResult Details(string id)
         {
@@ -65,6 +65,7 @@ namespace webanhnguyen.Controllers
             return View(CT_SP);
         }
         #endregion
+
         #region sản phẩm theo loại
         public ActionResult ProductType(string id, int? page, string sorting)
         {
@@ -121,9 +122,8 @@ namespace webanhnguyen.Controllers
             return View(laysp.ToPagedList(pageNum, pageSize));
         }
         #endregion
-
+        
         #region sản phẩm theo nhà sản xuất
-
         public ActionResult Producer(string id, int? page, string sorting)
         {
             int pageSize = 20;
@@ -175,6 +175,7 @@ namespace webanhnguyen.Controllers
             return View(laysp.ToPagedList(pageNum, pageSize));
         }
         #endregion
+
         #region Sản phẩm tìm kiếm (Search)
         [HttpGet]
         public ActionResult Search(string txttimkiem, string sorting, int? page)
@@ -359,6 +360,7 @@ namespace webanhnguyen.Controllers
             return View(km.ToPagedList(pageNume, pageSize));
         }
         #endregion
+
         #region footer
         [ChildActionOnly]
         public ActionResult footer()
@@ -388,12 +390,12 @@ namespace webanhnguyen.Controllers
                              from l in db.tbl_product_types
                              where h.Idloaisp == l.ID && h.status == true && l.Status == true && l.TenLoaiSP.Contains("Tablet")
                              select h).ToList();
-
             return PartialView();
         }
 
     
         #endregion
+
         #region information
         public ActionResult infomation(string id)
         {
@@ -409,6 +411,7 @@ namespace webanhnguyen.Controllers
             return PartialView(info);
         }
         #endregion
+
         #region tintuc
         public ActionResult tintuc(int? page)
         {
@@ -422,6 +425,7 @@ namespace webanhnguyen.Controllers
             return View(tintuc.ToPagedList(pageNume, pageSize));
         }
         #endregion
+
         #region tincongnghe
         public ActionResult tincongnghe()
         {
@@ -432,6 +436,7 @@ namespace webanhnguyen.Controllers
             return PartialView(tin.Take(5).ToList());
         }
         #endregion
+
         #region Chi tiết tin (Reader)
         public ActionResult Reader(string id)
         {
@@ -458,7 +463,5 @@ namespace webanhnguyen.Controllers
         }
 
         #endregion
-
-
     }
 }

@@ -9,7 +9,6 @@ namespace webanhnguyen.Controllers
 {
     public class ShoppingCartController : BaseController
     {
-        databaseDataContext db = new databaseDataContext();
         // GET: ShoppingCart
         public ActionResult Index()
         {
@@ -17,6 +16,7 @@ namespace webanhnguyen.Controllers
         }
         public List<ShoppingCart> Laygiohang()
         {
+            
             List<ShoppingCart> lstGiohang = Session["ShoppingCart"] as List<ShoppingCart>;
             if (lstGiohang == null)
             {
@@ -46,19 +46,70 @@ namespace webanhnguyen.Controllers
             }
         }
 
-
+        [HttpGet]
         //Xay dung trang Gio hang
         public ActionResult GioHang()
         {
-             List<ShoppingCart> lstGiohang = Laygiohang();
-            if (lstGiohang.Count == 0)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            
+            List<ShoppingCart> lstGiohang = Laygiohang();
+            //if (lstGiohang.Count == 0)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
             ViewBag.Tongsoluong = TongSoLuong();
             ViewBag.Tongtien = TongTien();
             return View(lstGiohang);
         }
+        [HttpPost]
+        public ActionResult GioHang(FormCollection collection)
+        {
+            if (Session["Email"] == null || Session["Email"].ToString() == "")
+            {
+                return RedirectToAction("Login", "User");
+            }
+            if (Session["ShoppingCart"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            //Them Don hang
+            Order ddh = new Order();
+            Customer kh = (Customer)Session["Email"];
+            List<ShoppingCart> gh = Laygiohang();
+            ddh.idkh = kh.id;
+            ddh.thoidiemdathang = DateTime.Now;
+
+            ddh.status = false;
+
+            ddh.tennguoinhan = collection["name"];
+            ddh.diachi = collection["address"];
+            ddh.phonenumber = collection["phone"];
+            ddh.gmail = collection["email"];
+
+            db.Orders.InsertOnSubmit(ddh);
+            db.SubmitChanges();
+
+            decimal tong = 0;
+            //Them chi tiet don hang            
+            foreach (var item in gh)
+            {
+
+                OrderDetail ctdh = new OrderDetail();
+                ctdh.iddh = ddh.id;
+                ctdh.idsp = item.iMasp;
+                ctdh.soluong = item.iSoluong;
+                ctdh.dongia = (decimal)item.dDongia;
+                ctdh.thanhtien = ctdh.soluong * ctdh.dongia;
+                tong += (decimal)ctdh.thanhtien;
+                db.OrderDetails.InsertOnSubmit(ctdh);
+            }
+            ddh.price = tong;
+            UpdateModel(ddh);
+            db.SubmitChanges();
+            Session["ShoppingCart"] = null;
+            return RedirectToAction("Xacnhandonhang", "ShoppingCart");
+        }
+
         //Tong so luong
         private int TongSoLuong()
         {

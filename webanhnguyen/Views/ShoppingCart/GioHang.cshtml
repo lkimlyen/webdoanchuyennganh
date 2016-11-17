@@ -1,109 +1,165 @@
 ﻿@using webanhnguyen.Models
 @{
    
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
 }
-<div class="tygh-content clearfix">
-    <div class="container-fluid  content-grid">
-        <div class="row-fluid ">
-            <div class="span16 breadcrumbs-grid">
-                <div id="breadcrumbs_73">
-                    <div class="ty-breadcrumbs clearfix">
-                        <a href="@Url.Action("Index","Home")" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">Giỏ hàng</span>
+<div class="ck-main">
+    <div class="ck-menu">
+        <ul class="ck-menuul">
+            <li class="active"><a href="javascript:;" title=""><span>1</span> Nhập thông tin mua hàng</a></li>
+            <li class="ck-mnli2"><a href="javascript:;" title=""><span>2</span> Hoàn tất mua hàng online</a> </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="ck-s1">
+                <h2 class="ck-tit-prod">1.Các sản phẩm đặt mua</h2>
+                <div class="ck-s1-info">
+                    @foreach (var item in Model)
+                    {
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="ck-s1-tb listproincart promain" >
+                                <div class="ck-s1-tdl">
+
+                                    <p><img id="imageproduct" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.sAnhbia" alt="@item.sTensp"></p>
+                                </div>
+@using (Html.BeginForm("CapnhatGiohang", "ShoppingCart", new { @iMasp = item.iMasp }))
+{
+
+                                <div class="ck-s1-tdr">
+                                    <p class="ck-s1-tit" id="productname">@item.sTensp</p>
+                                    <p class="ck-s1-price">
+                                        @(((int)(item.dThanhtien)).ToString("#,###", ViewBag.CurrentNumberFormat))<sup>đ</sup>
+                                    </p>
+                                    <ul class="ck-s1-ul">
+
+                                        <li>
+                                            <input class="form-control quantity-product" type="number" name="txtSoluong" min="1" max="5" value="@item.iSoluong" />
+                                                
+                                        </li>
+</ul>
+                                    <ul class="ck-s1-ul">
+
+                                        <li>
+                                            <input class="btn btn-danger" type="submit" name="capnhat" value="Cập nhật" />
+
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("XoaGiohang", new { @iMaSp = item.iMasp })" class="XoaSP" data-id="">
+                                                <img src="~/images/icon_delete.png" alt="@ViewBag.shoptitle" title="Xóa sản phẩm" />
+                                            </a>
+
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+        }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 poromotiondefault">
+                            <div class="ck-s1-rightul">
+                                <p class="ck-s1-col">Sản phẩm được áp dụng gói khuyến mãi <span id="numberpacket">1</span></p>
+                                <div class="ck-s1-rightulbox">
+                                    <ul class="promotionchoosened">
+                                        <li><p>• Phần mềm bảo mật tin nhắn và chặn tin nhắn rác Smooth Messenger</p></li>
+
+                                    </ul>
+     
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!--breadcrumbs_73-->
+                    }
+                    <div id="listpromotion">
+                    </div>
                 </div>
+
+                <div class="ck-s1-prtb">
+                    <ul class="ck-s1-aprice">
+                        <li>
+                            <p>Tổng đơn hàng: @(((int)(ViewBag.Tongtien)).ToString("#,###", ViewBag.CurrentNumberFormat))<sup>đ</sup></p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="ck-s2 ck-s2main">
+                @{
+                    Customer kh = (Customer)Session["Email"];
+                }
+
+
+                <h2 class="ck-tit-prod">2.Thông tin khách hàng</h2>
+                <p class="ck-s2-ibb">Bạn vui lòng nhập thông tin cá nhân của bạn (những ô có dấu * là những ô bắt buộc)</p>
+               @using (Html.BeginForm())
+               {
+    @Html.ValidationSummary(true)
+
+                    <ul class="ck-s2-iul clearfix" id="ck-ifkh">
+                        <li>
+                            <div class="ck-s2-form ck-s2-frm">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="@kh.name">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ck-s2-form ck-s2-frm">
+                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="@kh.moblie">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ck-s2-form">
+                                <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="@kh.email">
+                            </div>
+                        </li>
+                    </ul>
+
+               }
+            <!--Kiem tra cty ok-->
+            
+            <div class="ck-s3">
+                <h2 class="ck-tit-prod">3.Phương thức nhận hàng</h2>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tt-tienmat">
+                         @using (Html.BeginForm())
+                         {
+                            @Html.ValidationSummary(true)
+
+                                <p><strong>Địa điểm nhận hàng:</strong></p>
+                                <div class="row ck-s2-frow" data-city="">
+                                  
+                                    <div class="col-sm-4 col-xs-12">
+                                        <div class="form-group ck-s2-form">
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="@kh.address">
+                                        </div>
+                                    </div>
+                                </div>
+
+                         }
+                                                </div>
+
+                        <br>
+                    </div>
+                    <ul class="ck-s3-btn">
+                        <li>
+                            <input type="submit" id="dathang" name="dathang" class="btn btn-danger ck-s3-btntt">
+                                <p><b>Đặt hàng</b></p>
+                            
+                        </li>
+                        <li>
+                            <input type="submit" id="dathangonline" class="btn btn-success ck-s3-btntt">
+                                <p><b>THANH TOÁN ONLINE</b></p>
+                         
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ckt-footer">
+                <p class="ckt1-fcall">Gọi ngay <strong>01669280986</strong> để được tư vấn miễn phí</p>
             </div>
         </div>
-        <h1 class="hidden">Thủy hải sản cà mau</h1>
-        <div class="col-sm-9 padding-right">
-            <div class="features_items">
-                <!--features_items-->
-                <table class="ty-orders-detail__table ty-table">
-                    <thead>
-                        <tr>
-                            <th class="ty-orders-detail__table-product" style="width: 40%; text-align: center">Sản phẩm</th>
-                            <th class="ty-orders-detail__table-price" style="width: 17%; text-align: center">Số lượng</th>
-                            <th class="ty-orders-detail__table-quantity" style="width: 17%; text-align: center">Đơn giá</th>
-                            <th class="ty-orders-detail__table-subtotal"style="width: 17%; text-align: center">Thành tiền</th>
-                            <th class="ty-orders-detail__table-subtotal"style="width: 9%; text-align: center">Xóa</th>
-                        </tr>
-                    </thead>
+        <div class="tab-pane" id="tab2">
 
-                    @foreach (var item in Model)
-            {
-                        <tr class="ty-valign-top">
-                            <td>
-                                <h2>
-                                <a href="@Url.Action("Details", "Home", new { id = item.salias})">
-                                    <img src="~/@item.sAnhbia" style="width: 120px;vertical-align:middle; float:left; margin-right: 10px" alt="@item.sTensp" />
-                                    @item.sTensp
-                                </a>
-                                    </h2>
-                            </td>
-
-
-                            @using (Html.BeginForm("CapnhatGiohang", "ShoppingCart", new { @iMasp = item.iMasp }))
-                            {
-                                <td class="ty-center">
-                                    <input type="number" min="1" name="txtSoluong" style="width: 30px" value="@item.iSoluong" class="form-control quantity input-sm" />
-                                    <br /><br />
-                                    <input class="ty-btn ty-btn__secondary" type="submit" value="Cập Nhật" />
-                                </td>
-
-                                <td class="ty-center"><span style="font-weight: 700; ">@string.Format("{0:#,##0}", item.dGiaban)<sup> VNĐ</sup></span> </td>
-                               
-                                <td class="ty-center">
-                                    <span style="color: #666; font-size: 12px; font-weight: bold">Đã - @item.iKhuyenmai % Khuyến mãi</span><br />
-                                    <br />
-                                    <br />
-                                    <label id="txt-ThanhTien" style="font-weight: 700; ">@string.Format("{0:#,##0}", item.dThanhtien)</label><sup style="font-weight: 700"> VNĐ</sup>
-                                </td>
-
-                                <td class="ty-center">
-                                    <a href="@Url.Action("XoaGiohang", new { @iMaSp = item.iMasp })" class="XoaSP" data-id="" >
-                                        <img src="~/images/icon_delete.png" alt="@ViewBag.shoptitle"/>
-                                    </a>
-
-                                </td>
-
-                            }
-                        </tr>
-                    }
-                </table>
-                <div class="ty-orders-summary__wrapper" style="float:right">
-                    <table class="ty-orders-summary__table">
-
-
-                        <tr class="ty-orders-summary__row ">
-                            <td class="ty-orders-summary__total">Tổng số lượng:&nbsp;</td>
-                            <td class="ty-orders-summary__total" data-ct-orders-summary="summary-total" style=" text-align:right"><span>@ViewBag.Tongsoluong</span></td>
-
-                        </tr>
-                        <tr class="ty-orders-summary__row">
-                            <td class="ty-orders-summary__total">Tổng cộng:&nbsp;</td>
-                            <td class="ty-orders-summary__total" data-ct-orders-summary="summary-total" style="text-align:right"><span>@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</span> đ</td>
-
-                        </tr>
-                    </table>
-                </div>
-                <div class="clearfix"></div>
-                <br />
-                <div class="ty-checkout-complete__buttons buttons-container  ty-mt-s">
-                    <div class="ty-checkout-complete__buttons-left">
-                        <a href="@Url.Action("Index", "Home")" class="ty-btn ty-btn__secondary ">Tiếp tục mua hàng</a>
-                        &nbsp;
-                        <a href="@Url.Action("XoaTatcaGiohang", "ShoppingCart")" class="ty-btn ty-btn__secondary ">Xóa tất cả giỏ hàng</a>
-
-                    </div>
-                    <div class="ty-checkout-complete__buttons-right">
-                        <a class="ty-btn ty-btn__secondary" href="@Url.Action("DatHang", "ShoppingCart")" id="dathang">Đặt hàng</a>
-                    </div>
-
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-

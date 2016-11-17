@@ -3,7 +3,7 @@
 <header class="fs-header">
     <div class="fs-wrap clf">
         <div class="fs-wrap clf">
-            <a class="fs-logo fi" title="@ViewBag.shoptitle" href="@Url.Action("Index","Home")"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@ViewBag.logo" style="width:140px;height:37px" alt="@ViewBag.shoptitle"/></a>
+            <a class="fs-logo" href="@Url.Action("Index","Home")"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@ViewBag.logo" style="width:140px;height:37px" alt="@ViewBag.shoptitle"/></a>
             <form class="fs-fsearch" id="frmSearch">
                 <input type="text" class="fs-ipsearch search-text-box keyword" placeholder="Bạn muốn tìm gì?">
                 <button type="submit" class="fs-btnsearch submit search-button search-button-btn" id="btnSearch"><i class="fi fi-isearch"></i></button>
@@ -72,7 +72,7 @@
                 else
                 {
                     <li>
-                        <a href="@Url.Action("", "")" title="Đăng nhập">
+                        <a href="@Url.Action("", "")" title="Xin chào, @Session["emailstring"]!">
                             <img src="~/Content/user.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Tài khoản" /><br /> Tài khoản
                         </a>
                     </li>
