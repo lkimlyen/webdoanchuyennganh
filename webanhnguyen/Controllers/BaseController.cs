@@ -18,13 +18,14 @@ namespace webanhnguyen.Controllers
             tbl_shop shop = db.tbl_shops.SingleOrDefault(n => n.id == 1);
             Session["icon"] = hea.shortcuticon;
             Session["title"] = shop.title;
+            ViewBag.logo = hea.image;
             ViewBag.Title = shop.title;
             ViewBag.icon = hea.shortcuticon;
             ViewBag.keyword = shop.keyword;
             ViewBag.shoptitle = shop.title;
             ViewBag.description = shop.description;
             ViewBag.CurrentNumberFormat = new System.Globalization.CultureInfo("de-DE", false).NumberFormat;
-
+            ViewBag.phone = shop.phoneshop1;
             base.OnActionExecuting(filterContext);
         }
     }

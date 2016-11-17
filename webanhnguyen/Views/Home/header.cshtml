@@ -1,19 +1,91 @@
-﻿@model webanhnguyen.Models.tbl_header
+﻿@model IEnumerable<webanhnguyen.Models.tbl_producer>
 
-    <div class="span10 top-logo-grid">
-        <div class="top-logo">
-            <div class="ty-logo-container">
-                <a href="/Home/Index" title="">
-                    <img src="~/@Model.image" width="255" height="78" alt="@ViewBag.shoptitle" class="ty-logo-container__image">
-                </a>
-            </div>
+<header class="fs-header">
+    <div class="fs-wrap clf">
+        <div class="fs-wrap clf">
+            <a class="fs-logo fi" title="@ViewBag.shoptitle" href="@Url.Action("Index","Home")"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@ViewBag.logo" style="width:140px;height:37px" alt="@ViewBag.shoptitle"/></a>
+            <form class="fs-fsearch" id="frmSearch">
+                <input type="text" class="fs-ipsearch search-text-box keyword" placeholder="Bạn muốn tìm gì?">
+                <button type="submit" class="fs-btnsearch submit search-button search-button-btn" id="btnSearch"><i class="fi fi-isearch"></i></button>
+                <div class="asmr">
+                    <ul class="fshop-search-cate"></ul>
+                    <ul class="fshop-search-promotion"></ul>
+                    <ul class="fshop-search-old-product"></ul>
+                    <ul class="fshop-search-discharge"></ul>
+                    <ul class="fshop-search-prod"></ul>
+                    <ul class="fshop-search-acces"></ul>
+                </div>
+            </form>
+            <ul class="fs-menu">
+                <li>
+                    <a href="@Url.Action("ProductType", "Home", new { id = ViewBag.aliasdt})" title="Điện thoại">
+                        <i class="fi fi-dienthoai"></i> Điện thoại
+                    </a>
+                    <div class="fs-submenu">
+                        <div class="clf">
+                            <div class="fs-mncol fs-mncol-70">
+                                <h3 class="fs-mn-tit">Hãng sản xuất</h3>
+                                <ul class="fs-submul fs-mnul-c3 clf">
+                                    @foreach (var item in ViewBag.hsxdt)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Producer", "Home", new { id = item.alias })" title="@item.Tenhangsx">@item.Tenhangsx</a>
+                                        </li> }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("ProductType", "Home", new { id = ViewBag.aliasmtb})" title="Máy tính bảng"><i class="fi fi-tablet"></i> Tablet</a>
+                    <div class="fs-submenu">
+                        <div class="clf">
+                            <div class="fs-mncol fs-mncol-50">
+                                <h3 class="fs-mn-tit">Hãng sản xuất</h3>
+                                <ul class="fs-submul fs-mnul-c2">
+                                    @foreach (var item in ViewBag.hsxmtb)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Producer", "Home", new { id = item.alias })" title="@item.Tenhangsx">@item.Tenhangsx</a>
+                                        </li> }
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li> <a href="@Url.Action("KhuyenMai", "Home")" title="Khuyến mãi"><i class="fi fi-khuyenmai"></i> Khuyến mãi</a> </li>
+                <li> <a href="@Url.Action("tintuc", "Home")" title="Tin hay"><i class="fi fi-tinhay"></i> Tin hay</a> </li>
+                <li> <a href="@Url.Action("ProductType", "Home")" title="Khuyến mãi"><i class="fi fi-hoidap"></i> Hỏi đáp</a> </li>
+                @Html.Action("GiohangPartial", "ShoppingCart")
+                @if (Session["Email"] == null)
+                {
+                 <li> <a href="@Url.Action("Login", "User")" title="Đăng nhập">
+                         <img src="~/Content/Login.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Đăng nhập"/><br /> Đăng nhập</a> </li>
+                <li>
+                    <a href="@Url.Action("Register", "User")" title="Đăng nhập">
+                        <img src="~/Content/register.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle"/><br /> Đăng ký
+                    </a>
+                </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("", "")" title="Đăng nhập">
+                            <img src="~/Content/user.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Tài khoản" /><br /> Tài khoản
+                        </a>
+                    </li>
+                        <li>
+                            <a href="@Url.Action("Logout", "User")" title="Đăng nhập">
+                                <img src="~/Content/Logout.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" /><br /> Đăng xuất
+                            </a>
+                        </li>
+                }
+            </ul>
         </div>
-    </div>
-    <div class="span6 cart-content-grid">
-    <div class="ty-wysiwyg-content">
-        <p style="text-align: right; font-size: 24px;">
-            <span class="fa fa-phone"></span> @Model.phone1 - @Model.phone2
-        </p>
-    </div>
+        </div>
+</header>
 
- 
+
+

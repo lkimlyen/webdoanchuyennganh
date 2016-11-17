@@ -1,19 +1,12 @@
-﻿<ul class="ty-dropdown-box" id="cart_status_140">
-    <li id="sw_dropdown_140" class="ty-dropdown-box__title">
-        @if (Session["ShoppingCart"] == null || @ViewBag.Tongsoluong == 0)
-            {
-            <a href="">
-                <i class="ty-minicart__icon ty-icon-basket empty"></i>
-                <span class="ty-minicart-title empty-cart ty-hand">Giỏ hàng rỗng</span>
-            </a>
-        }
-        else
-        {
-            <a href="@Url.Action("GioHang", "ShoppingCart")" class="ty-minicart-title">
-                <i class="ty-minicart__icon ty-icon-basket empty"></i>
-                <span class="ty-minicart-title empty-cart ty-hand">Giỏ hàng (@ViewBag.Tongsoluong)</span>
-            </a>
-        }
-
-    </li>
-</ul>
+﻿
+<li>
+@if (Session["ShoppingCart"] == null || @ViewBag.Tongsoluong == 0)
+{ <a href="@Url.Action("GioHang", "ShoppingCart")" title="Giỏ hàng">
+        <img src="~/Content/cart.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Giỏ hàng" /><br /> Giỏ hàng rỗng
+    </a>}
+else
+{
+    <a href="@Url.Action("GioHang", "ShoppingCart")" title="Giỏ hàng">
+        <img src="~/Content/cart.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Giỏ hàng" /><br /> Giỏ hàng (@ViewBag.Tongsoluong)
+    </a>}
+</li>
