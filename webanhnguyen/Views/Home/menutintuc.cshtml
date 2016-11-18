@@ -1,0 +1,15 @@
+﻿@model IEnumerable<webanhnguyen.Models.tbl_new_type>
+<div class="row">
+    <div class="fns-menunews">
+        <span class="fns-mnnewsicon"><i class="glyphicon glyphicon-menu-hamburger"></i> DANH MỤC TIN</span>
+        <ul class="clearfix">
+            <li><a href="@Url.Action("tintuc","Home")" title="">Tin mới</a></li>
+             @foreach (var item in Model)
+            {
+                <li><a href="@Url.Action("loaitin","Home",new {id = item.alias})" title="">@item.TenLoaiTT</a></li>
+             }
+            
+      
+        </ul>
+    </div>
+</div>

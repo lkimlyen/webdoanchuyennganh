@@ -52,10 +52,10 @@ namespace webanhnguyen.Controllers
         {
             
             List<ShoppingCart> lstGiohang = Laygiohang();
-            //if (lstGiohang.Count == 0)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (lstGiohang.Count == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.Tongsoluong = TongSoLuong();
             ViewBag.Tongtien = TongTien();
             return View(lstGiohang);
@@ -243,6 +243,10 @@ namespace webanhnguyen.Controllers
         }
         public ActionResult Xacnhandonhang()
         {
+            if(Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (Session["ShoppingCart"] == null)
 
             {

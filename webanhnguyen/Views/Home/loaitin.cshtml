@@ -1,0 +1,57 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<webanhnguyen.Models.tbl_new>
+@{
+    ViewBag.Title = ViewBag.TenLoai;
+    Layout = "~/Views/Shared/_LayoutNews.cshtml";
+}
+
+<div class="fshop-mainbox">
+    <!--breadcrumb-->
+    <div class="row">
+        <div class="fshop-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("tintuc","Home")">Tin tức</a></li>
+                <li class="active"><a href="#">@ViewBag.TenLoai</a></li>
+            </ol>
+        </div>
+    </div>
+    @Html.Action("menutintuc", "Home")
+
+        <div class="row fns-topnews">
+            <div class="fns-listtopnews clearfix">
+                @foreach (var item in ViewBag.tin)
+            {
+                    <div class="fns-topnews-item">
+                        <a href="@Url.Action("Reader", "Home", new { id = item.alias })" title="@item.TieuDe">
+                            <img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TieuDe">
+                            <p><span>@item.TieuDe</span></p>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="fshop-news-colleft">
+            <div class="row">
+                <div class="fns-lnewsbox">
+                    @foreach (var item in Model)
+            {
+                        <div class="fns-lnewsitem">
+                            <a href="@Url.Action("Reader", "Home", new { id = item.alias })" title="@item.TieuDe" class="ns-viewed">
+                                <img class="fns-lnewsimg" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TieuDe">
+                            </a>
+                            <a href="@Url.Action("Reader", "Home", new { id = item.alias })" title="@item.TieuDe" class="ns-viewed">
+                                <h3 class="fns-lnewstitle">@item.TieuDe</h3>
+                            </a>
+                            <div class="fns-lnewstime">@item.NgayCapNhat</div>
+                            <div class="fns-lnewsinfo">
+                                @Html.Raw(item.TomTat)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+  

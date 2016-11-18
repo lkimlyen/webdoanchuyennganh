@@ -34,7 +34,7 @@
                                             </h3>
                                         </div>
                                         <div class="p-price">
-                                            <span class="p-current-price">@(((int)(Model.ElementAt(i).GiaCu)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>
+                                            <span class="p-current-price">@(((int)(Model.ElementAt(i).GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>
                                             <a type="button" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= Model.ElementAt(i).ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')" class="p-current-price right"><img src="~/Content/cart.png" style="width:29px;height:29px" alt="@ViewBag.shoptitle" class="p-current-price" title="Thêm giỏ hàng" /></a>
                                         </div>
                                         

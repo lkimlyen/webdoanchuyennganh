@@ -417,12 +417,42 @@ namespace webanhnguyen.Controllers
         {
             int pageNume = (page ?? 1);
             int pageSize = 20;
+            ViewBag.tin = (from m in db.tbl_news
+                      where m.status == true
+                      orderby m.NgayCapNhat descending
+                      select m).Take(4).ToList();
             var tintuc = (from tt in db.tbl_news
                           where tt.status == true
                           orderby tt.NgayCapNhat descending
-                          select tt);
+                          select tt).Skip(4);
 
             return View(tintuc.ToPagedList(pageNume, pageSize));
+        }
+        #endregion
+        #region menutintuc
+        public ActionResult menutintuc()
+        {
+            var item = db.tbl_new_types.Where(n => n.status == true).ToList();
+             return PartialView(item);
+
+        }
+        #endregion
+        #region xem theo loại tin
+        public ActionResult loaitin(string id, int ? page)
+        {
+            int pageNum = (page ?? 1);
+            int pageSize = 20;
+            ViewBag.tin = (from m in db.tbl_news
+                           where m.status == true
+                           orderby m.NgayCapNhat descending
+                           select m).Take(4).ToList();
+            var tintuc = (from tt in db.tbl_news
+                          from loai in db.tbl_new_types
+                          where tt.status == true && loai.alias.Equals(id)  && loai.Id == tt.idloaitt
+                          orderby tt.NgayCapNhat descending
+                          select tt);
+            ViewBag.TenLoai = (db.tbl_new_types.FirstOrDefault(n => n.alias.Equals(id))).TenLoaiTT;
+            return View(tintuc.ToPagedList(pageNum, pageSize));
         }
         #endregion
 

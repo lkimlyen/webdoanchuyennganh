@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using webanhnguyen.Models;
 using PagedList;
+using System.IO;
+
 namespace webanhnguyen.Controllers
 {
     public class UserController : BaseController
@@ -114,10 +116,47 @@ namespace webanhnguyen.Controllers
                     kh.address = _Address;
         
                     kh.password = _PassNew;
-                
+                //Khai báo _FileUpload ở <input type="file" id="_FileUpload" name="_FileUpload" /> trên Form Account
+                HttpPostedFileBase _FileUpload = Request.Files["fileupload"];
+                if (_FileUpload != null && _FileUpload.ContentLength > 0)//Kiểm tra đã chọn 1 file Upload để thực hiện tiếp
+                {
+                    //khai báo biến _FileName là tên File
+                    string _FileName = Path.GetFileName(_FileUpload.FileName);
+
+                    //Khai báo biến _Path là đường dẫn Upload File
+                    string _Path = Path.Combine(Server.MapPath("~/cdn.fptshop.com.vn/Uploads/Thumbs/"), _FileName);
+
+                    //Kiểm tra chỉ cho Upload File có kính thước < 1 MB
+                    if (_FileUpload.ContentLength > 1 * 1024 * 1024)
+                    {
+                        return Content("<script>alert('Kích thước của tập tin không được vượt quá 1 MB!');window.location='/User/ProfileUpdate';</script>");
+                    }
+
+                    //Ngoài hạn chế dung lượng File Upload lên Server thì quan trọng nhất là chỉ cho phép User Upload được dạng File ảnh lên
+                    //Vì nếu cho Upload được tất cả các File thì User có thể Upload File Backdoor, Shell lên Server dẫn đến Site bị hacker tấn công
+
+                    //Khai báo mảng chứa các đuôi file hợp lệ cho Upload
+                    var _DuoiFile = new[] { "jpg", "jpeg", "png", "gif" };
+
+                    //Khai báo biến _FileExt: trong đó GetExtension là lấy phần mở rộng (đuôi File), Substring(1): lấy từ vị trí thứ nhất => Tức sẽ lấy ra đuôi File
+                    var _FileExt = Path.GetExtension(_FileUpload.FileName).Substring(1);
+
+                    //Kiểm tra trong mảng _DuoiFile KHÔNG chứa phần đuôi file của tập tin User upload lên
+                    if (!_DuoiFile.Contains(_FileExt))
+                    {
+                        return Content("<script>alert('Chỉ được Upload tập tin hình ảnh dạng (.jpg, .jpeg, .png, .gif)!');window.location='/User/ProfileUpdate';</script>");
+                    }
+
+                    //Thực thi Upload tập tin lên Server
+                    _FileUpload.SaveAs(_Path);
+
+                    //Gán giá trị Avatar là đường dẫn của tập tin vừa Upload để Update trong Database
+                    kh.image = _FileName;
+                }
+
                 UpdateModel(kh);
                 db.SubmitChanges();
-                return Content("<script>alert('Cập nhật thành công!');window.location='/User/ProfileUpdate';</script>");
+                return Content("<script>alert('Cập nhật thành công!');window.location='/User/Profile';</script>");
             }
             catch
             {

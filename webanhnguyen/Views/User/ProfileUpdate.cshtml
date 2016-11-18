@@ -1,6 +1,108 @@
-﻿
+﻿@model webanhnguyen.Models.Customer
 @{
     ViewBag.Title = "ProfileUpdate";
     Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
 }
+@using (Html.BeginForm("ProfileUpdate", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Chỉnh sửa thông tin cá nhân</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center">
+                               
+                            
+                                @if (Model.image == null)
+                                {
+                                    <img alt="User Pic" src="~/Content/avatar.jpg" class="Hinh" style="vertical-align:middle; width:90px;height:90px">
+
+                                }
+                                else
+                                {                             <img alt="User Pic" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@Model.image" class="Hinh" style="vertical-align:middle; width:90px;height:90px">
+                                }
+                              <br />
+                                    <div class="btn btn-primary btn-file btn-image-">
+                                        <i class="glyphicon glyphicon-folder-open">
+                                            Browse
+                                        </i>
+                                        <input name="fileupload" type="file" class="" style="width: 100%; height: 100%;" /><br />
+                                    </div>
+                                </div>
+                               
+                            <div class="col-md-9 col-lg-9">
+                                <table class="table table-user-information">
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>
+                                                <input type="text" id="name" name="name" class="form-control" required="required" value="@Model.name" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Mật khẩu:</td>
+                                            <td>
+                                                <input type="password" id="password1" name="password1" class="form-control" required="required" value="@Model.password" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nhập lại mật khẩu:</td>
+                                            <td>
+                                                <input type="password" id="password2" name="password2" class="form-control" required="required" value="@Model.password" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email:</td>
+                                            <td>
+                                                <input type="email" id="email" name="email" class="form-control" required="required" disabled="disabled" value="@Model.email" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Địa chỉ:</td>
+                                            <td>
+                                                <input type="text" id="address" name="address" class="form-control" required="required" value="@Model.address" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Điện thoại:</td>
+                                            <td>
+                                                <input type="text" id="phone" name="phone" class="form-control" maxlength="11" required="required" value="@Model.moblie" pattern="[0-9]{10,11}" title="Vui lòng nhập số điện thoại đúng định dạng 10-11 số !" />
+                                            </td>
+                                        </tr>
+
+                                       
+                                    </tbody>
+                                        </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <input type="button" name="huy" class="btn btn-primary" onclick="goBack()" value="Hủy"/>
+                        <script>
+                                function goBack() {
+                                   
+                                    window.history.back();
+                                }
+                        </script>
+                        <span class="pull-right">
+                            <input type="submit" name="luu" class="btn btn-warning" value="Lưu">
+                        </span>
+                    </div>
+                </div>
+                            <div class="footer-shadow"></div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                    }
 

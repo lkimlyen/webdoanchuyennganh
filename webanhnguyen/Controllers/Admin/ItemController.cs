@@ -236,7 +236,7 @@ namespace webanhnguyen.Controllers.Admin
 
             tic.TenSP = name;
             tic.Status = true;
-            tic.Sanphambanchay = true;
+            tic.Sanphambanchay = false;
             tic.NgayCapNhat = DateTime.Now;
             if (!String.IsNullOrEmpty(price))
                 tic.GiaCu = Int32.Parse(price);
