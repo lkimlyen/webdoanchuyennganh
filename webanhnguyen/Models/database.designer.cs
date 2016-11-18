@@ -72,6 +72,12 @@ namespace webanhnguyen.Models
     partial void Inserttbl_producer(tbl_producer instance);
     partial void Updatetbl_producer(tbl_producer instance);
     partial void Deletetbl_producer(tbl_producer instance);
+    partial void Inserttbl_promotion_detail(tbl_promotion_detail instance);
+    partial void Updatetbl_promotion_detail(tbl_promotion_detail instance);
+    partial void Deletetbl_promotion_detail(tbl_promotion_detail instance);
+    partial void Inserttbl_promotion(tbl_promotion instance);
+    partial void Updatetbl_promotion(tbl_promotion instance);
+    partial void Deletetbl_promotion(tbl_promotion instance);
     #endregion
 		
 		public databaseDataContext() : 
@@ -213,6 +219,22 @@ namespace webanhnguyen.Models
 			get
 			{
 				return this.GetTable<tbl_producer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_promotion_detail> tbl_promotion_details
+		{
+			get
+			{
+				return this.GetTable<tbl_promotion_detail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_promotion> tbl_promotions
+		{
+			get
+			{
+				return this.GetTable<tbl_promotion>();
 			}
 		}
 	}
@@ -3556,6 +3578,442 @@ namespace webanhnguyen.Models
 					this._Idloaisp = value;
 					this.SendPropertyChanged("Idloaisp");
 					this.OnIdloaispChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_promotion_details")]
+	public partial class tbl_promotion_detail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Idkm;
+		
+		private int _Idsp;
+		
+		private System.Nullable<decimal> _Giaban;
+		
+		private System.Nullable<decimal> _Giakhuyenmai;
+		
+		private string _quatang;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIdkmChanging(int value);
+    partial void OnIdkmChanged();
+    partial void OnIdspChanging(int value);
+    partial void OnIdspChanged();
+    partial void OnGiabanChanging(System.Nullable<decimal> value);
+    partial void OnGiabanChanged();
+    partial void OnGiakhuyenmaiChanging(System.Nullable<decimal> value);
+    partial void OnGiakhuyenmaiChanged();
+    partial void OnquatangChanging(string value);
+    partial void OnquatangChanged();
+    #endregion
+		
+		public tbl_promotion_detail()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Idkm", DbType="Int NOT NULL")]
+		public int Idkm
+		{
+			get
+			{
+				return this._Idkm;
+			}
+			set
+			{
+				if ((this._Idkm != value))
+				{
+					this.OnIdkmChanging(value);
+					this.SendPropertyChanging();
+					this._Idkm = value;
+					this.SendPropertyChanged("Idkm");
+					this.OnIdkmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Idsp", DbType="Int NOT NULL")]
+		public int Idsp
+		{
+			get
+			{
+				return this._Idsp;
+			}
+			set
+			{
+				if ((this._Idsp != value))
+				{
+					this.OnIdspChanging(value);
+					this.SendPropertyChanging();
+					this._Idsp = value;
+					this.SendPropertyChanged("Idsp");
+					this.OnIdspChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Giaban", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Giaban
+		{
+			get
+			{
+				return this._Giaban;
+			}
+			set
+			{
+				if ((this._Giaban != value))
+				{
+					this.OnGiabanChanging(value);
+					this.SendPropertyChanging();
+					this._Giaban = value;
+					this.SendPropertyChanged("Giaban");
+					this.OnGiabanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Giakhuyenmai", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Giakhuyenmai
+		{
+			get
+			{
+				return this._Giakhuyenmai;
+			}
+			set
+			{
+				if ((this._Giakhuyenmai != value))
+				{
+					this.OnGiakhuyenmaiChanging(value);
+					this.SendPropertyChanging();
+					this._Giakhuyenmai = value;
+					this.SendPropertyChanged("Giakhuyenmai");
+					this.OnGiakhuyenmaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quatang", DbType="NVarChar(MAX)")]
+		public string quatang
+		{
+			get
+			{
+				return this._quatang;
+			}
+			set
+			{
+				if ((this._quatang != value))
+				{
+					this.OnquatangChanging(value);
+					this.SendPropertyChanging();
+					this._quatang = value;
+					this.SendPropertyChanged("quatang");
+					this.OnquatangChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_promotion")]
+	public partial class tbl_promotion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Tenkhuyenmai;
+		
+		private string _Noidung;
+		
+		private System.Nullable<bool> _status;
+		
+		private string _alias;
+		
+		private System.Nullable<System.DateTime> _ngaykhuyenmai;
+		
+		private System.Nullable<System.DateTime> _ngayketthuc;
+		
+		private System.Nullable<System.DateTime> _ngaytao;
+		
+		private string _AnhBia;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTenkhuyenmaiChanging(string value);
+    partial void OnTenkhuyenmaiChanged();
+    partial void OnNoidungChanging(string value);
+    partial void OnNoidungChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    partial void OnaliasChanging(string value);
+    partial void OnaliasChanged();
+    partial void OnngaykhuyenmaiChanging(System.Nullable<System.DateTime> value);
+    partial void OnngaykhuyenmaiChanged();
+    partial void OnngayketthucChanging(System.Nullable<System.DateTime> value);
+    partial void OnngayketthucChanged();
+    partial void OnngaytaoChanging(System.Nullable<System.DateTime> value);
+    partial void OnngaytaoChanged();
+    partial void OnAnhBiaChanging(string value);
+    partial void OnAnhBiaChanged();
+    #endregion
+		
+		public tbl_promotion()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tenkhuyenmai", DbType="NVarChar(255)")]
+		public string Tenkhuyenmai
+		{
+			get
+			{
+				return this._Tenkhuyenmai;
+			}
+			set
+			{
+				if ((this._Tenkhuyenmai != value))
+				{
+					this.OnTenkhuyenmaiChanging(value);
+					this.SendPropertyChanging();
+					this._Tenkhuyenmai = value;
+					this.SendPropertyChanged("Tenkhuyenmai");
+					this.OnTenkhuyenmaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Noidung", DbType="NVarChar(MAX)")]
+		public string Noidung
+		{
+			get
+			{
+				return this._Noidung;
+			}
+			set
+			{
+				if ((this._Noidung != value))
+				{
+					this.OnNoidungChanging(value);
+					this.SendPropertyChanging();
+					this._Noidung = value;
+					this.SendPropertyChanged("Noidung");
+					this.OnNoidungChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alias", DbType="VarChar(MAX)")]
+		public string alias
+		{
+			get
+			{
+				return this._alias;
+			}
+			set
+			{
+				if ((this._alias != value))
+				{
+					this.OnaliasChanging(value);
+					this.SendPropertyChanging();
+					this._alias = value;
+					this.SendPropertyChanged("alias");
+					this.OnaliasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngaykhuyenmai", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ngaykhuyenmai
+		{
+			get
+			{
+				return this._ngaykhuyenmai;
+			}
+			set
+			{
+				if ((this._ngaykhuyenmai != value))
+				{
+					this.OnngaykhuyenmaiChanging(value);
+					this.SendPropertyChanging();
+					this._ngaykhuyenmai = value;
+					this.SendPropertyChanged("ngaykhuyenmai");
+					this.OnngaykhuyenmaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngayketthuc", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ngayketthuc
+		{
+			get
+			{
+				return this._ngayketthuc;
+			}
+			set
+			{
+				if ((this._ngayketthuc != value))
+				{
+					this.OnngayketthucChanging(value);
+					this.SendPropertyChanging();
+					this._ngayketthuc = value;
+					this.SendPropertyChanged("ngayketthuc");
+					this.OnngayketthucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngaytao", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ngaytao
+		{
+			get
+			{
+				return this._ngaytao;
+			}
+			set
+			{
+				if ((this._ngaytao != value))
+				{
+					this.OnngaytaoChanging(value);
+					this.SendPropertyChanging();
+					this._ngaytao = value;
+					this.SendPropertyChanged("ngaytao");
+					this.OnngaytaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnhBia", DbType="NVarChar(255)")]
+		public string AnhBia
+		{
+			get
+			{
+				return this._AnhBia;
+			}
+			set
+			{
+				if ((this._AnhBia != value))
+				{
+					this.OnAnhBiaChanging(value);
+					this.SendPropertyChanging();
+					this._AnhBia = value;
+					this.SendPropertyChanged("AnhBia");
+					this.OnAnhBiaChanged();
 				}
 			}
 		}

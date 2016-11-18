@@ -1,0 +1,152 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<webanhnguyen.Models.tbl_promotion>
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content bg-gray-lighter">
+    <div class="row items-push">
+        <div class="col-sm-7">
+            <h1 class="page-heading">Khuyến mãi <small>Danh sách khuyến mãi</small></h1>
+        </div>
+        <div class="col-sm-5 text-right hidden-xs">
+            <ol class="breadcrumb push-10-t">
+                <li>
+                    @Html.ActionLink("Quản trị", "Index", "Admin")
+                </li>
+                <li>Danh sách khuyến mãi</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content" style="min-height: 530px;">
+    <div class="block">
+        <div class="block-header bg-gray-lighter">
+            <span class="block-title">Danh sách</span>
+            <button type="button" onclick="location.href='@Url.Action("promotionCreate","Promotion")'" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Tạo mới</button>
+
+         </div>
+        <div class="block-content">
+            <div class="block-content-top" style="margin-bottom: 20px;">
+                <form method="POST" name="frmForm" enctype="multipart/form-data">
+                    <div class="dataTable_filter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input name="keyword" type="text" class="form-control" id="tukhoa" placeholder="Tìm kiếm..." style="display: inline-block; width: auto; margin-right: 5px;">
+                                <button type="submit" name="search" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @if (ViewBag.AlertSuccess != null)
+            {
+                <div class="alert alert-success">@ViewBag.AlertSuccess</div>
+            }
+            else if (ViewBag.AlertError != null)
+            {
+                <div class="alert alert-warning">@ViewBag.AlertError</div>
+            }
+            <form method="POST" action="#" name="frmForm" enctype="multipart/form-data">
+                <input type="hidden" name="page" value="">
+                <input type="hidden" name="act" value="item">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover btl-list-bbli bg-white">
+                        <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center">
+                                    <input type="checkbox" name="chk[]" class="tai_c" id="chkall" value="">
+                                </td>
+                                <td style="width: 50px;" class="text-center">ID</td>
+                                <td style="width: 150px;" class="text-center">Ảnh bìa</td>
+                                <td style="width: 150px;" class="text-center">Tên khuyến mãi</td>
+                                <td style="width: 150px;" class="text-center">Ngày khuyến mãi</td>
+                                <td style="width: 100px;" class="text-center">Ngày kết thúc</td>
+                                <td style="width: 100px;" class="text-center">Ẩn/hiện</td>
+                                <td style="width: 100px;" class="text-center">Tùy chọn</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" name="chk[]" class="tai_c" value="@order.Id">
+                                    </td>
+                                    <td class="text-center">
+                                        @order.Id
+                                    </td>
+                                    <td class="text-center">
+                                        @if (String.IsNullOrEmpty(order.AnhBia))
+                                        {
+                                            <img src="~/assets/images/noimage.png" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@order.AnhBia" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @order.Tenkhuyenmai
+                                    </td>
+
+                                    <td class="text-center">
+                                        @order.ngaykhuyenmai
+                                    </td>
+                                    <td class="text-center">
+                                        @order.ngayketthuc  
+                                                                      </td>
+                                    <td class="text-center">
+                                        <a href='@Url.Action("PromotionSetStatusEnable", "Order", new { id = @order.Id})' title="Reverse">
+                                            <div class="check tool @(order.status.HasValue && order.status.Value?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@order.Id"></div>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href='@Url.Action("PromotionDetail", "Order", new { id = @order.Id })' class="btn btn-xs btn-pencil btn-primary" title="Chi tiết">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href='@Url.Action("PromotionDelete", "Order", new { id = @order.Id })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-center">
+                                    <button type="submit" name="btnDel" class="btn btn-danger btn-xs" onclick="return confirm('Bạn có chắc chắn muốn xóa ?');">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td colspan="7"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div style="margin-left: 20px;margin-top: -20px">
+                @if (Model.PageCount > 1)
+                {
+                    <div class="MenuTrang">
+                        @Html.PagedListPager(Model, page => Url.Action("OrderView", new { page = page }))
+
+                    </div>
+                        <style>
+                            .MenuTrang li {
+                                display: inline;
+                            }
+                        </style>
+
+                    
+                }
+           
+        </div><!-- End pagination -->
+    </div>
+</div>

@@ -192,6 +192,7 @@
     <Compile Include="Controllers\Admin\CssController.cs" />
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
     <Compile Include="Controllers\Admin\ProducerController.cs" />
+    <Compile Include="Controllers\Admin\PromotionController.cs" />
     <Compile Include="Controllers\Admin\ShopController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\OrderController.cs" />
@@ -2590,6 +2591,8 @@
     <Content Include="Views\Shared\_LayoutDetails.cshtml" />
     <Content Include="Views\Shared\_LayoutProduct.cshtml" />
     <Content Include="Views\Home\Producer.cshtml" />
+    <Content Include="Views\Admin\Promotion\Promotion.cshtml" />
+    <Content Include="Views\Admin\Promotion\Promotion_m.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2615,6 +2618,7 @@
     <Folder Include="Scripts\Product\" />
     <Folder Include="Scripts\v3\" />
     <Folder Include="static.criteo.net\" />
+    <Folder Include="Views\Promotion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

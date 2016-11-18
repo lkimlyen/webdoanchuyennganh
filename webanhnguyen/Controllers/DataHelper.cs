@@ -14,6 +14,12 @@ namespace webanhnguyen.Controllers
             public int id, quantity, orderid, modelid;
             public decimal price, total;
         }
+        public class PromotionAddItemModel
+        {
+            public String name, image, alias;
+            public int id, proid, modelid, kh;
+            public decimal price, pricepd;
+        }
 
         //Helper classes
         public class GeneralHelper
@@ -78,12 +84,33 @@ namespace webanhnguyen.Controllers
 
                 return alias;
             }
+            public string getAliasFromPromotionName(Models.databaseDataContext data, String name)
+            {
+                if (String.IsNullOrEmpty(name))
+                    return "";
+                String alias = RemoveUnicode(name);
+                var record = from ic in data.tbl_promotions
+                             where ic.alias.Equals(alias)
+                             select ic;
+                if (record != null)
+                {
+                    int count = record.Count();
+                    if (count > 0)
+                    {
+                        alias += "-" + count;
+                    }
+                }
+
+                return alias;
+            }
+
             public string getAliasFromProducerName(Models.databaseDataContext data, String name)
             {
                 if (String.IsNullOrEmpty(name))
                     return "";
                 String alias = RemoveUnicode(name);
-                var record = from ic in data.tbl_producers                             where ic.alias.Equals(alias)
+                var record = from ic in data.tbl_producers
+                             where ic.alias.Equals(alias)
                              select ic;
                 if (record != null)
                 {
@@ -184,7 +211,83 @@ namespace webanhnguyen.Controllers
                 return System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/Content/standalone.4e1f1fad754ebc0bdb148ced149d7f731458555519.css"));
             }
         }
+        public class PromotionHelper
+        {
+            static PromotionHelper instance;
+            public static PromotionHelper getInstance()
+            {
+                if (instance == null)
+                {
+                    instance = new PromotionHelper();
+                }
+                return instance;
+            }
 
+            public void deleteAllPromotion(Models.databaseDataContext data)
+            {
+                deleteAllPromotionDetails(data);
+                data.tbl_promotions.DeleteAllOnSubmit(data.tbl_promotions);
+                data.SubmitChanges();
+            }
+            public void deleteAllPromotionDetails(Models.databaseDataContext data)
+            {
+                data.tbl_promotion_details.DeleteAllOnSubmit(data.tbl_promotion_details);
+                data.SubmitChanges();
+            }
+           
+            public int getPromotionAmount(Models.databaseDataContext data)
+            {
+                return data.tbl_promotions.Count();
+            }
+
+            public int getPromotionDetailsAmount(Models.databaseDataContext data)
+            {
+                return data.tbl_promotion_details.Count();
+            }
+            
+            public Models.tbl_promotion getPromotionById(Models.databaseDataContext data, int id)
+            {
+                Models.tbl_promotion result = data.tbl_promotions.Where(n => n.Id == id).Single();
+                return result;
+            }
+
+            public Models.tbl_promotion_detail getPromotionDetailsById(Models.databaseDataContext data, int id)
+            {
+                Models.tbl_promotion_detail result = data.tbl_promotion_details.Where(n => n.Id == id).Single();
+                return result;
+            }
+            
+            public List<Models.tbl_promotion> getListAllPromotion(Models.databaseDataContext data)
+            {
+                return data.tbl_promotions.OrderByDescending(a => a.ngaytao).ToList();
+            }
+
+            public List<Models.tbl_promotion_detail> getListPromotionDetailsByCategory(Models.databaseDataContext data, int idPromotion)
+            {
+                return data.tbl_promotion_details.Where(n => n.Idsp == idPromotion).ToList();
+            }
+       
+            public List<PromotionAddItemModel> getListPromotionAddItemModelFromListPromotionDetails(Models.databaseDataContext data, List<Models.tbl_promotion_detail> listPromotionDetails)
+            {
+                List<PromotionAddItemModel> result = new List<PromotionAddItemModel>();
+                foreach (var promotionDetail in listPromotionDetails)
+                {
+                    Models.tbl_Product item = ProductHelper.getInstance().getProductById(data, promotionDetail.Idsp);
+                    PromotionAddItemModel model = new PromotionAddItemModel();
+                    model.id = promotionDetail.Idsp;
+                    model.name = item.TenSP;
+                    model.image = item.UrlHinh;
+              
+                    model.price = item.GiaHienTai;
+                    model.proid = promotionDetail.Idkm;
+                    model.modelid = promotionDetail.Id;
+                    result.Add(model);
+                }
+
+                return result;
+            }
+            
+        }
         public class NewsHelper
         {
             static NewsHelper instance;
