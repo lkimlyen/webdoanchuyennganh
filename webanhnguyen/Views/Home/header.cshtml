@@ -5,16 +5,23 @@
         <div class="fs-wrap clf">
             <a class="fs-logo" href="@Url.Action("Index","Home")"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@ViewBag.logo" style="width:140px;height:37px" alt="@ViewBag.shoptitle"/></a>
             <form class="fs-fsearch" id="frmSearch">
-                <input type="text" class="fs-ipsearch search-text-box keyword" placeholder="Bạn muốn tìm gì?">
-                <button type="submit" class="fs-btnsearch submit search-button search-button-btn" id="btnSearch"><i class="fi fi-isearch"></i></button>
-                <div class="asmr">
-                    <ul class="fshop-search-cate"></ul>
-                    <ul class="fshop-search-promotion"></ul>
-                    <ul class="fshop-search-old-product"></ul>
-                    <ul class="fshop-search-discharge"></ul>
-                    <ul class="fshop-search-prod"></ul>
-                    <ul class="fshop-search-acces"></ul>
-                </div>
+                            <input type="text" name="IP" id="IP" value="" placeholder="Bạn muốn tìm gì" class="fs-ipsearch search-text-box keyword" />
+                            <a href="@Url.Action( "Search", "Home", new {txttimkiem = "xxx"})" class="link fs-btnsearch search-button search-button-btn"><i class="fi fi-isearch"></i>
+                            </a>
+
+                            <script>
+                                            $(function () {
+                                                $('.link').click(function () {
+                                                    var ipvalue = $("#IP").val();
+
+                                                        this.href = this.href.replace("xxx", ipvalue);
+
+                                                });
+                                            });
+                            </script>
+                        
+                
+
             </form>
             <ul class="fs-menu">
                 <li>

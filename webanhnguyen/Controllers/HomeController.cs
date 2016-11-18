@@ -189,9 +189,6 @@ namespace webanhnguyen.Controllers
         [HttpGet]
         public ActionResult Search(string txttimkiem, string sorting, int? page)
         {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["icon"] = hea.shortcuticon;
-
             int pageNum = (page ?? 1);
             int pageSize = 20;
             string tukhoa = txttimkiem;
@@ -208,7 +205,7 @@ namespace webanhnguyen.Controllers
             ViewBag.PriceSortPasc = "Price";
             if (sorting == "Name_desc")
             {
-                ViewBag.TenSapXep = "Sắp xếp: Z đến A";
+                ViewBag.TenSapXep = "Mặc định";
                 return View(sp.OrderByDescending(n => n.TenSP).ToPagedList(pageNum, pageSize));
             }
             if (sorting == "Name_asc")

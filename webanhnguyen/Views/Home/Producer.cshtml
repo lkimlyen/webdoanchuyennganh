@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<webanhnguyen.Models.tbl_Product>
 
 @{
-    ViewBag.Title = "Producer";
+    ViewBag.Title = ViewBag.TenHangSX;
     Layout = "~/Views/Shared/_LayoutProduct.cshtml";
 }
 
@@ -36,8 +36,8 @@
                         <li class="mfpt-filter-input">
                             <a href="@Url.Action("Producer","Home",new {id = Session["TenLoai"], sorting = ViewBag.NameSortParm })"><label>Mặc định</label></a>
                         </li>
-                        <li class="mfpt-filter-input"><a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortParm})"><label>Giá giảm dần</label></a></li>
-                        <li class="mfpt-filter-input"><a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortPasc})"><label>Giá tăng dần</label></a></li>
+                        <li class="mfpt-filter-input"><a href="@Url.Action("Producer","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortParm})"><label>Giá giảm dần</label></a></li>
+                        <li class="mfpt-filter-input"><a href="@Url.Action("Producer","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortPasc})"><label>Giá tăng dần</label></a></li>
                     </ul>
 
                 </div>
@@ -54,7 +54,6 @@
     <div id="category-products" class="products">
         <div class="grid-sizer"></div>
 
-        <div class="p-item cell-4"><div class="swiper-container fshop-lprod-swiper"><div class="swiper-wrapper"><div class="swiper-slide"><a href="samsung-galaxy-j7-prime.html" id="3146" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/13/636119458713640887_j7prime-C1.jpg" alt="C1-Sam-Galaxy-J-Series" title="C1-Sam-Galaxy-J-Series"></a></div><div class="swiper-slide"><a href="le-tung-bung-re-qua-chung.html" id="3187" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/26/636130728964365533_Haloween-C1.jpg" alt="Halloween C1" title="Halloween C1"></a></div><div class="swiper-slide"><a href="huawei-month.html" id="3159" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636113078656338724_C1-800x290.jpg" alt="C1-Huawei-Tang-Tablet" title="C1-Huawei-Tang-Tablet"></a></div><div class="swiper-slide"><a href="tin-tuc/Tin-khuyen-mai/qua-tang-tri-an-khach-hang-khi-mua-galaxy-s7-hoac-galaxy-s7-edge-tai-fpt-shop-45602.html" id="3195" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/11/1/636136179879842189_C1-800x290-tri-an-khach-hang.jpg" alt="C1-S7Edge-Tri-an-KH" title="C1-S7Edge-Tri-an-KH"></a></div><div class="swiper-slide"><a href="tuan-le-mobiistar.html" id="3185" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/24/636128966279407931_C1-800x290_1.jpg" alt="C1-tuan-le-mobiistar" title="C1-tuan-le-mobiistar"></a></div><div class="swiper-slide"><a href="mua-sony-uu-dai-khung.html" id="3148" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112828960418707_C1-800x290.jpg" alt="Sony Month C1" title="Sony Month C1"></a></div></div><div class="swiper-pagination"></div></div><div class="swiper-button-prev swiper-btncate"></div><div class="swiper-button-next swiper-btncate"></div></div>
 
         @foreach (var item in Model)
             {
@@ -87,7 +86,7 @@
 </div>                  <div class="ty-pagination__bottom">
 
     <div class="MenuTrang">
-        @Html.PagedListPager(Model, page => Url.Action("ProductType", new { page = page }))
+        @Html.PagedListPager(Model, page => Url.Action("Producer", new { page = page }))
 
     </div>
     <style>
