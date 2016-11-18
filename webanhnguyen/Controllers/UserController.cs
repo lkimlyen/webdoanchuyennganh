@@ -9,7 +9,6 @@ namespace webanhnguyen.Controllers
 {
     public class UserController : BaseController
     {
-        databaseDataContext db = new databaseDataContext();
         // GET: User
 
         public ActionResult Index()
@@ -18,8 +17,6 @@ namespace webanhnguyen.Controllers
         }
         #region Tài khoản (Login - SuccessLogin - Logout - Account - ChangePassword - Register - SuccessRegister)
         #region Đăng nhập (Login)
-        [HttpGet]
-    
         public ActionResult Login()
         {
             return View();
@@ -66,56 +63,6 @@ namespace webanhnguyen.Controllers
         }
 
         #endregion
-        [HttpGet]
-        [ChildActionOnly]
-        public ActionResult plogin()
-        {
-            return PartialView();
-        }
-
-        [HttpPost]
-        [ChildActionOnly]
-        public ActionResult plogin(FormCollection collection)
-        {
-            
-                try
-                {
-                //Lấy giá trị ở Form Login
-
-                var _Email = collection["email"];
-                var _Password = collection["password"];
-                Customer kh = db.Customers.SingleOrDefault(n => n.email == _Email && n.password == _Password);
-                //Tạo biến _UserLogin để kiểm tra tài khoản đăng nhập có trong CSDL không
-                // var _UserLogin = db.Customers.SingleOrDefault(k => k.email == _Email && k.password == _Password);
-                if (ModelState.IsValid && kh != null)
-                {
-                    if (kh.status == true)//không bị lock tài khoản
-                    {
-                        Session["ID"] = kh.id;
-                        //Lưu các thông tin vào Session
-                        Session["Email"] = kh;
-                        Session["emailstring"] = kh.email;
-                        if (Session["Giohang"] == null)
-                            {//Chuyển đến trang thông báo Login thành công (Ở đây không dùng được RedirectToAction vì [ChildActionOnly])
-                            return Content("<script>window.location='/Home/Index';</script>");
-                        }
-                            else
-                            return Content("<script>window.location='/ShoppingCart/GioHang';</script>");
-                    }
-                        else
-                            return Content("<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ ban quản trị!');window.location='/User/Login';</script>");
-                    }
-                    else
-                        return Content("<script>alert('Tên đăng nhập hoặc mật khẩu không đúng!');window.location='/User/Login';</script>");
-                }
-                catch
-                {
-                    return Content("<script>alert('Đăng nhập thất bại!');window.location='/User/Login';</script>");
-                }
-            
-                return PartialView();
-        }
-
      
 
         #region Đăng xuất (Logout)
@@ -127,7 +74,14 @@ namespace webanhnguyen.Controllers
         }
         #endregion
 
-        
+        public ActionResult Profile()
+        {
+            if (Session["Email"] == null)
+                return RedirectToAction("Index");
+            int _MaKH = int.Parse(Session["ID"].ToString());
+            var kh = db.Customers.SingleOrDefault(k => k.id == _MaKH);
+            return View(kh);
+        }
         #region Thay đổi thông tin cá nhân (ProfileUpdate)
         public ActionResult ProfileUpdate()
         {
@@ -191,6 +145,7 @@ namespace webanhnguyen.Controllers
                 var _Password = collection["password1"];
                 var _RePassword = collection["password2"];
                 string _Email = collection["email1"];
+                var name = collection["name"];
                 if(String.IsNullOrEmpty(_Email))
                 {
                     return View();
@@ -207,7 +162,7 @@ namespace webanhnguyen.Controllers
                 kh.date_added = DateTime.Now;
                 //Khai báo _FileUpload ở <input type="file" id="_FileUpload" name="_FileUpload" /> trên Form Register
                 kh.status = true;//Mặc định cho tài khoản là Hiện
-
+                kh.name = name;
                 //Thực hiện thêm mới
                 db.Customers.InsertOnSubmit(kh);
                 db.SubmitChanges();

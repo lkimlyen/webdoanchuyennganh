@@ -1,63 +1,80 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
 }
-<div class="tygh-content clearfix">
-    <div class="container-fluid  content-grid">
-        <div class="row-fluid ">
-            <div class="span16 breadcrumbs-grid">
-                <div id="breadcrumbs_73">
-
-                    <div class="ty-breadcrumbs clearfix">
-                        <a href="/Home/Index" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">Đăng nhập</span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="active" id="login-form-link">Login</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" id="register-form-link">Register</a>
+                        </div>
                     </div>
-
-                    <!--breadcrumbs_73-->
+                    <hr>
                 </div>
-            </div>
-        </div>
-        <h2 class="hidden">Thủy hải sản cà mau</h2>
-        <h3 class="hidden">Thủy hải sản cà mau</h3>
-        <div class="row-fluid ">
-            <div class="span8 main-content-grid">
-                <div class="ty-mainbox-container clearfix">
-                    <h1 class="ty-mainbox-title">
-                        Đăng nhập
-                    </h1>
-                    <div class="ty-mainbox-body">
-                        <div class="ty-login">
-                            @using (Html.BeginForm())
-                            {
-                            <form name="main_login_form" action="/Home/Index" method="post">
-                                <input type="hidden" name="return_url" value="" />
-                                <input type="hidden" name="redirect_url" value="" />
-                                <div class="ty-control-group">
-                                    <label for="login_main_login" class="ty-login__filed-label ty-control-group__label cm-required cm-trim cm-email">Email</label>
-                                    <input type="text" id="email" name="email" size="30" value="" class="ty-login__input" />
-                                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
 
-                                <div class="ty-control-group password-forgot">
-                                    <label for="psw_main_login" class="ty-login__filed-label ty-control-group__label ty-password-forgot__label cm-required">Mật khẩu</label>
-                                    
-                                    <input type="password" id="password" name="password" size="30" value="" class="ty-login__input" maxlength="32" />
+                            <form id="login-form" action="@Url.Action("Login","User")" method="post" role="form" style="display: block;">
+                                <div class="form-group">
+                                    <input type="text" name="email" id="email" tabindex="1" class="form-control" required="required" placeholder="Email" value="">
                                 </div>
-                                <div class="buttons-container clearfix">
-                                    <div class="ty-float-right">
-                                        <button class="ty-btn__login ty-btn__secondary ty-btn" type="submit" name="login">Đăng nhập</button>
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" required="required" placeholder="Password">
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                    <label for="remember"> Remember Me</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login" id="login" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
-                            }
+                            <form id="register-form" action="@Url.Action("Register","User")" method="post" role="form" style="display: none;">
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" tabindex="1" class="form-control" required="required" placeholder="Name" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email1" id="email1" tabindex="1" class="form-control" required="required" placeholder="Email Address" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password1" id="password1" tabindex="2" class="form-control" required="required" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password2" id="password2" tabindex="2" class="form-control" required="required" placeholder="Confirm Password">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                </div>
-            </div><div class="span8 auth-information-grid">
-                <div class="ty-login-info">
-                    <div class="ty-login-info__txt">
-                        <h4>Bạn chưa đăng ký?</h4><p>Tạo tài khoản ngay trong vòng 50 giây và nhận khuyến mãi giá tốt.</p>
-                        <a href="@Url.Action("Register","User")">Đăng ký tài khoản mới</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+

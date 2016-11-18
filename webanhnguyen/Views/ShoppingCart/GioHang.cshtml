@@ -1,6 +1,6 @@
 ﻿@using webanhnguyen.Models
 @{
-   
+
     Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
 }
 <div class="ck-main">
@@ -17,59 +17,59 @@
                 <div class="ck-s1-info">
                     @foreach (var item in Model)
                     {
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="ck-s1-tb listproincart promain" >
-                                <div class="ck-s1-tdl">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="ck-s1-tb listproincart promain">
+                                    <div class="ck-s1-tdl">
 
-                                    <p><img id="imageproduct" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.sAnhbia" alt="@item.sTensp"></p>
-                                </div>
-@using (Html.BeginForm("CapnhatGiohang", "ShoppingCart", new { @iMasp = item.iMasp }))
-{
+                                        <p><img id="imageproduct" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.sAnhbia" alt="@item.sTensp"></p>
+                                    </div>
+                                    @using (Html.BeginForm("CapnhatGiohang", "ShoppingCart", new { @iMasp = item.iMasp }))
+                                    {
 
-                                <div class="ck-s1-tdr">
-                                    <p class="ck-s1-tit" id="productname">@item.sTensp</p>
-                                    <p class="ck-s1-price">
-                                        @(((int)(item.dThanhtien)).ToString("#,###", ViewBag.CurrentNumberFormat))<sup>đ</sup>
-                                    </p>
-                                    <ul class="ck-s1-ul">
+                                        <div class="ck-s1-tdr">
+                                            <p class="ck-s1-tit" id="productname">@item.sTensp</p>
+                                            <p class="ck-s1-price">
+                                                @(((int)(item.dThanhtien)).ToString("#,###", ViewBag.CurrentNumberFormat))<sup>đ</sup>
+                                            </p>
+                                            <ul class="ck-s1-ul">
 
-                                        <li>
-                                            <input class="form-control quantity-product" type="number" name="txtSoluong" min="1" max="5" value="@item.iSoluong" />
-                                                
-                                        </li>
-</ul>
-                                    <ul class="ck-s1-ul">
+                                                <li>
+                                                    <input class="form-control quantity-product" type="number" name="txtSoluong" min="1" max="5" value="@item.iSoluong" />
 
-                                        <li>
-                                            <input class="btn btn-danger" type="submit" name="capnhat" value="Cập nhật" />
+                                                </li>
+                                            </ul>
+                                            <ul class="ck-s1-ul">
 
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("XoaGiohang", new { @iMaSp = item.iMasp })" class="XoaSP" data-id="">
-                                                <img src="~/images/icon_delete.png" alt="@ViewBag.shoptitle" title="Xóa sản phẩm" />
-                                            </a>
+                                                <li>
+                                                    <input class="btn btn-danger" type="submit" name="capnhat" value="Cập nhật" />
 
-                                        </li>
-                                    </ul>
-                                    
-                                </div>
-        }
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12 poromotiondefault">
-                            <div class="ck-s1-rightul">
-                                <p class="ck-s1-col">Sản phẩm được áp dụng gói khuyến mãi <span id="numberpacket">1</span></p>
-                                <div class="ck-s1-rightulbox">
-                                    <ul class="promotionchoosened">
-                                        <li><p>• Phần mềm bảo mật tin nhắn và chặn tin nhắn rác Smooth Messenger</p></li>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("XoaGiohang", new { @iMaSp = item.iMasp })" class="XoaSP" data-id="">
+                                                        <img src="~/images/icon_delete.png" alt="@ViewBag.shoptitle" title="Xóa sản phẩm" />
+                                                    </a>
 
-                                    </ul>
-     
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    }
                                 </div>
                             </div>
+                            <div class="col-sm-6 col-xs-12 poromotiondefault">
+                                <div class="ck-s1-rightul">
+                                    <p class="ck-s1-col">Sản phẩm được áp dụng gói khuyến mãi <span id="numberpacket">1</span></p>
+                                    <div class="ck-s1-rightulbox">
+                                        <ul class="promotionchoosened">
+                                            <li><p>• Phần mềm bảo mật tin nhắn và chặn tin nhắn rác Smooth Messenger</p></li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                     }
                     <div id="listpromotion">
                     </div>
@@ -92,105 +92,114 @@
 
                 <h2 class="ck-tit-prod">2.Thông tin khách hàng</h2>
                 <p class="ck-s2-ibb">Bạn vui lòng nhập thông tin cá nhân của bạn (những ô có dấu * là những ô bắt buộc)</p>
-@if (Session["Email"] != null)
-{
-    using (Html.BeginForm())
-    {
-    @Html.ValidationSummary(true)
+                @if (Session["Email"] != null)
+                {
+                    using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
 
-                    <ul class="ck-s2-iul clearfix" id="ck-ifkh">
-                        <li>
-                            <div class="ck-s2-form ck-s2-frm">
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="@kh.name">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="ck-s2-form ck-s2-frm">
-                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="@kh.moblie">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="ck-s2-form">
-                                <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="@kh.email">
-                            </div>
-                        </li>
-                    </ul>
+                        <ul class="ck-s2-iul clearfix" id="ck-ifkh">
+                            <li>
+                                <div class="ck-s2-form ck-s2-frm">
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="@kh.name">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ck-s2-form ck-s2-frm">
+                                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="@kh.moblie">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ck-s2-form">
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="@kh.email">
+                                </div>
+                            </li>
+                        </ul>
 
-    }
-}
-else
-{
-    using (Html.BeginForm("GioHang", "GioHang", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        <ul class="ck-s2-iul clearfix" id="ck-ifkh">
-            <li>
-                <div class="ck-s2-form ck-s2-frm">
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên">
-                </div>
-            </li>
-            <li>
-                <div class="ck-s2-form ck-s2-frm">
-                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại">
-                </div>
-            </li>
-            <li>
-                <div class="ck-s2-form">
-                    <input type="text" id="email" name="email" class="form-control" placeholder="Email">
-                </div>
-            </li>
-        </ul>
-    }
-}
-            <!--Kiem tra cty ok-->
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("GioHang", "GioHang", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <ul class="ck-s2-iul clearfix" id="ck-ifkh">
+                            <li>
+                                <div class="ck-s2-form ck-s2-frm">
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ck-s2-form ck-s2-frm">
+                                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="ck-s2-form">
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                }
+                <!--Kiem tra cty ok-->
 
-            <div class="ck-s3">
-                <h2 class="ck-tit-prod">3.Phương thức nhận hàng</h2>
+                <div class="ck-s3">
+                    <h2 class="ck-tit-prod">3.Phương thức nhận hàng</h2>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="tt-tienmat">
-                         @if (Session["Email"] != null)
-                         {
-                             using (Html.BeginForm())
-                             {
-                            @Html.ValidationSummary(true)
+                            @if (Session["Email"] != null)
+                            {
+                                using (Html.BeginForm())
+                                {
+                                    @Html.ValidationSummary(true)
 
-                                <p><strong>Địa điểm nhận hàng:</strong></p>
-                                <div class="row ck-s2-frow" data-city="">
-                                  
-                                    <div class="col-sm-4 col-xs-12">
-                                        <div class="form-group ck-s2-form">
-                                            <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="@kh.address">
+                                    <p><strong>Địa điểm nhận hàng:</strong></p>
+                                    <div class="row ck-s2-frow" data-city="">
+
+                                        <div class="col-sm-4 col-xs-12">
+                                            <div class="form-group ck-s2-form">
+                                                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="@kh.address">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                             }
-                         }
-                         else
-                         {
-                             using (Html.BeginForm("GioHang", "GioHang", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                             {
-                            <p><strong>Địa điểm nhận hàng:</strong></p>
-                            <div class="row ck-s2-frow" data-city="">
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("GioHang", "GioHang", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    <p><strong>Địa điểm nhận hàng:</strong></p>
+                                    <div class="row ck-s2-frow" data-city="">
 
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="form-group ck-s2-form">
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ">
+                                        <div class="col-sm-4 col-xs-12">
+                                            <div class="form-group ck-s2-form">
+                                                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                             }
-                         }
-                                                </div>
+                                }
+                            }
+                        </div>
 
                         <br>
                     </div>
-                    <ul class="ck-s3-btn">
-                        <li>
-                            <input type="submit" id="dathang" name="dathang" class="btn btn-danger ck-s3-btntt" value="Đặt hàng">
-                             
-                        </li>
-                                            </ul>
+                    <div class="ck-s3-btn">
+                            <input type="button" id="back" name="back" onclick="goBack()" class="btn btn-success ck-s3-btntt" value="Back">
+                            
+                            <script>
+                                function goBack() {
+                                    alert("Giỏ hàng của bạn sẽ bị hủy trong 12h nếu bạn không đặt hàng");
+                                    window.history.back();
+                                }
+                            </script>
+                        <a href="@Url.Action("XoaTatcaGiohang", "ShoppingCart")" class="btn btn-warning ck-s3-btntt">Hủy đơn hàng</a>
+                            
+
+                            <input type="submit" id="dathang" name="dathang" class="btn btn-danger ck-s3-btntt right" value="Đặt hàng">
+                        
+                    </div>
                 </div>
             </div>
             <div class="ckt-footer">

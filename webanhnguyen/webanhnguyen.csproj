@@ -2262,9 +2262,9 @@
     <Content Include="ckfinder\translations.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\buttons.ab966a004186897711de4a5ed256c924.css" />
     <Content Include="Content\cssv33edf.css" />
     <Content Include="Content\cssv36fb1.css" />
+    <Content Include="Content\dangky_nhap.css" />
     <Content Include="Content\gio-hang.css" />
     <Content Include="Content\grabbing.png" />
     <Content Include="Content\homev34323.css" />
@@ -2279,6 +2279,7 @@
     <Content Include="Content\RecurringV3CssHome36c6.css" />
     <Content Include="Content\register.png" />
     <Content Include="Content\tvzDeSnUpa_.css" />
+    <Content Include="Content\user.css" />
     <Content Include="Content\v3\cart.png" />
     <Content Include="Content\v3\Logout.png" />
     <Content Include="Content\v3\user.png" />
@@ -2460,6 +2461,7 @@
     <Content Include="Scripts\call_requests.js" />
     <Content Include="Scripts\cloudzoom.js" />
     <Content Include="Scripts\core.js" />
+    <Content Include="Scripts\dangky_nhap.js" />
     <Content Include="Scripts\exceptions.js" />
     <Content Include="Scripts\fbds.js" />
     <Content Include="Scripts\func%281%29.js" />
@@ -2545,7 +2547,7 @@
     <Content Include="Views\ShoppingCart\GiohangPartial.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\SuccessRegister.cshtml" />
-    <Content Include="Views\User\ProfileUpdate.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\RecoverPassword.cshtml" />
     <Content Include="Views\User\plogin.cshtml" />
@@ -2556,7 +2558,6 @@
     <Content Include="Views\ShoppingCart\DatHang.cshtml" />
     <Content Include="Views\Home\MenuTop.cshtml" />
     <Content Include="Views\Home\header.cshtml" />
-    <Content Include="Views\Home\Laycatuoi.cshtml" />
     <Content Include="Views\Home\tintuc.cshtml" />
     <Content Include="Views\Home\Reader.cshtml" />
     <Content Include="Views\Home\monanmoingay.cshtml" />
@@ -2577,8 +2578,6 @@
     <Content Include="Views\Admin\Order\OrderDetail.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Member\MemberDetail.cshtml" />
-    <Content Include="Views\Home\khuyenmai1.cshtml" />
-    <Content Include="Views\Home\khuyenmai2.cshtml" />
     <Content Include="Views\Admin\AdminManagement\AdminManagement_m.cshtml" />
     <Content Include="Views\Admin\AdminManagement\AdminManagement.cshtml" />
     <Content Include="Views\Admin\ShopInformation\ShopInformation_m.cshtml" />
@@ -2604,6 +2603,8 @@
     <Content Include="Views\Home\Laysanpham.cshtml" />
     <Content Include="Views\News\tincongnghe.cshtml" />
     <Content Include="Views\Shared\_LayoutGioHang.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\ProfileUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

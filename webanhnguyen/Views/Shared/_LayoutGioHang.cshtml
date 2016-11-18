@@ -26,6 +26,28 @@
     <script src="assets/scripts/libs/respond/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="~/Content/assets/scripts/libs/jquery/jquery.minb964.js?v=1808"></script>
+    <link href="~/Content/dangky_nhap.css" rel="stylesheet" />
+    <script type="text/javascript">
+$(function() {
+
+    $('#login-form-link').click(function(e) {
+		$("#login-form").delay(100).fadeIn(100);
+ 		$("#register-form").fadeOut(100);
+		$('#register-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	$('#register-form-link').click(function(e) {
+		$("#register-form").delay(100).fadeIn(100);
+ 		$("#login-form").fadeOut(100);
+		$('#login-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+});
+    </script>
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -38,7 +60,7 @@
         ga('send', 'pageview');
         ga('require', 'ecommerce', 'ecommerce.html');
     </script>
-
+    <link href="~/Content/user.css" rel="stylesheet" />
     <script type="text/javascript">
         setTimeout(
                function () {
@@ -66,6 +88,7 @@
 
     </script>
 </head>
+
 <body>
     <div id="menuHeader">
         <a id="m-nav">
@@ -243,6 +266,9 @@
 
 
     </div>
+
+ 
+
 
 </body>
 <!-- Mirrored from fptshop.com.vn/~ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Nov 2016 01:00:37 GMT -->
