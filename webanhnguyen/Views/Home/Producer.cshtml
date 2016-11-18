@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<webanhnguyen.Models.tbl_Product>
+
+@{
+    ViewBag.Title = "Producer";
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
+}
+
+
+<div class="fshop-mainbox">
+    <div class="fshop-lprod-top">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="fshop-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li class="@Url.Action("ProductType","Home",new {id = ViewBag.aliasloai })"><a>@ViewBag.TenLoai</a></li>
+                        <li class="active"><a>@ViewBag.TenHangSX</a></li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row fshop-lprod-fillter">
+        <div class="fshop-lprod-fprodname" style="margin-top: 10px"> <h1>@ViewBag.TenHangSX</h1> <span>(@Model.Count() sản phẩm)</span></div>
+        <div class="panel panel-default right">
+
+            <div class="">
+                <div class="dropdown right">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        @ViewBag.TenSapXep
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="mfpt-filter-input">
+                            <a href="@Url.Action("Producer","Home",new {id = Session["TenLoai"], sorting = ViewBag.NameSortParm })"><label>Mặc định</label></a>
+                        </li>
+                        <li class="mfpt-filter-input"><a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortParm})"><label>Giá giảm dần</label></a></li>
+                        <li class="mfpt-filter-input"><a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortPasc})"><label>Giá tăng dần</label></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row fshop-lprod-bnbot"><ul class="clearfix"><li class="fshop-lprod-ckch">Cam kết hàng chính hãng</li><li class="fshop-lprod-gttn">Giá thành tốt nhất</li><li class="fshop-lprod-hthd">Hỗ Trợ trả góp</li><li class="fshop-lprod-mpgh">Miễn phí Giao hàng toàn quốc</li><li class="fshop-lprod-bnbclode"></li></ul>        </div>
+<!--product list box-->
+
+<div class="row fshop-lprod-main box-products">
+    <div class="bor-left"></div>
+    <div id="category-products" class="products">
+        <div class="grid-sizer"></div>
+
+        <div class="p-item cell-4"><div class="swiper-container fshop-lprod-swiper"><div class="swiper-wrapper"><div class="swiper-slide"><a href="samsung-galaxy-j7-prime.html" id="3146" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/13/636119458713640887_j7prime-C1.jpg" alt="C1-Sam-Galaxy-J-Series" title="C1-Sam-Galaxy-J-Series"></a></div><div class="swiper-slide"><a href="le-tung-bung-re-qua-chung.html" id="3187" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/26/636130728964365533_Haloween-C1.jpg" alt="Halloween C1" title="Halloween C1"></a></div><div class="swiper-slide"><a href="huawei-month.html" id="3159" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636113078656338724_C1-800x290.jpg" alt="C1-Huawei-Tang-Tablet" title="C1-Huawei-Tang-Tablet"></a></div><div class="swiper-slide"><a href="tin-tuc/Tin-khuyen-mai/qua-tang-tri-an-khach-hang-khi-mua-galaxy-s7-hoac-galaxy-s7-edge-tai-fpt-shop-45602.html" id="3195" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/11/1/636136179879842189_C1-800x290-tri-an-khach-hang.jpg" alt="C1-S7Edge-Tri-an-KH" title="C1-S7Edge-Tri-an-KH"></a></div><div class="swiper-slide"><a href="tuan-le-mobiistar.html" id="3185" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/24/636128966279407931_C1-800x290_1.jpg" alt="C1-tuan-le-mobiistar" title="C1-tuan-le-mobiistar"></a></div><div class="swiper-slide"><a href="mua-sony-uu-dai-khung.html" id="3148" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112828960418707_C1-800x290.jpg" alt="Sony Month C1" title="Sony Month C1"></a></div></div><div class="swiper-pagination"></div></div><div class="swiper-button-prev swiper-btncate"></div><div class="swiper-button-next swiper-btncate"></div></div>
+
+        @foreach (var item in Model)
+            {
+            <div class="p-item cell-1">
+                <div class="p-badge">
+                </div><div class="p-item-bound">
+                    <a href="@Url.Action("Details","Home", new {id = item.alias })" title="@item.TenSP" class="p-link-prod"></a>
+                    <figure class="p-image"><span><a href="@Url.Action("Details","Home", new {id = item.alias })"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TenSP" /></a></span></figure><div class="p-info">
+                        <div class="p-top-info"><div class="p-info-show"><div class="p-name"><a href="dien-thoai/iphone-6s-plus-64gb.html"><h3>@item.TenSP</h3></a></div><div class="p-price"><span class="p-current-price">@(((int)(item.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>                    </div></div></div><div class="p-hide-info">
+                            <div class="best-seller-order">
+                                <p>Đặt Online nhận ngay khuyến m&atilde;i:</p>
+
+                                <ul>
+                                    <li>Phiếu mua h&agrave;ng trị gi&aacute; <b>2.000.000đ</b> (kh&ocirc;ng &aacute;p dụng trả g&oacute;p 0%)</li>
+                                    <li>Trả g&oacute;p Home Credit, 0% l&atilde;i suất, trả trước 30%, kỳ hạn 8 th&aacute;ng</li>
+                                    <li>Phiếu mua Macbook trị gi&aacute; <b>500.000đ</b></li>
+                                    <li>Giảm 50% Bảo h&agrave;nh v&agrave;ng Xem chi tiết</li>
+                                </ul>
+                            </div><div class="p-promotion"><div class='hightlight-des'><ul><li>Chipset: A9</li><li>M&agrave;n h&igrave;nh: 5.5 inch,&nbsp;1080 x 1920 pixels</li><li>Camera:&nbsp;12.0 MP/ 5.0 MP</li></ul></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<!--end product list box-->
+</div>                  <div class="ty-pagination__bottom">
+
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("ProductType", new { page = page }))
+
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+</div>
+
+
+
+
+

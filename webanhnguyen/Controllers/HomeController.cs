@@ -39,22 +39,29 @@ namespace webanhnguyen.Controllers
         #region chi tiết sản phẩm
         public ActionResult Details(string id)
         {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["title"] = ViewBag.shoptitle;
-         
-            Session["icon"] = hea.shortcuticon;
             var CT_SP = (db.tbl_Products.First(sp => sp.alias == id));
             int loai = int.Parse(CT_SP.IDLoaiSP.ToString());
-            ViewBag.TenLoai = (from s in db.tbl_Products
+            ViewBag.TenLoai = ((
                                from l in db.tbl_product_types
-                               where s.alias == id && s.IDLoaiSP == l.ID && s.Status == true
-                               select l);
-            ViewBag.SP_cungloai = (from s in db.tbl_Products
-                                   where s.alias != id && s.IDLoaiSP == loai && s.Status == true
-                                   select s).Skip(0).Take(4).ToList();
-            ViewBag.SP_khac = (from s in db.tbl_Products
-                               where s.alias != id && s.IDLoaiSP != loai && s.Status == true
-                               select s).Skip(0).Take(4).ToList();
+                               where l.ID == loai
+                               select l).SingleOrDefault()).TenLoaiSP;
+            ViewBag.aliasloai = ((
+                               from l in db.tbl_product_types
+                               where l.ID == loai
+                               select l).SingleOrDefault()).alias;
+            ViewBag.TenHangSX = ((from s in db.tbl_Products 
+                                from l in db.tbl_producers
+                                where l.Idloaisp == loai && l.Id == s.Idhangsx
+                                select l).First()).Tenhangsx;
+            ViewBag.aliashang = ((
+                            from l in db.tbl_producers
+                            where l.Idloaisp == loai
+                            select l).First()).alias;
+            ViewBag.SP_cungloaihang = (from s in db.tbl_producers
+                                       from n in db.tbl_Products
+                                       where n.Idhangsx == s.Id && s.alias != id && s.Idloaisp == loai && n.IDLoaiSP == loai 
+                                       select n).ToList();
+     
             //CT_SP.LuotXem += 1;
             //UpdateModel(CT_SP);
             //db.SubmitChanges();
@@ -69,11 +76,6 @@ namespace webanhnguyen.Controllers
         #region sản phẩm theo loại
         public ActionResult ProductType(string id, int? page, string sorting)
         {
-            tbl_header hea = db.tbl_headers.SingleOrDefault(n => n.id == 1);
-            Session["title"] = ViewBag.shoptitle;
-            
-            Session["icon"] = hea.shortcuticon;
-
             int pageSize = 20;
             int pageNum = (page ?? 1);
 
@@ -81,13 +83,10 @@ namespace webanhnguyen.Controllers
                         from h in db.tbl_product_types
                         where h.alias == id && g.IDLoaiSP == h.ID && g.Status == true && h.Status == true
                         select g;
-            Session["loai"] = id;
-            tbl_product_type loai = db.tbl_product_types.SingleOrDefault(n => n.alias == id);
-            Session["tenloai"] = loai.TenLoaiSP;
-            ViewBag.TenLoai = (from l in db.tbl_product_types
-                               where l.alias == id
-                               select l);
-            ViewBag.TenSapXep = "Sắp xếp: A đến Z";
+            tbl_product_type loai = db.tbl_product_types.SingleOrDefault(n => n.alias.Equals(id));
+            Session["TenLoai"] = loai.alias; ;
+            ViewBag.TenLoai = loai.TenLoaiSP;
+            ViewBag.TenSapXep = "Sắp xếp";
             ViewBag.NameSortParm = "Name_desc";
             ViewBag.NameSortParmasc = "Name_asc";
             ViewBag.DateSortParm = "Date_desc";
@@ -95,7 +94,7 @@ namespace webanhnguyen.Controllers
             ViewBag.PriceSortPasc = "Price";
             if (sorting == "Name_desc")
             {
-                ViewBag.TenSapXep = "Sắp xếp: Z đến A";
+                ViewBag.TenSapXep = "Mặc định";
                 return View(laysp.OrderByDescending(n => n.TenSP).ToPagedList(pageNum, pageSize));
             }
             if (sorting == "Name_asc")
@@ -134,12 +133,22 @@ namespace webanhnguyen.Controllers
                         from n in db.tbl_producers 
                         where n.alias == id && g.IDLoaiSP == h.ID && g.Status == true && h.Status == true && n.status == true && n.Idloaisp == h.ID && n.Id == g.Idhangsx
                         select g;
-            Session["loai"] = id;
-            tbl_product_type loai = db.tbl_product_types.SingleOrDefault(n => n.alias == id);
-            Session["tenloai"] = loai.TenLoaiSP;
-            ViewBag.TenLoai = (from l in db.tbl_product_types
-                               where l.alias == id
-                               select l);
+            tbl_producer hang = db.tbl_producers.Where(n => n.alias.Equals(id)).SingleOrDefault();
+
+            Session["TenLoai"] = hang.Tenhangsx;
+
+            ViewBag.TenHangSX = hang.Tenhangsx;
+            ViewBag.aliashang = hang.alias;
+            ViewBag.TenLoai = ((
+                               from l in db.tbl_product_types
+                               where l.ID == hang.Idloaisp
+                               select l).SingleOrDefault()).TenLoaiSP;
+            ViewBag.aliasloai = ((
+                               from l in db.tbl_product_types
+                               where l.ID == hang.Idloaisp
+                               select l).SingleOrDefault()).alias;
+           
+            
             ViewBag.TenSapXep = "Sắp xếp: A đến Z";
             ViewBag.NameSortParm = "Name_desc";
             ViewBag.NameSortParmasc = "Name_asc";
@@ -148,7 +157,7 @@ namespace webanhnguyen.Controllers
             ViewBag.PriceSortPasc = "Price";
             if (sorting == "Name_desc")
             {
-                ViewBag.TenSapXep = "Sắp xếp: Z đến A";
+                ViewBag.TenSapXep = "Mặc định";
                 return View(laysp.OrderByDescending(n => n.TenSP).ToPagedList(pageNum, pageSize));
             }
             if (sorting == "Name_asc")

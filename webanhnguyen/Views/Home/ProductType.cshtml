@@ -2,144 +2,96 @@
 @using PagedList.Mvc
 @model PagedList.IPagedList<webanhnguyen.Models.tbl_Product>
 @{
-    ViewBag.Title = Session["tenloai"];
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = ViewBag.TenLoai;
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
 }
-<div class="tygh-content clearfix">
-    <div class="container-fluid  content-grid">
-        <div class="row-fluid ">
-            <div class="span16 breadcrumbs-grid">
-                <div id="breadcrumbs_73">
 
-                    <div class="ty-breadcrumbs clearfix">
-                        <a href="@Url.Action("Index","Home")" class="ty-breadcrumbs__a">Trang chủ</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current">
-                            @foreach (var item in ViewBag.TenLoai)
-                        {@item.TenLoaiSP}
-                    </span>
+<div class="fshop-cate-slides">
+    <div class="p-item cell-4">
+    <div class="swiper-container fshop-lprod-swiper">
+        <div class="swiper-wrapper"><div class="swiper-slide"><a class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/13/636119458713640887_j7prime-C1.jpg" alt="@ViewBag.shoptitle" title=""></a></div>
+        <div class="swiper-slide"><a href=""  class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/26/636130728964365533_Haloween-C1.jpg" alt="" title=""></a></div>
+        <div class="swiper-slide"><a href="" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636113078656338724_C1-800x290.jpg" alt="" title=""></a></div>
+        <div class="swiper-slide"><a href="" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/11/1/636136179879842189_C1-800x290-tri-an-khach-hang.jpg" alt="" title=""></a></div>
+        <div class="swiper-slide"><a href=""  class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/24/636128966279407931_C1-800x290_1.jpg" alt="" title=""></a></div>
+        <div class="swiper-slide"><a href="" class="banner_click"><img src="/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112828960418707_C1-800x290.jpg" alt="" title=""></a></div></div>
+        <div class="swiper-pagination"></div></div><div class="swiper-button-prev swiper-btncate"></div><div class="swiper-button-next swiper-btncate"></div></div>
+</div>
+<div class="fshop-mainbox">
+    <div class="fshop-lprod-top">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="fshop-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li class="active"><a>@ViewBag.TenLoai</a></li>
+                    </ol>
                 </div>
-
-                <!--breadcrumbs_73-->
             </div>
+
         </div>
-    </div><div class="row-fluid ">
-        <div class="span16 main-content-grid">
-            <div class="ty-mainbox-container clearfix">
-                <h1 class="ty-mainbox-title">
+    </div>
+    <div class="row fshop-lprod-fillter">
+        <div class="fshop-lprod-fprodname" style="margin-top: 10px"> <h1>@ViewBag.TenLoai</h1> <span>(@Model.Count() sản phẩm)</span></div>
+                <div class="panel panel-default right">
+        
+            <div class="">
+                <div class="dropdown right">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        @ViewBag.TenSapXep
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="mfpt-filter-input">
+                            <a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.NameSortParm })"><label>Mặc định</label></a>
+                        </li>
+                        <li class="mfpt-filter-input"><a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortParm})"><label>Giá giảm dần</label></a></li>
+                        <li class="mfpt-filter-input"><a href="@Url.Action("ProductType","Home",new {id = Session["TenLoai"], sorting = ViewBag.PriceSortPasc})"><label>Giá tăng dần</label></a></li>
+             </ul>
 
-                    <span>
-                        @foreach (var item in ViewBag.TenLoai)
-                    { @item.TenLoaiSP}
-                </span>
+                </div>
+             </div>
+</div></div></div>
+    
+    <div class="row fshop-lprod-bnbot"><ul class="clearfix"><li class="fshop-lprod-ckch">Cam kết hàng chính hãng</li><li class="fshop-lprod-gttn">Giá thành tốt nhất</li><li class="fshop-lprod-hthd">Hỗ Trợ trả góp</li><li class="fshop-lprod-mpgh">Miễn phí Giao hàng toàn quốc</li><li class="fshop-lprod-bnbclode"></li></ul>        </div>
+    <!--product list box-->
 
+    <div class="row fshop-lprod-main box-products">
+        <div class="bor-left"></div>
+        <div id="category-products" class="products" >
+            <div class="grid-sizer"></div>
 
-            </h1>
-            <div class="ty-mainbox-body">
-                <div id="category_products_74">
-                    <script type="text/javascript" src="~/Scripts/exceptions.js"></script>
-                    <div class="ty-pagination-container cm-pagination-container" id="pagination_contents">
-                        <div class="ty-sort-container">
-                            <div class="ty-sort-container__views-icons">
-                                <a class="ty-sort-container__views-a  active" data-ca-target-id="pagination_contents" href="@Url.Action("ProductType","Home", new { id=Session["loai"]})" rel="nofollow">
-                                    <i class="ty-icon-products-multicolumns"></i>
-                                </a>
-                                <a class="ty-sort-container__views-a  " data-ca-target-id="pagination_contents" href="@Url.Action("hienthi2","Home", new { id=Session["loai"]})" rel="nofollow">
-                                    <i class="ty-icon-products-without-options"></i>
-                                </a>
-                                <a class="ty-sort-container__views-a  " data-ca-target-id="pagination_contents" href="@Url.Action("hienthi3","Home",new { id=Session["loai"]})" rel="nofollow">
-                                    <i class="ty-icon-short-list"></i>
-                                </a>
-                            </div>
+            <div class="p-item cell-4"><div class="swiper-container fshop-lprod-swiper"><div class="swiper-wrapper"><div class="swiper-slide"><a href="samsung-galaxy-j7-prime.html" id="3146" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/13/636119458713640887_j7prime-C1.jpg" alt="C1-Sam-Galaxy-J-Series" title="C1-Sam-Galaxy-J-Series"></a></div><div class="swiper-slide"><a href="le-tung-bung-re-qua-chung.html" id="3187" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/26/636130728964365533_Haloween-C1.jpg" alt="Halloween C1" title="Halloween C1"></a></div><div class="swiper-slide"><a href="huawei-month.html" id="3159" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636113078656338724_C1-800x290.jpg" alt="C1-Huawei-Tang-Tablet" title="C1-Huawei-Tang-Tablet"></a></div><div class="swiper-slide"><a href="tin-tuc/Tin-khuyen-mai/qua-tang-tri-an-khach-hang-khi-mua-galaxy-s7-hoac-galaxy-s7-edge-tai-fpt-shop-45602.html" id="3195" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/11/1/636136179879842189_C1-800x290-tri-an-khach-hang.jpg" alt="C1-S7Edge-Tri-an-KH" title="C1-S7Edge-Tri-an-KH"></a></div><div class="swiper-slide"><a href="tuan-le-mobiistar.html" id="3185" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/24/636128966279407931_C1-800x290_1.jpg" alt="C1-tuan-le-mobiistar" title="C1-tuan-le-mobiistar"></a></div><div class="swiper-slide"><a href="mua-sony-uu-dai-khung.html" id="3148" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112828960418707_C1-800x290.jpg" alt="Sony Month C1" title="Sony Month C1"></a></div></div><div class="swiper-pagination"></div></div><div class="swiper-button-prev swiper-btncate"></div><div class="swiper-button-next swiper-btncate"></div></div>
+          
+            @foreach (var item in Model)
+            {
+                <div class="p-item cell-1">
+                    <div class="p-badge">
+                                            </div><div class="p-item-bound">
+                        <a href="@Url.Action("Details","Home", new {id = item.alias })" title="@item.TenSP" class="p-link-prod"></a>
+                    <figure class="p-image"><span><a href="@Url.Action("Details","Home", new {id = item.alias })"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TenSP" /></a></span></figure><div class="p-info">
+                            <div class="p-top-info"><div class="p-info-show"><div class="p-name"><a href="dien-thoai/iphone-6s-plus-64gb.html"><h3>@item.TenSP</h3></a></div><div class="p-price"><span class="p-current-price">@(((int)(item.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>                    </div></div></div><div class="p-hide-info">
+                                <div class="best-seller-order">
+                                    <p>Đặt Online nhận ngay khuyến m&atilde;i:</p>
 
-                            <div class="ty-sort-dropdown">
-                                <a id="sw_elm_sort_fields" class="ty-sort-dropdown__wrapper cm-combination">@ViewBag.TenSapXep<i class="ty-sort-dropdown__icon ty-icon-down-micro"></i></a>
-                                <ul id="elm_sort_fields" class="ty-sort-dropdown__content cm-popup-box hidden">
-                                    <li class="sort-by-timestamp-desc ty-sort-dropdown__content-item">
-                                        <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("ProductType","Home", new {id = Session["loai"], sorting = ViewBag.DateSortParm })" rel="nofollow">Sản phẩm mới</a>
-                                    </li>
-                                    <li class="sort-by-product-desc ty-sort-dropdown__content-item">
-                                        <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("ProductType","Home", new {id = Session["loai"], sorting = ViewBag.NameSortParmasc })" rel="nofollow">Sắp xếp: A đến Z</a>
-                                    </li>
-                                    <li class="sort-by-product-desc ty-sort-dropdown__content-item">
-                                        <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("ProductType","Home", new {id = Session["loai"], sorting = ViewBag.NameSortParm })" rel="nofollow">Sắp xếp: Z đến A</a>
-                                    </li>
-                                    <li class="sort-by-price-asc ty-sort-dropdown__content-item">
-                                        <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("ProductType","Home", new {id = Session["loai"], sorting = ViewBag.PriceSortPasc })" rel="nofollow">Sắp xếp Giá: Thấp đến Cao</a>
-                                    </li>
-                                    <li class="sort-by-price-desc ty-sort-dropdown__content-item">
-                                        <a class="ty-sort-dropdown__content-item-a" data-ca-target-id="pagination_contents" href="@Url.Action("ProductType","Home", new {id = Session["loai"], sorting = ViewBag.PriceSortParm })" rel="nofollow">Sắp xếp Giá: Cao Đến Thấp</a>
-                                    </li>
-                                  
-                                </ul>
-   
-                            </div>
-
-
-                            <div class="ty-sort-dropdown">
-                               
+                                    <ul>
+                                        <li>Phiếu mua h&agrave;ng trị gi&aacute; <b>2.000.000đ</b> (kh&ocirc;ng &aacute;p dụng trả g&oacute;p 0%)</li>
+                                        <li>Trả g&oacute;p Home Credit, 0% l&atilde;i suất, trả trước 30%, kỳ hạn 8 th&aacute;ng</li>
+                                        <li>Phiếu mua Macbook trị gi&aacute; <b>500.000đ</b></li>
+                                        <li>Giảm 50% Bảo h&agrave;nh v&agrave;ng Xem chi tiết</li>
+                                    </ul>
+                                </div><div class="p-promotion"><div class='hightlight-des'><ul><li>Chipset: A9</li><li>M&agrave;n h&igrave;nh: 5.5 inch,&nbsp;1080 x 1920 pixels</li><li>Camera:&nbsp;12.0 MP/ 5.0 MP</li></ul></div></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            }        </div>
+    </div>
 
 
-
-
-
-
-                        <script type="text/javascript" src="~/Scripts/product_image_gallery.js"></script>
-
-                        <div class="grid-list">
-                            @foreach (var it in Model)
-                            {
-                                <div itemscope="" itemtype="http://schema.org/Product" style="display: none">
-                                    <meta itemprop="sku" content="COM5CAN">
-                                    <meta itemprop="name" content="@it.TenSP">
-                                    <meta itemprop="description" content="@it.MoTaCT">
-                                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                                        <link itemprop="availability" href="http://schema.org/OutOfStock" rel="t">
-                                        <meta itemprop="priceCurrency" content="VNĐ">
-                                        <meta itemprop="price" content="@it.GiaHienTai">
-                                    </div>
-                                </div>
-                                <div class="ty-column4">
-                                    <div class="ty-grid-list__item ty-quick-view-button__wrapper">
-                                            <div class="ty-grid-list__image">
-                                                <a href="@Url.Action("Details","Home",new { id=it.alias})">
-                                                    <img class="ty-pict" src="~/@it.UrlHinh" style="height: 292px; width: 292px" alt="@it.TenSP" title="">
-                                                </a>
-                                                @if (@it.KhuyenMai > 0)
-                                                {
-                                                    <ul class="ty-discount-label cm-reload-103000392" id="discount_label_update_103000392">
-                                                        <li class="ty-discount-label__item" id="line_prc_discount_value_103000392"><span class="ty-discount-label__value" id="prc_discount_value_label_103000392">Giảm @it.KhuyenMai %</span></li>
-                                                        <!--discount_label_update_103000392-->
-                                                    </ul>
-                                                }
-                                                <div class="product-hover"><div class="product-shipping-free"><i class="fa fa-truck"></i> Miễn phí</div><a href="@Url.Action("Details","Home",new { id=it.alias})" class="product-view">Mua&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></a></div>
-                                            </div><div class="ty-grid-list__item-name">
-                                                <h2><a href="@Url.Action("Details","Home",new { id=it.alias})" class="product-title" title="@it.TenSP">@it.TenSP</a></h2>
-                                            </div><div class="ty-grid-list__price ">
-                                                <span class="cm-reload-121000272" id="old_price_update_121000272">
-
-                                                    @if (@it.KhuyenMai > 0)
-                                                    {
-                                                        <span class="ty-list-price ty-nowrap" id="line_list_price_103000392"><span class="ty-strike"><span id="sec_list_price_103000392" class="ty-list-price ty-nowrap">@string.Format("{0:#,##0}", it.GiaCu)</span><span class="ty-list-price ty-nowrap">đ</span></span></span>
-                                                    }
-
-                                                    <!--old_price_update_103000392-->
-                                                    <!--old_price_update_121000272-->
-                                                </span>
-                                                <span class="cm-reload-121000272 ty-price-update" id="price_update_121000272">
-                                                  <span class="ty-price" id="line_discounted_price_121000272"><span id="sec_discounted_price_121000272" class="ty-price-num">@string.Format("{0:#,##0}", it.GiaHienTai)</span><span class="ty-price-num">đ</span></span>
-
-                                                    <!--price_update_121000272-->
-                                                </span>
-                                            </div><div class="ty-grid-list__control"></div>
-                                        
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                        @if (Model.PageCount > 1)
-                        {
-                        <div class="ty-pagination__bottom">
+    <!--end product list box-->
+</div>                  <div class="ty-pagination__bottom">
+                            
                             <div class="MenuTrang">
                                 @Html.PagedListPager(Model, page => Url.Action("ProductType", new { page = page }))
 
@@ -150,15 +102,6 @@
                                 }
                             </style>
                         </div>
-                        }
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+                        
 
 

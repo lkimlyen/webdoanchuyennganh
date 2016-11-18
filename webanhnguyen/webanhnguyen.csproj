@@ -2508,7 +2508,6 @@
     <Content Include="Scripts\tinymce.editor.js" />
     <Content Include="Scripts\tooltip.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Shared\2-smartphone-moi-cua-sony-lo-dien-se-ra-mat-tai-mwc-2017-45587.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2588,6 +2587,9 @@
     <Content Include="Views\Home\menutintuc.cshtml" />
     <Content Include="Views\Home\loaitin.cshtml" />
     <Content Include="Views\Shared\_LayoutNews.cshtml" />
+    <Content Include="Views\Shared\_LayoutDetails.cshtml" />
+    <Content Include="Views\Shared\_LayoutProduct.cshtml" />
+    <Content Include="Views\Home\Producer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2612,6 +2614,7 @@
     <Folder Include="js.knowlead.io\" />
     <Folder Include="Scripts\Product\" />
     <Folder Include="Scripts\v3\" />
+    <Folder Include="static.criteo.net\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
