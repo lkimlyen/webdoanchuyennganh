@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace webanhnguyen.Controllers
 {
     public class DataHelper
@@ -16,9 +17,10 @@ namespace webanhnguyen.Controllers
         }
         public class PromotionAddItemModel
         {
-            public String name, image, alias;
-            public int id, proid, modelid, kh;
+            public String name,gift;
+            public int proid, modelid, kh, quantity;
             public decimal price, pricepd;
+           
         }
 
         //Helper classes
@@ -274,13 +276,11 @@ namespace webanhnguyen.Controllers
                 {
                     Models.tbl_Product item = ProductHelper.getInstance().getProductById(data, promotionDetail.Idsp);
                     PromotionAddItemModel model = new PromotionAddItemModel();
-                    model.id = promotionDetail.Idsp;
+                    model.proid = promotionDetail.Idsp;
                     model.name = item.TenSP;
-                    model.image = item.UrlHinh;
-              
                     model.price = item.GiaHienTai;
-                    model.proid = promotionDetail.Idkm;
-                    model.modelid = promotionDetail.Id;
+                    model.modelid = promotionDetail.Idkm;
+                    model.gift = promotionDetail.Gift;
                     result.Add(model);
                 }
 

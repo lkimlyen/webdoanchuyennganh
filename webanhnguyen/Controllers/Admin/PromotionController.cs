@@ -11,6 +11,58 @@ namespace webanhnguyen.Controllers.Admin
 {
     public class PromotionController : BaseAdminController
     {
+        //GET: Product
+        private List<tbl_Product> getItem(int count)
+        {
+            return getItem(count, "");
+        }
+        private List<tbl_Product> getAllItem()
+        {
+            return getItem(-1, "");
+        }
+        private List<tbl_Product> getItem(int count, String keyword)
+        {
+
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                var result = data.tbl_Products.Where(a => a.TenSP.Contains(keyword)).OrderByDescending(a => a.NgayCapNhat);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_Products.OrderByDescending(a => a.NgayCapNhat);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+
+
+        }
+        public List<DataHelper.PromotionAddItemModel> getProduct()
+        {
+            List<DataHelper.PromotionAddItemModel> list = Session["PromotionAddItemModel"] as List<DataHelper.PromotionAddItemModel>;
+            if (list == null)
+            {
+                //Neu gio hang chua ton tai thi khoi tao listGiohang
+                list = new List<DataHelper.PromotionAddItemModel>();
+                Session["PromotionAddItemModel"] = list;
+            }
+            return list;
+
+        }
+        public ActionResult PromotionAddItem(int Id, string strURL)
+        {
+            //Lay ra Session gio hang
+            List<DataHelper.PromotionAddItemModel> list = getProduct();
+            //Kiem tra sách này tồn tại trong Session["Giohang"] chưa?
+            DataHelper.PromotionAddItemModel sanpham = list.Find(n => n.proid == Id);
+                sanpham = new DataHelper.PromotionAddItemModel();
+                list.Add(sanpham);
+                return Redirect(strURL); 
+        }
+
         // GET: Promotion
         public List<tbl_promotion_detail> getListPromotionDetailById(int id)
         {
@@ -84,15 +136,50 @@ namespace webanhnguyen.Controllers.Admin
             return PromotionView(1);
         }
         [HttpGet]
-        public ActionResult promotionCreate()
+        public ActionResult promotionCreate(int ? page)
         {
+            int pageNum = (page ?? 1);
+            int pageSize = 20;
+
+
+            
             var promotion = new tbl_promotion();
 
-            return View(URLHelper.URL_ADMIN_PROMOTION_M, promotion);
+            return View(URLHelper.URL_ADMIN_PROMOTION_M, new Tuple<tbl_promotion,List<tbl_Product>>(promotion,getAllItem()));
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult promotionCreate(FormCollection form, HttpPostedFileBase fileUpload)
+        public ActionResult promotionCreate(FormCollection form, String btnAdd, HttpPostedFileBase fileUpload, int ? page)
         {
+            if (btnAdd != null)
+            {
+                //Delete checked items
+                string checkedList = form["chk[]"];
+                if (!String.IsNullOrEmpty(checkedList))
+                {
+                    string[] arrayStringCheckedList = checkedList.Split(new char[] { ',' });
+                    for (int i = 0; i < arrayStringCheckedList.Length; i++)
+                    {
+                        try
+                        {
+                            data.tbl_Products.DeleteOnSubmit(getOneItem(Int32.Parse(arrayStringCheckedList[i])));
+                            data.SubmitChanges();
+                            ViewBag.AlertSuccess = "Xoá thành công!";
+                        }
+                        catch (Exception e)
+                        {
+                            ViewBag.AlertError = "Không xoá được";
+                        }
+                    }
+                }
+            }
+            int pageNum = (page ?? 1);
+            int pageSize = 20;
+
+
+            var keyword = form["keyword"];
+            var listItem = getItem(10, keyword).ToPagedList(pageNum, pageSize);
+            
+
             tbl_promotion tic = new tbl_promotion();
             var name = form["name"];
             var price = form["price"];
@@ -101,7 +188,7 @@ namespace webanhnguyen.Controllers.Admin
             var sold_amount = form["soldamount"];
      
 tic.alias = DataHelper.GeneralHelper.getInstance().getAliasFromPromotionName(data, name);
-
+            List<DataHelper.PromotionAddItemModel> list = getProduct();
 
             bool err = false;
             if (String.IsNullOrEmpty(name))
@@ -134,11 +221,25 @@ tic.alias = DataHelper.GeneralHelper.getInstance().getAliasFromPromotionName(dat
             {
                 data.tbl_promotions.InsertOnSubmit(tic);
                 data.SubmitChanges();
+                foreach (var item in list)
+                {
+
+                    tbl_promotion_detail ctkm = new tbl_promotion_detail();
+                    ctkm.Idkm = item.modelid;
+                    ctkm.Idsp = item.proid;
+                    ctkm.quantity = item.quantity;
+                    ctkm.Giaban = (decimal)item.price;
+                    ctkm.Giakhuyenmai = (decimal)item.pricepd;
+                    ctkm.Gift = item.gift;
+                    
+                    data.tbl_promotion_details.InsertOnSubmit(ctkm);
+                }
+
                 return RedirectToAction("promotionView");
             }
             else
             {
-                return View(URLHelper.URL_ADMIN_PROMOTION_M, tic);
+                return View(URLHelper.URL_ADMIN_PROMOTION_M, new Tuple<tbl_promotion, List<tbl_Product>>(tic, listItem));
             }
         }
 

@@ -174,16 +174,6 @@
       <Column Name="Idloaisp" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_promotion_details" Member="tbl_promotion_details">
-    <Type Name="tbl_promotion_detail">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Idkm" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Idsp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Giaban" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Giakhuyenmai" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="quatang" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbl_promotion" Member="tbl_promotions">
     <Type Name="tbl_promotion">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -195,6 +185,17 @@
       <Column Name="ngayketthuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ngaytao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="AnhBia" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_promotion_details" Member="tbl_promotion_details">
+    <Type Name="tbl_promotion_detail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Idkm" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Idsp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Giaban" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Giakhuyenmai" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Gift" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
