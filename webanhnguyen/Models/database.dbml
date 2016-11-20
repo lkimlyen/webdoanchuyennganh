@@ -1,5 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="database" Class="databaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=database;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="databaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="moblie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_shop" Member="tbl_shops">
+    <Type Name="tbl_shop">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenshop" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="emailshop" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="phoneshop" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="thoigianlamviec1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="masodoanhnghiep" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="addressshop" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="thoigianlamviec2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hotline" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="longtitude" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="lattitude" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="keyword" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.OrderDetails" Member="OrderDetails">
     <Type Name="OrderDetail">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -13,16 +44,14 @@
   <Table Name="dbo.Orders" Member="Orders">
     <Type Name="Order">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idshop" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="idkh" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="phonenumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="thoidiemdathang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="tennguoinhan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="diachi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="gmail" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="state" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="tinhtrangthanhtoan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_admin" Member="tbl_admins">
@@ -37,55 +66,8 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="phone1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="tittle" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="phone2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="shortcuticon" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_menubottom" Member="tbl_menubottoms">
-    <Type Name="tbl_menubottom">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="tenmenu" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="url" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="thutu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_menu" Member="tbl_menus">
-    <Type Name="tbl_menu">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenMenu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="url" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ThuTu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Customers" Member="Customers">
-    <Type Name="Customer">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idshop" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="birthday" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="sex" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="idcard" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
-      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="password" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="moblie" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="note" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="randomkey" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_product_types" Member="tbl_product_types">
-    <Type Name="tbl_product_type">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenLoaiSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="alias" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_information" Member="tbl_informations">
@@ -96,24 +78,6 @@
       <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="GioiThieu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="alias" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbl_shop" Member="tbl_shops">
-    <Type Name="tbl_shop">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="tenshop" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="emailshop" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="phoneshop1" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="thoigianlamviec1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="masodoanhnghiep" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="addressshop" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="thoigianlamviec2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="phoneshop2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="longtitude" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="lattitude" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="keyword" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_new_type" Member="tbl_new_types">
@@ -141,6 +105,15 @@
       <Column Name="idloaitt" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_producer" Member="tbl_producers">
+    <Type Name="tbl_producer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tenhangsx" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="alias" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Idloaisp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tbl_Product" Member="tbl_Products">
     <Type Name="tbl_Product">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -151,12 +124,10 @@
       <Column Name="MoTaCT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="SoLuongTon" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SLDaBan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="LuotXem" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NgayCapNhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="IDLoaiSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GiaCu" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="KhuyenMai" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Sanphambanchay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -165,13 +136,12 @@
       <Column Name="Idhangsx" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_producer" Member="tbl_producers">
-    <Type Name="tbl_producer">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Tenhangsx" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.tbl_product_types" Member="tbl_product_types">
+    <Type Name="tbl_product_type">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenLoaiSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="alias" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Idloaisp" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_promotion" Member="tbl_promotions">
@@ -196,6 +166,7 @@
       <Column Name="Giakhuyenmai" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Gift" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KhuyenMai" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

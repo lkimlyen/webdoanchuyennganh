@@ -51,7 +51,7 @@ namespace webanhnguyen.Controllers.Admin
         public ActionResult OrderSetStatusEnable(int id)
         {
             Order tic = getOneOrder(id);
-            tic.status = !tic.status;
+            tic.tinhtrangthanhtoan = !tic.tinhtrangthanhtoan;
             UpdateModel(tic);
             data.SubmitChanges();
             return RedirectToAction("OrderView");

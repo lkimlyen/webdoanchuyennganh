@@ -1,4 +1,5 @@
-﻿@model  Tuple<webanhnguyen.Models.tbl_promotion, List<webanhnguyen.Models.tbl_Product>>
+﻿@using MvcPaging
+@model List<webanhnguyen.Models.tbl_Product>
 @{
     ViewBag.Title = "Promotion";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -89,19 +90,17 @@
                     <div class="block">
                         <div class="block-header bg-gray-lighter">
                             <span class="block-title">Danh sách sản phẩm </span>
-                            <button type="button" onclick="location.href='@Url.Action("promotionCreate","Promotion")'" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Tạo mới</button>
 
                         </div>
                         <div class="block-content">
-                            <div class="block-content-top" style="margin-bottom: 20px;">
-
+                            @using (Ajax.BeginForm("productPartial", "Promotion", new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" }, new { id = "frm-search" }))
+                            {
                                 <div class="block-content-top" style="margin-bottom: 20px;">
-
-                                    <form method="POST" name="frmForm" enctype="multipart/form-data">
+                                    <div class="block-content-top" style="margin-bottom: 20px;">
                                         <div class="dataTable_filter">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input name="keyword" type="text" class="form-control" id="tukhoa" placeholder="Tìm kiếm..." style="display: inline-block; width: auto; margin-right: 5px;">
+                                                    <input name="keyword" type="text" class="form-control" id="appendedInputButton" placeholder="Tìm kiếm..." style="display: inline-block; width: auto; margin-right: 5px;">
                                                     <button type="submit" name="search" class="btn btn-default">
                                                         <i class="fa fa-search"></i>
                                                     </button>
@@ -110,79 +109,37 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
+                                    <div class="table-responsive" id="grid-list">
+                                        @{Html.RenderPartial("_AjaxProductList", Model); }
+                                    </div>
                                 </div>
-                                <input type="hidden" name="page" value="">
-                                <input type="hidden" name="act" value="item">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover btl-list-bbli bg-white">
-                                        <thead>
-                                            <tr>
-                                                <td style="width: 1px;" class="text-center">
-                                                    <input type="checkbox" name="chk[]" class="tai_c" id="chkall" value="">
-                                                </td>
-                                                <td style="width: 50px;" class="text-center">ID</td>
-                                                <td style="width: 150px;" class="text-center">Hình đại diện</td>
-                                                <td class="text-center">Tên sản phẩm</td>
-                                                <td style="width: 100px;">Số lượng</td>
-                                                <td style="width: 100px;" class="text-center">Giá bán</td>
-                                                <td style="width: 100px;" class="text-center">Khuyến mãi</td>
-                                                <td style="width: 100px;" class="text-center">Giá khuyến mãi</td>
-                                                <td style="width: 100px;" class="text-center">Quà tặng</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.Item2)
-                                            {
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <input type="checkbox" name="chk[]" class="tai_c" value="@item.ID">
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @item.ID
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @if (String.IsNullOrEmpty(item.UrlHinh))
-                                                        {
-                                                            <img src="~/assets/images/noimage.png" border="0" class="img-thumbnail" style="max-width: 50px;">
-                                                        }
-                                                        else
-                                                        {
-                                                            <img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" border="0" class="img-thumbnail" style="max-width: 50px;">
-                                                        }
-                                                    </td>
-                                                    <td class="text-center name-to-confirm">
-                                                        @item.TenSP
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input type="number" name="quantity" class="form-control" min="1" value="1" required="required">
-                                                    </td>
-
-                                                    <td class="text-center">
-                                                        <input type="number" name="giaban" class="form-control" value="@item.GiaHienTai">
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input type="number" name="khuyenmai" class="form-control" value="0">
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input type="number" name="giakhuyenmai"  class="form-control" value="0">
-                                                    </td>
-
-                                                    <td class="text-center">
-                                                        <input type="text" name="gift" class="form-control" value="">
-                                                    </td>
-                                                </tr>
                                             }
-                                        </tbody>
-                                       
-                                    </table>
-                                </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-               
-                                <!---->
+                </div>
+                <script type="text/javascript">
+
+    function beginPaging(args) {
+        // Animate
+        $('#grid-list').fadeOut('normal');
+    }
+
+    function successPaging() {
+        // Animate
+        $('#grid-list').fadeIn('normal');
+        $('a').tooltip();
+    }
+
+    function failurePaging() {
+        alert("Could not retrieve list.");
+    }
+
+                </script>
+
+
+
+                  <!---->
                                 <div class="form-group">
                                     <div class="col-sm-offset-4 col-sm-4 btn-gr">
                                         <button type="submit" name="btnSave" class="btn btn-default">Chấp nhận</button>

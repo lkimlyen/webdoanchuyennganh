@@ -1,0 +1,55 @@
+﻿@using MvcPaging
+@model List<webanhnguyen.Models.tbl_Product>
+<div class="content" style="min-height: 530px;">
+    <div class="block">
+        <div class="block-header bg-gray-lighter">
+            <span class="block-title">Danh sách sản phẩm </span>
+
+        </div>
+        <div class="block-content">
+            @using (Ajax.BeginForm("productPartial", "Promotion",new AjaxOptions { UpdateTargetId = "grid-list", HttpMethod = "get", LoadingElementId = "loading", OnBegin = "beginPaging", OnSuccess = "successPaging", OnFailure = "failurePaging" },new { id = "frm-search" }))
+            {
+                <div class="block-content-top" style="margin-bottom: 20px;">
+                                <div class="block-content-top" style="margin-bottom: 20px;">
+                                            <div class="dataTable_filter">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input name="keyword" type="text" class="form-control" id="appendedInputButton" placeholder="Tìm kiếm..." style="display: inline-block; width: auto; margin-right: 5px;">
+                                    <button type="submit" name="search" class="btn btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="table-responsive" id="grid-list">
+                    @{Html.RenderPartial("_AjaxProductList", Model); }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function beginPaging(args) {
+        // Animate
+        $('#grid-list').fadeOut('normal');
+    }
+
+    function successPaging() {
+        // Animate
+        $('#grid-list').fadeIn('normal');
+        $('a').tooltip();
+    }
+
+    function failurePaging() {
+        alert("Could not retrieve list.");
+    }
+
+</script>
+
+
+

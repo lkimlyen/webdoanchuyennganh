@@ -254,10 +254,6 @@ namespace webanhnguyen.Controllers.Admin
                 tic.SoLuongTon = Int32.Parse(current_amount);
             else
                 tic.SoLuongTon = 0;
-            if (tic.GiaHienTai > 0 && tic.GiaCu > tic.GiaHienTai)
-                tic.KhuyenMai = (int)(100 - tic.GiaHienTai * new decimal(100) / tic.GiaCu);
-            else
-                tic.KhuyenMai = 0;
             tic.MoTaCT = detail;
             tic.MoTa = detail_short;
             if (form["chkClearImg"] != null)
@@ -370,10 +366,6 @@ namespace webanhnguyen.Controllers.Admin
                 else
                     tic.SoLuongTon = 0;
 
-                if (tic.GiaHienTai > 0 && tic.GiaCu > tic.GiaHienTai)
-                    tic.KhuyenMai = (int)(100 - tic.GiaHienTai * new decimal(100) / tic.GiaCu);
-                else
-                    tic.KhuyenMai = 0;
                 tic.MoTaCT = detail;
                 tic.MoTa = detail_short;
                 if (form["chkClearImg"] != null)

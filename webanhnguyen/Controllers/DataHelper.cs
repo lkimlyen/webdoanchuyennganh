@@ -17,7 +17,7 @@ namespace webanhnguyen.Controllers
         }
         public class PromotionAddItemModel
         {
-            public String name,gift;
+            public String name,gift,alias,image;
             public int proid, modelid, kh, quantity;
             public decimal price, pricepd;
            
@@ -567,7 +567,7 @@ namespace webanhnguyen.Controllers
                 int amount = 0;
                 foreach (Models.Order order in listOrder)
                 {
-                    if (order.status.HasValue && order.status.Value)
+                    if (order.tinhtrangthanhtoan.HasValue && order.tinhtrangthanhtoan.Value)
                     {
                         amount++;
                     }
@@ -600,7 +600,7 @@ namespace webanhnguyen.Controllers
                 order.diachi = addressReceiver;
                 order.gmail = emailReceiver;
                 order.price = totalPrice;
-                order.status = false;
+                order.tinhtrangthanhtoan = false;
                 context.db.Orders.InsertOnSubmit(order);
                 context.db.SubmitChanges(); //Submit change here to get the id of inserted record.
 

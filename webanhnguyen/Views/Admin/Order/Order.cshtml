@@ -64,7 +64,6 @@
                                 <td style="width: 150px;" class="text-center">Tên khách hàng</td>
                                 <td style="width: 150px;" class="text-center">Tổng trị giá</td>
                                 <td style="width: 100px;" class="text-center">Thời gian</td>
-                                <td style="width: 100px;" class="text-center">Khu vực</td>
                                 <td style="width: 100px;" class="text-center">Đã thanh toán</td>
                                 <td style="width: 100px;" class="text-center">Tùy chọn</td>
                             </tr>
@@ -89,11 +88,8 @@
                                         @order.thoidiemdathang
                                     </td>
                                     <td class="text-center">
-                                        @order.state
-                                    </td>
-                                    <td class="text-center">
                                         <a href='@Url.Action("OrderSetStatusEnable", "Order", new { id = @order.id})' title="Reverse">
-                                            <div class="check tool @(order.status.HasValue && order.status.Value?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@order.id"></div>
+                                            <div class="check tool @(order.tinhtrangthanhtoan.HasValue && order.tinhtrangthanhtoan.Value?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@order.id"></div>
                                         </a>
                                     </td>
                                     <td class="text-center">

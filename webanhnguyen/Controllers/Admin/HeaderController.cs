@@ -48,7 +48,7 @@ namespace webanhnguyen.Controllers.Admin
             var phone1 = form["phone1"];
             var phone2 = form["phone2"];
 
-            tic.tittle = tittle;
+          
             tic.phone1 = phone1;
             tic.phone2 = phone2;
 

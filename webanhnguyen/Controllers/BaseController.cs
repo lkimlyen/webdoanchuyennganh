@@ -26,7 +26,7 @@ namespace webanhnguyen.Controllers
             ViewBag.shoptitle = shop.title;
             ViewBag.description = shop.description;
             ViewBag.CurrentNumberFormat = new System.Globalization.CultureInfo("de-DE", false).NumberFormat;
-            ViewBag.phone = shop.phoneshop1;
+            ViewBag.phone = shop.phoneshop;
             base.OnActionExecuting(filterContext);
         }
     }

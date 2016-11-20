@@ -62,6 +62,8 @@ namespace webanhnguyen.Controllers
         public const String URL_ADMIN_PRODUCER_M = "~/Views/Admin/Producer/Producer_m.cshtml";
         public const String URL_ADMIN_PROMOTION = "~/Views/Admin/Promotion/Promotion.cshtml";
         public const String URL_ADMIN_PROMOTION_M = "~/Views/Admin/Promotion/Promotion_m.cshtml";
+        public const String URL_ADMIN_PROMOTION_PARTIAL = "~/Views/Admin/Promotion/productPartial.cshtml";
+        public const String URL_ADMIN_AJAX = "~/Views/Admin/Promotion/_AjaxProductList.cshtml";
 
 
         public const String URL_ADMIN_SHOP_INFORMATION = "~/Views/Admin/ShopInformation/ShopInformation_m.cshtml";

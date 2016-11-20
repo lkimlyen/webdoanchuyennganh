@@ -79,7 +79,7 @@ namespace webanhnguyen.Controllers
             ddh.idkh = kh.id;
             ddh.thoidiemdathang = DateTime.Now;
 
-            ddh.status = false;
+            ddh.tinhtrangthanhtoan = false;
 
             ddh.tennguoinhan = collection["name"];
             ddh.diachi = collection["address"];
@@ -211,7 +211,7 @@ namespace webanhnguyen.Controllers
             ddh.idkh = kh.id;
             ddh.thoidiemdathang = DateTime.Now;
 
-            ddh.status = false;
+            ddh.tinhtrangthanhtoan = false;
 
             ddh.tennguoinhan = collection["name"];
             ddh.diachi = collection["address"];

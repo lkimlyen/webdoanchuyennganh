@@ -64,11 +64,11 @@ namespace webanhnguyen.Controllers.Admin
 
             tic.tenshop = tenshop;
             tic.emailshop = emailshop;
-            tic.phoneshop1 = phoneshop1;
+            tic.phoneshop = phoneshop1;
             tic.thoigianlamviec1 = thoigianlamviec1;
             tic.thoigianlamviec2 = thoigianlamviec2;
             tic.addressshop = addressshop;
-            tic.phoneshop2 = phoneshop2;
+            tic.hotline = phoneshop2;
             tic.longtitude = longtitude;
             tic.lattitude = lattitude;
 

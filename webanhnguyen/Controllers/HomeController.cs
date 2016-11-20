@@ -234,19 +234,54 @@ namespace webanhnguyen.Controllers
         #endregion
        
         #region khuyenmai
-        public ActionResult khuyenmai(int? page, string sorting)
+        public ActionResult khuyenmai()
         {
            
-            int pageNume = (page ?? 1);
-            int pageSize = 20;
             var km = (from k in db.tbl_promotions
                       where k.status == true && k.ngayketthuc > DateTime.Now
                       orderby k.ngaykhuyenmai descending 
                       select k);
-            return View(km.ToPagedList(pageNume, pageSize));
+            
+            return View(km.ToList());
+        }
+
+        #endregion
+        #region chi tiết khuyến mãi
+        public ActionResult PromotionDetail(string id, string timkiem)
+        {
+            ViewBag.alias = id;
+            string tukhoa = timkiem;
+            if (String.IsNullOrEmpty(tukhoa))
+                tukhoa = "";
+            ViewBag.tukhoa = tukhoa;
+            List<tbl_promotion_detail> CT_SP = (from k in db.tbl_promotion_details
+                                                from s in db.tbl_promotions
+                                                from p in db.tbl_Products
+                                                where s.alias.Equals(id) && s.Id == k.Idkm && k.Idsp == p.ID && p.TenSP.Contains(tukhoa)
+                                                orderby k.Id descending
+                                                select k).ToList();
+
+            tbl_promotion pro = db.tbl_promotions.SingleOrDefault(n => n.alias.Equals(id));
+
+            List<DataHelper.PromotionAddItemModel> CT_SP_CO_LUON_TEN_SP = new List<DataHelper.PromotionAddItemModel>();
+            foreach (tbl_promotion_detail promotionDetail in CT_SP)
+            {
+                DataHelper.PromotionAddItemModel model = new DataHelper.PromotionAddItemModel();
+                model.name = DataHelper.ProductHelper.getInstance().getProductById(db,promotionDetail.Idsp).TenSP;
+                model.price = promotionDetail.Giaban.Value;
+                model.pricepd = promotionDetail.Giakhuyenmai.Value;
+                model.proid = promotionDetail.Idsp;
+                model.kh = promotionDetail.KhuyenMai.Value;
+                model.gift = promotionDetail.Gift;
+                model.quantity = promotionDetail.quantity.Value;
+                model.image = DataHelper.ProductHelper.getInstance().getProductById(db, promotionDetail.Idsp).UrlHinh;
+                model.alias = DataHelper.ProductHelper.getInstance().getProductById(db, promotionDetail.Idsp).alias;
+                CT_SP_CO_LUON_TEN_SP.Add(model);
+            }
+
+            return View(CT_SP_CO_LUON_TEN_SP);
         }
         #endregion
-
         #region footer
         [ChildActionOnly]
         public ActionResult footer()

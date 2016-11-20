@@ -1,7 +1,7 @@
-﻿@using PagedList.Mvc
-@model PagedList.IPagedList<webanhnguyen.Models.tbl_promotion>
+﻿@using MvcPaging
+@model IPagedList<webanhnguyen.Models.tbl_promotion>
 @{
-    ViewBag.Title = "Đơn hàng";
+    ViewBag.Title = "Khuyến mãi";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -132,21 +132,7 @@
             </form>
         </div>
         <div style="margin-left: 20px;margin-top: -20px">
-                @if (Model.PageCount > 1)
-                {
-                    <div class="MenuTrang">
-                        @Html.PagedListPager(Model, page => Url.Action("OrderView", new { page = page }))
-
-                    </div>
-                        <style>
-                            .MenuTrang li {
-                                display: inline;
-                            }
-                        </style>
-
-                    
-                }
-           
+                
         </div><!-- End pagination -->
     </div>
 </div>

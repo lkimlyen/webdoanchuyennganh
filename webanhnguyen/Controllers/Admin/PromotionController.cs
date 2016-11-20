@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
+
 using webanhnguyen.Models;
 using System.IO;
+using MvcPaging;
 
 namespace webanhnguyen.Controllers.Admin
 {
     public class PromotionController : BaseAdminController
     {
+        private const int defaultPageSize = 10;
         //GET: Product
         private List<tbl_Product> getItem(int count)
         {
@@ -131,24 +133,35 @@ namespace webanhnguyen.Controllers.Admin
          * 
          * 
          */
+        
         public ActionResult Index()
         {
             return PromotionView(1);
         }
-        [HttpGet]
-        public ActionResult promotionCreate(int ? page)
+        public ActionResult promotionCreate(string keyword, int? page)
         {
-            int pageNum = (page ?? 1);
-            int pageSize = 20;
+            int currentPageIndex = page.HasValue ? page.Value : 1;
 
+            ViewData["keyword"] = keyword;
+            IList<tbl_Product> listItem = this.getAllItem();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                listItem = listItem.ToList();
+            }
+            else
+            {
+                listItem = listItem.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
+            }
 
-            
-            var promotion = new tbl_promotion();
-
-            return View(URLHelper.URL_ADMIN_PROMOTION_M, new Tuple<tbl_promotion,List<tbl_Product>>(promotion,getAllItem()));
+                       //var list = 
+            if (Request.IsAjaxRequest())
+                return PartialView(URLHelper.URL_ADMIN_AJAX, listItem.ToPagedList(currentPageIndex, defaultPageSize));
+            else
+             
+            return View(URLHelper.URL_ADMIN_PROMOTION_M, listItem.ToPagedList(currentPageIndex, defaultPageSize));
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult promotionCreate(FormCollection form, String btnAdd, HttpPostedFileBase fileUpload, int ? page)
+        public ActionResult promotionCreate(FormCollection form, String btnAdd, HttpPostedFileBase fileUpload)
         {
             if (btnAdd != null)
             {
@@ -161,7 +174,7 @@ namespace webanhnguyen.Controllers.Admin
                     {
                         try
                         {
-                            data.tbl_Products.DeleteOnSubmit(getOneItem(Int32.Parse(arrayStringCheckedList[i])));
+                           // data.tbl_Products.DeleteOnSubmit(getOneItem(Int32.Parse(arrayStringCheckedList[i])));
                             data.SubmitChanges();
                             ViewBag.AlertSuccess = "Xoá thành công!";
                         }
@@ -172,12 +185,6 @@ namespace webanhnguyen.Controllers.Admin
                     }
                 }
             }
-            int pageNum = (page ?? 1);
-            int pageSize = 20;
-
-
-            var keyword = form["keyword"];
-            var listItem = getItem(10, keyword).ToPagedList(pageNum, pageSize);
             
 
             tbl_promotion tic = new tbl_promotion();
@@ -231,7 +238,7 @@ tic.alias = DataHelper.GeneralHelper.getInstance().getAliasFromPromotionName(dat
                     ctkm.Giaban = (decimal)item.price;
                     ctkm.Giakhuyenmai = (decimal)item.pricepd;
                     ctkm.Gift = item.gift;
-                    
+
                     data.tbl_promotion_details.InsertOnSubmit(ctkm);
                 }
 
@@ -239,7 +246,7 @@ tic.alias = DataHelper.GeneralHelper.getInstance().getAliasFromPromotionName(dat
             }
             else
             {
-                return View(URLHelper.URL_ADMIN_PROMOTION_M, new Tuple<tbl_promotion, List<tbl_Product>>(tic, listItem));
+                return View(URLHelper.URL_ADMIN_PROMOTION_M, new Tuple<tbl_promotion, List<tbl_Product>>(tic, getAllItem()));
             }
         }
 
