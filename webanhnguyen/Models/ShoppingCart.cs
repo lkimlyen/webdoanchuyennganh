@@ -26,23 +26,37 @@ namespace webanhnguyen.Models
         public ShoppingCart(int Masp)
         {
             iMasp = Masp;
-            tbl_promotion_detail spkm = db.tbl_promotion_details.Single(n => n.Idsp == iMasp);
             tbl_Product sp = db.tbl_Products.Single(n => n.ID == iMasp);
-            sTensp = sp.TenSP;
-            sAnhbia = sp.UrlHinh;
-            khuyemai = spkm.KhuyenMai.Value;
-            if (khuyemai > 0)
+            var _Checksp = db.tbl_promotion_details.FirstOrDefault(n => n.Idsp == iMasp);
+            if(_Checksp != null)
             {
-                dDongia = double.Parse(spkm.Giakhuyenmai.ToString());
+                tbl_promotion_detail spkm = db.tbl_promotion_details.Single(n => n.Idsp == iMasp);
+                khuyemai = spkm.KhuyenMai.Value;
+                sTensp = sp.TenSP;
+                sAnhbia = sp.UrlHinh;
+                if (khuyemai > 0)
+                {
+                    dDongia = double.Parse(spkm.Giakhuyenmai.ToString());
 
+                }
+                else
+                {
+                    dDongia = double.Parse(sp.GiaHienTai.ToString());
+                }
+                gift = spkm.Gift;
+                iSoluong = 1;
+                salias = sp.alias;
             }
             else
             {
+                sTensp = sp.TenSP;
+                sAnhbia = sp.UrlHinh;
                 dDongia = double.Parse(sp.GiaHienTai.ToString());
+                iSoluong = 1;
+                salias = sp.alias;
+
             }
-            gift = spkm.Gift;
-            iSoluong = 1;
-            salias = sp.alias;
+
         }
     }
 }

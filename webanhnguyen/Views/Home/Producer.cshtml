@@ -62,7 +62,7 @@
                 </div><div class="p-item-bound">
                     <a href="@Url.Action("Details","Home", new {id = item.alias })" title="@item.TenSP" class="p-link-prod"></a>
                     <figure class="p-image"><span><a href="@Url.Action("Details","Home", new {id = item.alias })"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TenSP" /></a></span></figure><div class="p-info">
-                        <div class="p-top-info"><div class="p-info-show"><div class="p-name"><a href="dien-thoai/iphone-6s-plus-64gb.html"><h3>@item.TenSP</h3></a></div><div class="p-price"><span class="p-current-price">@(((int)(item.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>                    </div></div></div><div class="p-hide-info">
+                        <div class="p-top-info"><div class="p-info-show"><div class="p-name"><a href="@Url.Action("Details","Home", new {id = item.alias })"><h3>@item.TenSP</h3></a></div><div class="p-price"><span class="p-current-price">@(((int)(item.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>                    </div></div></div><div class="p-hide-info">
                             <div class="best-seller-order">
                                 <p>Đặt Online nhận ngay khuyến m&atilde;i:</p>
 

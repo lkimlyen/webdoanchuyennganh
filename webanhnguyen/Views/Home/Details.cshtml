@@ -60,7 +60,7 @@
 <div class="clearfix"></div>   <div class="detail-promotion">
                             <div class="detail-promotion-box">
                                 <p style="font-size: 14px; line-height: 24px; color: red; font-family:tahoma,geneva,sans-serif;"><a class="detail-order-now-t" title="Đặt online" style="color:red;text-decoration: none;"><strong>Đặt Online</strong></a><span style="color: rgb(255, 0, 0); font-family: tahoma, geneva, sans-serif; font-size: 14px; line-height: 24px;"> hoặc </span><a href="tel:18006601" style="color: red; font-family: tahoma, geneva, sans-serif; font-size: 14px; line-height: 24px; text-decoration: none;"><strong>Gọi 18006601</strong></a><span style="color: rgb(255, 0, 0); font-family: tahoma, geneva, sans-serif; font-size: 14px; line-height: 24px;"> ưu tiên khuyến mãi (SL có hạn):</span></p>
-                                @Model.MoTa
+                                @Html.Raw(Model.MoTa)
                             </div>
                         </div>  <div class="left detail-order" data-page="False">
                                     <a class="detail-order-now" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= Model.ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')">

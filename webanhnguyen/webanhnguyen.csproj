@@ -779,6 +779,7 @@
     <Content Include="assets\plugins\tinymce\js\tinymce\tinymce.js" />
     <Content Include="assets\plugins\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="assets\plugins\tinymce\LICENSE.TXT" />
+    <Content Include="cdn.fptshop.com.vn\Uploads\Thumbs\636141520685239738_S2-300x250.jpg" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\CHANGES.html" />
     <Content Include="ckeditor\ckeditor.asp" />
@@ -2619,7 +2620,6 @@
     <Folder Include="assets\images\item\" />
     <Folder Include="assets\images\slide\" />
     <Folder Include="assets\support\" />
-    <Folder Include="cdn.fptshop.com.vn\" />
     <Folder Include="ckfinder\userfiles\" />
     <Folder Include="codemirror\" />
     <Folder Include="Content\Images\" />
