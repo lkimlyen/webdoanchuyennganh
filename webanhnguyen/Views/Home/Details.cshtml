@@ -60,11 +60,7 @@
 <div class="clearfix"></div>   <div class="detail-promotion">
                             <div class="detail-promotion-box">
                                 <p style="font-size: 14px; line-height: 24px; color: red; font-family:tahoma,geneva,sans-serif;"><a class="detail-order-now-t" title="Đặt online" style="color:red;text-decoration: none;"><strong>Đặt Online</strong></a><span style="color: rgb(255, 0, 0); font-family: tahoma, geneva, sans-serif; font-size: 14px; line-height: 24px;"> hoặc </span><a href="tel:18006601" style="color: red; font-family: tahoma, geneva, sans-serif; font-size: 14px; line-height: 24px; text-decoration: none;"><strong>Gọi 18006601</strong></a><span style="color: rgb(255, 0, 0); font-family: tahoma, geneva, sans-serif; font-size: 14px; line-height: 24px;"> ưu tiên khuyến mãi (SL có hạn):</span></p>
-                                <ul>
-                                    <li style="font-size: 14px; line-height: 24px; color: red; font-family:tahoma,geneva,sans-serif;">Trả góp Home Credit, 0% lãi suất, trả trước 30%, kỳ hạn 6 tháng</li>
-                                    <li style="font-size: 14px; line-height: 24px; color: red; font-family:tahoma,geneva,sans-serif;">100% trúng phiếu mua hàng từ <b>500.000đ</b> đến <b>12.000.000đ</b> (không áp dụng trả góp 0%)</li>
-                                    <li>Cơ hội trúng 100 TV Sony 32", xem chi tiết&nbsp;<a href="../mua-sony-uu-dai-khung.html" target="_blank">tại đây</a>!</li>
-                                </ul>
+                                @Model.MoTa
                             </div>
                         </div>  <div class="left detail-order" data-page="False">
                                     <a class="detail-order-now" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= Model.ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')">
@@ -72,16 +68,10 @@
                                     </a>
 
 
-
-                                    <a href="samsung-galaxy-s7-edge/150659/tra-gop.html" class="detail-order-instalments">
-                                        <label>
-                                            Thanh toán trực tuyến
-
-                                            <span>(Xét duyệt hồ sơ qua điện thoại)</span>
-
-                                        </label>
-                                    </a>
-</div>
+                        </div>
+                        <div>
+                            <a href="@Model.thanhtoantructuyen" style="text-align: center"><img style="margin-top: 20px; " src="http://www.baokim.vn/developers/uploads/baokim_btn/thanhtoan-l.png" alt="Thanh toán an toàn với Bảo Kim !" border="0" title="Thanh toán trực tuyến an toàn dùng tài khoản Ngân hàng (VietcomBank, TechcomBank, Đông Á, VietinBank, Quân Đội, VIB, SHB,... và thẻ Quốc tế (Visa, Master Card...) qua Cổng thanh toán trực tuyến BảoKim.vn"></a>
+                        </div>
                     </div>
 
                         </div>
@@ -108,289 +98,43 @@
                         <h3 class="detail-title" style="font-size: 29px;">Sản phẩm cùng hãng</h3>
                     </a>
                     <ul class="accessories-list">
-                        @foreach (var item in ViewBag.SP_cungloaihang)
+                        @foreach (var items in ViewBag.SP_cungloaihang)
 
                         {
                             <li>
 
-                                <a href="@Url.Action("Details","Home",new { id = item.alias})" class="accessories-image">
-                                    <img class="lazy" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" title="" alt="" />
+                                <a href="@Url.Action("Details","Home",new { id = items.alias})" class="accessories-image">
+                                    <img class="lazy" src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@items.UrlHinh" title="" alt="" />
                                 </a>
-                                <h3><a href="@Url.Action("Details","Home",new { id = item.alias})">@item.TenSP</a></h3>
-                                <strong>@(((int)(Model.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat)) đ</strong>
+                                <h3><a href="@Url.Action("Details","Home",new { id = items.alias})">@items.TenSP</a></h3>
+                                <strong>@(((int)(items.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat)) đ</strong>
                             </li> }
                     </ul>
                 </div>
 
             </div>
-            @*<div class="comments-rating-qa">
-                <div class="left detail-comment-box">
-                    <input type="hidden" id="brand-id" data-id="19" />
-                    <input type="hidden" id="type-product" data-id="1" />
-
-
-                    <div class="kmt-comment">
-                        <div class="trg-comment">
-                            <div class="trg-cm-header"> <div class="row"> <div class="col-lg-6"> <div class="trg-cm-hsort"> <i>Sắp xếp bình luận:</i> <span data-value="1" class="active">Mới nhất</span> | <span data-value="0">Thích nhất</span> </div> </div> <input type="hidden" data-id="0" id="iptIdLastComment" /> <div class="col-lg-6"> <div class="input-group"> <input type="text" class="form-control txt-search-comment" placeholder="Tìm kiếm bình luận..."> <div class="input-group-btn"> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="trg-search-cmtchoise" data-value="0">Tất cả</span> <span class="caret"></span> </button> <ul class="trg-search-ulcmt dropdown-menu dropdown-menu-right" role="menu"> <li><a href="javascript:" data-value="0" data-href="all">Tất cả</a></li> <li><a href="javascript:" data-value="2" data-href="email">Email</a></li> <li><a href="javascript:" data-value="3" data-href="name">Tên</a></li>  </ul> </div> <!-- /btn-group --> </div> <!-- /input-group --> </div> </div> </div> <div class="media clearfix trg-cm-post"> <div class="media-left"> <a href="#" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box"> <textarea class="form-control" onfocus="productComment.focusInput(this)" rows="2" placeholder="Viết bình luận của bạn..."></textarea> <div class="form-inline"> <div class="form-group"> <input type="hidden" name="ViewBagEmail" id="ViewBagEmail" value="" /> <input type="button" class="trg-bnt-post form-control" onclick="productComment.submitComment(this, 0)" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook3860.png?v=1" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>  <div id="list-comment" data-page="2">
-                                <input id="info-comment" type="hidden" value="" />  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> L&#234; Thao  </h4> samsung s7 edge cty dùng cả 2 sim &#43; thẻ nhớ ah shop ơi <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">9 giờ trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1444294">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1444294">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> L&#234; Thanh To&#224;n  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào Lê Thao,<br />
-                                                    Dạ sản phẩm Samsung Galaxy S7 Edge bên mình kinh doanh là phiên bản 2 sim bạn nhé.Tuy nhiên bạn chỉ có thể sử dụng cùng lúc 2 sim(không kèm thẻ nhớ) hoặc sử dụng 1 sim kèm với thẻ nhớ bạn nhé.<br />
-                                                    Bạn vui lòng click nút <strong>
-                                                        <em>
-                                                            <a title="Đặt trước Online" data-id="9478" class="order-product" href="#">Mua Ngay</a>
-                                                        </em>
-                                                    </strong> và điền đầy đủ thông tin, trong vòng 15 phút sẽ có nhân viên liên hệ để tư vấn miễn phí cho bạn. Khi cần hỗ trợ thêm thông tin, bạn vui lòng phản hồi lại giúp mình hoặc có thể liên hệ Hotline miễn phí 18006601 để được nhân viên bên mình hỗ trợ nhanh nhất bạn nhé. FPT Shop chân thành cảm ơn bạn ạ. Trân trọng!
-                                                </p>
-
-                                                <p> </p>
-
-                                                <p> </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">9 giờ trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1444317" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1444294" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1444294" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> ng&#244; ngọc b&#236;nh nhi  </h4> em đang xài samsung galaxy s7 edge muốn đổi máy thì cần những gì ạ? <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">9 giờ trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1444291">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1444291">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> L&#234; Thanh To&#224;n  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào Ngô Ngọc Bình Nhi,<br />
-                                                    Dạ nếu sản phẩm của bạn được mua từ hệ thống FPT Shop và bạn muốn đổi sang sản phẩm khác bạn vui lòng mang máy đến FPT Shop gần nhất để nhân viên bên mình kiểm tra thẩm định máy trực tiếp và thông tin đến bạn cụ thể bạn nhé.<br />
-                                                    QTV xin thông tin đến bạn.<br />
-                                                    Thân ái!
-                                                </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">9 giờ trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1444307" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1444291" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1444291" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> tan  </h4> Tôi muốn đặt S7 edge màu xanh san hô, nhờ Fpt tư vấn giúp <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">1 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1442755">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1442755">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Ho&#224;ng Thị Th&#225;i Hằng  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào Tan,<br />
-                                                    Hiện FPT Shop chưa có thông tin sẽ về hàng máy màu xanh san hô cũng như máy chính hãng chưa có mặt tại thị trường Việt Nam. <br />
-                                                    Bạn cân nhắc thêm màu vàng, hồng cũng rất đẹp - sang trọng, được nhiều KH quan tâm đang hệ thống FPT Shop lắm ạ. Chia sẻ cùng bạn. Thân mến! 
-                                                </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">1 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1442783" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1442755" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1442755" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> thanh Hiền  </h4> còn hàng s7 edge pink không shop? <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">1 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1442695">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1442695">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Ho&#224;ng Thị Th&#225;i Hằng  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào Thanh Hiền,<br />
-                                                    Tại thời điểm QTV kiểm tra, một số chi nhánh FPT Shop vẫn đang còn hàng <strong>Samsung Galaxy S7 Edge Pink</strong>. Bạn vui lòng cho QTV biết thông tin cụ thể khu vực bạn sinh sống để QTV kiểm tra chính xác. Hoặc bạn có thể click nút <em>
-                                                        <strong>
-                                                            <a title="Đặt trước Online" data-id="9478" class="order-product" href="#">MUA NGAY</a>
-                                                        </strong>
-                                                    </em>và điền đầy đủ thông tin, trong vòng 15 phút sẽ có nhân viên liên hệ để tư vấn miễn phí cho bạn. Nếu cần hỗ trợ thêm, bạn vui lòng liên hệ tổng đài miễn phí 1800 6601. <br />
-                                                    QTV thông tin đến bạn. Trân trọng! 
-                                                </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">1 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1442709" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1442695" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1442695" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> Hương Phạm  </h4> tôi có mua s7 edge có bh vip của hãng.máy bị rơi hở viền màn hình. tôi nên lm ntn <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">3 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1439278">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1439278">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Đ&#224;o Ho&#224;ng Li&#234;n  <label>Quản trị viên</label>  </h4> <p>Chào Hương Phạm.</p>
-
-                                                <p>Bạn vui lòng mang máy qua FPT Shop hoặc Trung Tâm Bảo Hành của hãng để được hỗ trợ bạn nhé.QTV thông tin đến bạn.</p>
-
-                                                <p>Thân mến!</p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">3 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1439288" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1439278" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1439278" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> single lovebird  </h4> khen lấy khen để, con này so với oppo F1s cảm ứng nhận vân tay, pin ko bằng. tính năng tiện dụng: tap 2 lần tắt mở màn hình, tao tác nhanh để mở camera, đèn flash, ứng dụng khi màn hình tắt ko có. bàn phím thao tác 2 tay thì hay bị nhẩy sang bàn số, camera trước thấy vẫn rất bt :/ <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">5 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1435647">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1435647">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Đ&#224;o Ho&#224;ng Li&#234;n  <label>Quản trị viên</label>  </h4> <p>Chào Bạn.</p>
-
-                                                <p>Cảm ơn bạn đã góp ý.Bên mình ghi nhận thông tin của bạn.Bạn cần hỗ trợ về kỹ thuật  vui lòng gọi lên số Hotline 18006601 ấn nhánh 2 để được hỗ trợ trực tiếp nhanh nhất nhé.QTV thông tin đến bạn.</p>
-
-                                                <p>Thân mến!</p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">5 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1435671" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1435647" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1435647" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix"> <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body"> <h4 class="media-heading"> single lovebird  </h4> khen lấy khen để, con này so với oppo F1s cảm ứng nhận vân tay, pin ko bằng. tính năng tiện dụng: tap 2 lần tắt mở màn hình, tao tác nhanh để mở camera, đèn flash, ứng dụng khi màn hình tắt ko có. bàn phím thao tác 2 tay thì hay bị nhẩy sang bàn số, camera trước thấy vẫn rất bt :/ <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">5 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1435608">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1435608">Trả lời</a>  </div> </div>    <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1435608" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1435608" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div> </div> </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> Ngọc  </h4> màu hồng còn hàng ở FPT an giang ko ạh? Cảm ơn! <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">6 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1433795">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1433795">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Ho&#224;ng Thị Kim Oanh  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào Ngọc,<br />
-                                                    Hiện tại sản phẩm còn màu hồng ở FPT Shop 30 Nguyễn Văn Thoại, Thành phố Châu Đốc và 316 Trần Hưng Đạo, Thành phố Long Xuyên, An Giang bạn nhé. <br />
-                                                    Bạn vui lòng click nút <strong>
-                                                        <a title="Đặt trước Online" data-id="9478" class="order-product" href="#">MUA NGAY</a>
-                                                    </strong> và điền đầy đủ thông tin, trong vòng 15 phút sẽ có nhân viên liên hệ để tư vấn miễn phí cho bạn. Nếu cần hỗ trợ thêm, bạn vui lòng liên hệ tổng đài miễn phí 18006601.<br />
-                                                    Thân mến!
-                                                </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">6 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1433806" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1433795" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1433795" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> KhanhQuynh  </h4> S7 mau hong con hang hk v ạ <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">6 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1433609">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1433609">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Ho&#224;ng Thị Kim Oanh  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào Khánh Quỳnh,<br />
-                                                    Hiện tại <strong>Galaxy S7</strong> không có màu hồng bạn nhé. Mình giới thiệu bạn <strong>Galaxy S7 edge</strong> có màu hồng ạ.<br />
-                                                    Bạn vui lòng click nút <strong>
-                                                        <a title="Đặt trước Online" data-id="9478" class="order-product" href="#">MUA NGAY</a>
-                                                    </strong>và điền đầy đủ thông tin, trong vòng 15 phút sẽ có nhân viên liên hệ để tư vấn miễn phí cho bạn. Nếu cần hỗ trợ thêm, bạn vui lòng liên hệ tổng đài miễn phí 18006601.<br />
-                                                    Thân mến!
-                                                </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">6 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1433625" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1433609" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1433609" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>  <div class="media clearfix">
-                                    <div class="media-left">  <a href="javascript:;"> <img src="../Content/assest/images/no-avatare0cb.png?v=9999" /> </a>   </div> <div class="media-body">
-                                        <h4 class="media-heading"> linh   </h4> SS S7 edge màu hồng hình như bên FPT đang không có hàng hay sao? <div class="trg-botcmm clearfix"> <div class="left">  <span class="comment-date">7 ng&#224;y trước</span>  <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right">  <a class="like-comment" href="javascript:;" data-id="1431375">Thích</a>  <a class="answer-comment" href="javascript:;" data-id="1431375">Trả lời</a>  </div> </div>   <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Nguyễn Duy Tuy&#234;n  <label>Quản trị viên</label>  </h4> <p>
-                                                    Chào linh,<br />
-                                                    Sản phẩm hiện vẫn còn màu hồng bạn ạ. Bạn vui lòng  ấn nút  <a title="Đặt trước Online" data-id="9478" class="order-product" href="#"><strong>Mua ngay</strong></a>
-                                                    hoặc liên hệ tổng đài miễn phí 18006601, chúng tôi sẽ hỗ trợ bạn nhanh nhất. <br />
-                                                    Cảm ơn bạn đã quan tâm đến sản phẩm nhé.
-                                                </p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431380" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>  <div class="media clearfix"> <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Content/assest/images/no-avatare0cb.png?v=9999" />  </a> </div> <div class="media-body"> <h4 class="media-heading"> linh  </h4> hic vậy sao k phân phối máy cho FPT Thái Bình zậy? mình đợi mòn mỏi 1 tuần rồi mà ở Thái Bình k có máy nè <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431470" data-action="True">Thích</a> </div> </div> </div> </div>  <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Đ&#224;o Ho&#224;ng Li&#234;n  <label>Quản trị viên</label>  </h4> <p>Chào Linh.</p>
-
-                                                <p>
-                                                    Rất xin lỗi về sự bất tiện này,tại thời điểm này sản phẩm <strong>Samsung Galaxy S7 Edge</strong> <strong>màu hồng</strong> tạm hết hàng ở Thái Bình  nhưng vẫn còn hàng ở các tỉnh khác bạn nhé.<br />
-                                                    Bạn vui lòng ấn nút <strong>
-                                                        <a title="Đặt trước Online" data-id="9478" class="order-product" href="#">Mua Ngay</a>
-                                                    </strong> hoặc liên hệ đầu số mễn phí 18006601, chúng tôi sẽ hỗ trợ bạn nhanh nhất.Bên mình sẽ hỗ trợ chuyển hàng về Thái Bình cho bạn nhé.<br />
-                                                    Cảm ơn bạn đã quan tâm đến sản phẩm nhé.
-                                                </p>
-
-                                                <p>Thân mến.</p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431476" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>  <div class="media clearfix"> <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Content/assest/images/no-avatare0cb.png?v=9999" />  </a> </div> <div class="media-body"> <h4 class="media-heading"> linh  </h4> Ad có thể kiểm tra giúp mình bao giờ FPT Thái Bình có hàng k? Mình đã đặt máy 1 tuần rồi <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431488" data-action="True">Thích</a> </div> </div> </div> </div>  <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Đ&#224;o Ho&#224;ng Li&#234;n  <label>Quản trị viên</label>  </h4> <p>Dạ hiện tại bạn vui lòng cho mình xin thông tin họ tên và số điện thoại để mình kiểm tra và chuyển đến bộ phận liên quan hỗ trợ nhanh nhất giúp bạn nhé.</p>
-
-                                                <p>Thân mến!</p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431492" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>  <div class="media clearfix"> <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Content/assest/images/no-avatare0cb.png?v=9999" />  </a> </div> <div class="media-body"> <h4 class="media-heading"> linh  </h4> Lại Ngọc Linh SĐT 01674870276 Gmail: tejumilinh@gmail.com M chỉ cần biết khoảng bao giờ thì có máy thôi <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431504" data-action="True">Thích</a> </div> </div> </div> </div>  <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Đ&#224;o Ho&#224;ng Li&#234;n  <label>Quản trị viên</label>  </h4> <p>Dạ bên mình nhận thông tin và sẽ chuyển đến bộ phận liên quan và sẽ thông tin lại cho bạn sớm nhất bạn nhé.QTV thông tin đến bạn.</p>
-
-                                                <p>Thân mến!</p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431508" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>  <div class="media clearfix"> <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Content/assest/images/no-avatare0cb.png?v=9999" />  </a> </div> <div class="media-body"> <h4 class="media-heading"> linh  </h4> Đã nhận được hỗ trợ của FPT shop. Like cho dịch vụ CSKH của FPT shop :) <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">1</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431580" data-action="True">Thích</a> </div> </div> </div> </div>  <div class="media clearfix">
-                                            <div class="media-left"> <a href="javascript:;">   <img src="../../cdn.fptshop.com.vn/Uploads/Thumbs/2014/8/7/201487133933524thaina_thumb-1407032922.jpg" />  </a> </div> <div class="media-body">
-                                                <h4 class="media-heading"> Đ&#224;o Ho&#224;ng Li&#234;n  <label>Quản trị viên</label>  </h4> <p>Cảm ơn Bạn đã tin tưởng và sử dụng dịch vụ của FPT Shop ạ.Chúc Bạn ngày mới tốt lành!</p>
-
-                                                <p>Thân mến!</p>
-                                                <div class="trg-botcmm clearfix"> <div class="left"> <span class="comment-date">7 ng&#224;y trước</span> <span class="comment-like"><i class="icons like-icon"></i> <label class="number-like">0</label></span> </div> <div class="right"> <a class="like-comment" href="javascript:;" data-id="1431593" data-action="True">Thích</a> </div> </div>
-                                            </div>
-                                        </div>   <div class="media clearfix trg-cm-post trg-cm-post-sub"> <div class="media-left"> <a href="javascript:;" title=""> <img class="media-object" src="../Content/v3/images/no-avatar.png" alt=""> </a> </div> <div class="media-body comment-box">  <textarea class="form-control" rows="2" data-id="1431375" placeholder="Viết bình luận của bạn..."></textarea>  <div class="form-inline"> <div class="form-group"> <input type="button" class="trg-bnt-post form-control" data-id="1431375" value="Bình luận"> </div> </div> <div class="fcm-login"> <div class="fcm-login-tb clearfix"> <span class="fcm-login-close">×</span> <form id="register-information"> <div class="fcm-login-col"> <p class="fcm-login-title">Nhập thông tin để bình luận:</p> <p><input class="fcm-login-txt" type="text" placeholder="Họ tên (bắt buộc)" name="name" /></p> <p><input class="fcm-login-txt" type="email" placeholder="Email" name="email" /></p> <p><input class="fcm-login-txt" type="text" placeholder="Điện thoại" name="phone" /></p> <p><input class="fcm-login-btn" type="submit" value="Bình luận" /></p> </div> </form> <div class="fcm-login-col"> <p class="fcm-login-title">Hoặc đăng nhập qua: </p> <ul class="fcm-login-sul"> <li> <a href="javascript:void(0);" title="" class="fcm-login-fb"> <img src="../Content/Publishing/css/images/cmt/i_facebook.png" /> <strong>Facebook</strong> </a> </li> </ul> </div> </div> </div> </div> </div>
-                                    </div>
-                                </div>
-                            </div>  <div data-link="http://fptshop.com.vn/dien-thoai/samsung-galaxy-s7-edge" data-pagesize="10" data-total="794" data-step="3" class="detail-newsmo-mores clearfix"> <ul><li class="active"><a class='pageNumber' data-page='1' href='javascript:;'>1</a></li><li><a class='pageNumber' data-page='2' href='javascript:;'>2</a></li><li><a class='pageNumber' data-page='3' href='javascript:;'>3</a></li><li><a class='pageNumber' data-page='4' href='javascript:;'>4</a></li><li>...</li><li><a class='pageNumber' data-page='2' href='javascript:;'>»</a></li><li><a class='pageNumber' data-page='80' href='javascript:;'>»»</a></li></ul> </div>
-                        </div>
-                    </div>
-
-                </div>*@
-
+       
         </div>
     </div>
 </div>
 
+<div class="comment cm-comment" style="margin-left: 100px">
 
-<div class="detail-menu fixed"> <div class="container-fluid"> <div class="row"> <ul class="clearfix"> <li><a href="#dac-diem-noi-bat" class="active">Đặc điểm nổi bật</a></li>  <li><a href="#thong-so-ky-thuat">Thông số kỹ thuật</a></li>   <li><a href="#hinh-anh">Hình ảnh</a></li>   <li><a href="#phu-kien">Phụ kiện</a></li>    <li><a href="#so-sanh">So sánh</a></li>  <li> <a href="#binh-luan"> Bình luận <label>0</label> </a> </li> <li><a href="#danh-gia-chi-tiet">Đánh giá</a></li> <li><a href="#cau-hoi-thuong-gap">Câu hỏi thường gặp</a></li> <li><a href="#huong-dan-su-dung">Hướng dẫn sử dụng</a></li> <li class="bt-detail-menu detai-btn-spfree"><a href="javascript:jfpts.productdetail.callConsult();" class="red-button">Tư vấn miễn phí</a></li> <li class="bt-detail-menu"><a onclick="ga('send', 'event', 'ProductDetail', 'PopUpNeo ', 'Samsung Galaxy S7 Edge')" href="javascript:;" class="menu-order-now red-button">Đặt ngay</a></li> </ul> </div> </div> </div>
-
-<div id="on7div"></div> <!-- Modal comment --> <!-- Modal list preorder --> <div class="fshop-listorder modal fade" id="MyListOrder" tabindex="-1" role="dialog"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-body">  <div class="row"> <div class="col-sm-6 col-xs-12"> <h2 class="nd5-lu-title">Danh sách khách đặt hàng</h2> <div class="nd5-lu-userbox" id="div-ds-khach-dat-hang"> <table class="table table-hover" id="ds-khach-dat-hang"></table> </div> </div>  <div class="col-sm-6 col-xs-12"> <h2 class="nd5-lu-title">Danh sách khách đặt cọc</h2> <div class="nd5-lu-userbox" id="div-ds-khach-dat-coc"> <table class="table table-hover" id="ds-khach-dat-coc"></table> </div> </div>  </div> </div> </div> </div> </div>    <div class="modal fade modal-detail" id="modal-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h1 class="modal-title">Đánh giá chi tiết Samsung Galaxy S7 Edge</h1> </div> <div class="modal-body">
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;"><a href="samsung-galaxy-s7-edge.html" target="_blank"><strong>Samsung Galaxy S7 edge</strong></a>&nbsp;l&agrave; sự tiếp nối của phi&ecirc;n bản S6 edge m&agrave; Samsung đ&atilde; cho ra mắt hồi đầu năm 2015. Với sự n&acirc;ng cấp mạnh mẽ về cấu h&igrave;nh c&ugrave;ng nhiều t&iacute;nh năng mới đi k&egrave;m, chiếc điện thoại n&agrave;y chắc chắn sẽ l&agrave;m h&agrave;i l&ograve;ng những t&iacute;n đồ trung th&agrave;nh của thương hiệu H&agrave;n Quốc ngay sau khi ch&iacute;nh thức l&ecirc;n kệ.</span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: center;"><span style="font-size:14px;"><img alt="Samsung Galaxy S7 edge" longdesc="Samsung%20Galaxy%20S7%20edge.html" src="../Uploads/images/2015/San-pham/DH/samsung/galaxy-s7-edge/samsung-galaxy-s7-edge.jpg" style="width: 828px; height: 761px;" title="Samsung Galaxy S7 edge" /></span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <h3 style="text-align: justify;"><span style="font-size:14px;"><span style="line-height: 16.8px;"><b>Samsung Galaxy S7 edge với vẻ ngo&agrave;i ho&agrave;n mỹ, bổ sung khả năng chống nước</b></span></span></h3>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: center;"><span style="font-size:14px;"><img alt="Samsung Galaxy S7 Edge chống nước tốt" longdesc="http://be.fptshop.com.vn/Samsung Galaxy S7 Edge" src="../Uploads/images/2015/San-pham/DH/samsung/galaxy-s7-edge/samsung-galaxy-s7-edge-1.jpg" style="width: 960px; height: 550px;" title="Samsung Galaxy S7 Edge" /></span></p>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;"><strong>Samsung Galaxy S7 edge</strong>&nbsp;được kế thừa gần như nguy&ecirc;n vẹn những n&eacute;t đặc trưng của người tiền nhiệm Galaxy S6 edge, c&oacute; thể kể đến như phần khung viền bằng kim loại v&agrave; 2 mặt trước sau phủ <span style="line-height: 20.8px; text-align: justify;">k&iacute;nh cường lực Gorilla Glass 4 cao cấp</span>. Phần viền m&agrave;n h&igrave;nh cong đặc trưng cũng được duy tr&igrave;, đồng thời c&oacute; th&ecirc;m nhiều t&iacute;nh năng mới th&uacute; vị hơn. Ngo&agrave;i ra, việc bổ sung khả năng chống nước theo ti&ecirc;u chuẩn IP68 sẽ gi&uacute;p người d&ugrave;ng y&ecirc;n t&acirc;m hơn khi sử dụng m&aacute;y trong c&aacute;c điều kiện ẩm ướt.</span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <h3 style="text-align: justify;"><span style="font-size:14px;"><strong>M&agrave;n h&igrave;nh 2K Super AMOLED hiển thị tuyệt đẹp tr&ecirc;n Samsung S7 edge</strong></span></h3>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: center;"><span style="font-size:14px;"><img alt="Màn hình Samsung Galaxy S7 Edge 2K Super AMOLED" longdesc="http://be.fptshop.com.vn/Samsung Galaxy S7 Edge" src="../Uploads/images/2015/San-pham/DH/samsung/galaxy-s7-edge/samsung-galaxy-s7-edge-2.jpg" style="width: 960px; height: 550px;" title="Samsung Galaxy S7 Edge" /></span></p>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;">M&agrave;n h&igrave;nh của&nbsp;<a href="samsung-galaxy-s7-edge.html" target="_blank"><strong>Galaxy S7 edge</strong></a>&nbsp;sẽ c&oacute; k&iacute;ch thước 5,5 inch với độ ph&acirc;n giải 2K (2560 x 1440 pixel), trong đ&oacute; mỗi cạnh m&agrave;n h&igrave;nh chiếm 0,2 inch, cho khả năng hiển thị cực kỳ sắc n&eacute;t. C&ocirc;ng nghệ m&agrave;n h&igrave;nh Super AMOLED sẽ mang đến những khung h&igrave;nh với m&agrave;u sắc tươi tắn, sống động, nhờ đ&oacute; người d&ugrave;ng sẽ lu&ocirc;n c&oacute; được những trải nghiệm thị gi&aacute;c thực sự tuyệt vời. Ngo&agrave;i ra, Samsung c&ograve;n bổ sung t&iacute;nh năng Always On cho ph&eacute;p người d&ugrave;ng đọc c&aacute;c th&ocirc;ng b&aacute;o m&agrave; kh&ocirc;ng cần phải mở s&aacute;ng m&agrave;n h&igrave;nh.</span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <h3 style="text-align: justify;"><span style="font-size:14px;"><strong>Galaxy S7 edge sở hữu sức mạnh ho&agrave;n hảo từ vi xử l&yacute; thế hệ mới</strong></span></h3>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: center;"><span style="font-size:14px;"><img alt="Vi xử lý Samsung Galaxy S7 Edge mới" longdesc="http://be.fptshop.com.vn/Samsung Galaxy S7 Edge" src="../Uploads/images/2015/San-pham/DH/samsung/galaxy-s7-edge/samsung-galaxy-s7-edge-3.jpg" style="width: 960px; height: 550px;" title="Samsung Galaxy S7 Edge" /></span></p>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;">Giống như Galaxy S7,&nbsp;<a href="../tin-tuc/tin-moi/samsung-se-su-dung-chip-snapdragon-820-va-exynos-8890-tren-galaxy-s7-va-s7-egde-34817.html" target="_blank">Samsung Galaxy S7 edge&nbsp;sẽ c&oacute; 2 phi&ecirc;n bản sử dụng 2 vi xử l&yacute; kh&aacute;c nhau l&agrave; Qualcomm Snapdragon 820 v&agrave; Exynos 8890</a> &ndash; cả hai đều l&agrave; những con chip cao cấp thế hệ mới sở hữu hiệu suất vượt trội, gi&uacute;p m&aacute;y xử l&yacute; ho&agrave;n hảo mọi y&ecirc;u cầu t&aacute;c vụ d&ugrave; &ldquo;nặng nề&rdquo; nhất. Th&ecirc;m nữa, dung lượng RAM được n&acirc;ng cấp l&ecirc;n mức 4GB sẽ gi&uacute;p x&oacute;a đi nỗi băn khoăn về hiệu quả thực thi đa nhiệm. Một điểm tuyệt vời kh&aacute;c l&agrave; việc Galaxy S7 edge sẽ hỗ trợ thẻ nhớ ngo&agrave;i để người d&ugrave;ng mở rộng kh&ocirc;ng gian lưu trữ.</span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;"><span style="line-height: 16.8px;"><b>Camera n&acirc;ng cấp khẩu độ, thu s&aacute;ng tốt hơn</b></span></span></p>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: center;"><span style="font-size:14px;"><img alt="Camera Samsung Galaxy S7 Edge" longdesc="http://be.fptshop.com.vn/Samsung Galaxy S7 Edge" src="../Uploads/images/2015/San-pham/DH/samsung/galaxy-s7-edge/samsung-galaxy-s7-edge-4.jpg" style="width: 960px; height: 550px;" title="Samsung Galaxy S7 Edge" /></span></p>
-
-                <p style="line-height: 20.8px;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;">Mặc d&ugrave; camera ch&iacute;nh của&nbsp;<strong>Samsung Galaxy S7 edge</strong>&nbsp;sẽ độ ph&acirc;n giải được giảm xuống 12MP (so với 16MP tr&ecirc;n Galaxy S6 edge), tuy nhi&ecirc;n camera n&agrave;y sẽ được n&acirc;ng cấp khẩu độ l&ecirc;n f/1.7 &ndash; mức c&oacute; thể xem l&agrave; lớn nhất của thế giới smartphone hiện nay, mang đến khả năng thu nhận &aacute;nh s&aacute;ng đầy ấn tượng. B&ecirc;n cạnh đ&oacute;, Samsung trang bị th&ecirc;m c&ocirc;ng nghệ chống rung quang học OIS v&agrave; sử dụng một cảm biến ảnh mới tự động lấy n&eacute;t điểm ảnh k&eacute;p (Dual Pixel), do vậy h&igrave;nh ảnh sẽ bớt nhiễu, m&agrave;u sắc rực rỡ hơn.</span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;"><strong>Nền tảng mới hỗ trợ n&acirc;ng cao thời lượng pin</strong></span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: center;"><span style="font-size:14px;"><img alt="Dung lượng pin Samsung Galaxy S7 Edge" longdesc="http://be.fptshop.com.vn/Samsung Galaxy S7 Edge" src="../Uploads/images/2015/San-pham/DH/samsung/galaxy-s7-edge/samsung-galaxy-s7-edge-5.jpg" style="width: 960px; height: 550px;" title="Samsung Galaxy S7 Edge" /></span></p>
-
-                <p style="line-height: 20.8px; text-align: justify;">&nbsp;</p>
-
-                <p style="line-height: 20.8px; text-align: justify;"><span style="font-size:14px;">Vi&ecirc;n pin của&nbsp;<strong><a href="samsung-galaxy-s7-edge.html" target="_blank">S7 edge</a> </strong>sở hữu mức dung lượng l&ecirc;n đến 3600 mAh. Sự kết hợp của nền tảng <a href="../tin-tuc/tin-moi/7-tinh-nang-huu-ich-tren-android-6-0-marshmallow-33061.html" target="_blank">Android 6.0 Marshmallow</a> mới nhất hiện nay c&ugrave;ng với c&ocirc;ng nghệ m&agrave;n h&igrave;nh Super AMOLED v&agrave; vi xử l&yacute; tiết kiệm điện năng sẽ gi&uacute;p m&aacute;y&nbsp;c&oacute; được thời lượng pin l&acirc;u hơn, c&oacute; thể l&ecirc;n đến 2 ng&agrave;y ở điều kiện sử dụng th&ocirc;ng thường. Ngo&agrave;i ra, Samsung c&ograve;n trang bị cho m&aacute;y t&iacute;nh năng sạc kh&ocirc;ng d&acirc;y v&agrave; c&ocirc;ng nghệ sạc nhanh gi&uacute;p r&uacute;t ngắn thời gian cho mỗi lần sạc.</span></p>
-            </div>
+<h3 class="detail-box">Bình luận</h3>
+        <div style="padding:10px">
+            <div id="fb-root"></div>
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <div class="fb-comments" data-href="@Request.Url.ToString()" data-width="680" data-num-posts="10"></div>
         </div>
     </div>
-</div>
 
-<!-- Modal get phone-->
+
+

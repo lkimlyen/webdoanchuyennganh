@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 using webanhnguyen.Models;
 using System.IO;
-using MvcPaging;
+using PagedList;
+using PagedList.Mvc;
 
 namespace webanhnguyen.Controllers.Admin
 {

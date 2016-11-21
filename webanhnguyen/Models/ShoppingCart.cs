@@ -14,6 +14,9 @@ namespace webanhnguyen.Models
         public Double dDongia { set; get; }
         public int iSoluong { set; get; }
         public string salias { set; get; }
+        public double giakhuyenmai { set; get;}
+        public int khuyemai { set; get; }
+        public string gift { set; get; }
         public Double dThanhtien
         {
             get { return iSoluong * dDongia; }
@@ -23,11 +26,21 @@ namespace webanhnguyen.Models
         public ShoppingCart(int Masp)
         {
             iMasp = Masp;
+            tbl_promotion_detail spkm = db.tbl_promotion_details.Single(n => n.Idsp == iMasp);
             tbl_Product sp = db.tbl_Products.Single(n => n.ID == iMasp);
             sTensp = sp.TenSP;
             sAnhbia = sp.UrlHinh;
-           
-            dDongia = double.Parse(sp.GiaHienTai.ToString());
+            khuyemai = spkm.KhuyenMai.Value;
+            if (khuyemai > 0)
+            {
+                dDongia = double.Parse(spkm.Giakhuyenmai.ToString());
+
+            }
+            else
+            {
+                dDongia = double.Parse(sp.GiaHienTai.ToString());
+            }
+            gift = spkm.Gift;
             iSoluong = 1;
             salias = sp.alias;
         }

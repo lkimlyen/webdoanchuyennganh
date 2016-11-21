@@ -1,4 +1,5 @@
-﻿@model IEnumerable<webanhnguyen.Models.tbl_Product>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<webanhnguyen.Models.tbl_Product>
 <div class="col-md-8 col-sm-12 box-products">
     <div class="bor-left"></div>
     <div class="products">
@@ -7,7 +8,7 @@
         {
             <div class="p-item cell-1">
                 <div class="p-badge">  </div>
-                <div class="p-item-bound" style="background: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7') no-repeat center top">
+                <div class="p-item-bound">
                     @*<a href="@Url.Action("Details","Home",new {id = item.alias})" class="p-link-prod" title="@item.ID"></a>*@
                     <figure class="p-image">
                         <span>
@@ -26,25 +27,33 @@
                                 </div> 
                                 <div class="p-price">
                                 <span class="p-current-price">@(((int)(item.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>  
-                                    <a type="button" href="@Url.Action("ThemGiohang", "ShoppingCart", new { @iMasp= item.ID, @strURL=Request.Url.ToString() })" onclick="alert('Đã Thêm Vào Giỏ')" class="p-current-price right"><img src="~/Content/cart.png" style="width:29px;height:29px;margin-top: 7px;margin-bottom:7px" alt="@ViewBag.shoptitle" title="Thêm giỏ hàng" /></a>
-  </div>
+                                   </div>
                             </div>
-                        </div> <div class="p-hide-info">
+                        </div>
+                         <div class="p-hide-info">
                             <div class="best-seller-order">
-                                <p>Đặt Online nhận ngay khuyến mãi:</p>
-
-                                <ul>
-                                    <li>Trả g&oacute;p Home Credit, 0% l&atilde;i suất, trả trước 30%, kỳ hạn 4 th&aacute;ng Hoặc Trả g&oacute;p ACS, 0% l&atilde;i suất, trả trước 0đ, kỳ hạn 4 th&aacute;ng</li>
-                                    <li>Sim Vinaphone - FPT Play 5GB/th&aacute;ng xem phim tẹt ga (kh&ocirc;ng &aacute;p dụng trả g&oacute;p 0%)</li>
-                                </ul>
-                            </div>  <div class="p-promotion">  </div>
+                             </div>  <div class="p-promotion"> 
+                                      
+ </div>
                         </div>
                     </div>
                 </div>
             </div>
         }
 
-        <div class="p-item cell-1 p-item-more"> <div class="p-item-bound"> <a href="javascript:jfpts.homepage.loadMore();" class="p-more" data-current="19"> <span> <i class="icons p-more-icon"></i> <label>Xem thêm <strong>22</strong> sản phẩm</label> </span> </a> </div> </div>
     </div>
-</div>
+    <div class="pagination" style="margin-top: 300px; float: left; margin-left: -200px">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Laysanpham", new { page = page }))
+
+        </div>
+        <style>
+            .MenuTrang li {
+                display: inline;
+            }
+        </style>
+    </div>
+    </div>
 

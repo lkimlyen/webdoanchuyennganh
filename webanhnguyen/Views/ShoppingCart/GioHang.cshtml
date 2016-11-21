@@ -47,7 +47,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="@Url.Action("XoaGiohang", new { @iMaSp = item.iMasp })" class="XoaSP" data-id="">
-                                                        <img src="~/images/icon_delete.png" alt="@ViewBag.shoptitle" title="Xóa sản phẩm" />
+                                                        <img src="~/Content/icon_delete.png" alt="@ViewBag.shoptitle" title="Xóa sản phẩm" />
                                                     </a>
 
                                                 </li>
@@ -84,13 +84,16 @@
                 </div>
 
             </div>
+           
+
    @using (Html.BeginForm("GioHang", "ShoppingCart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
    {
-             <div class="ck-s2 ck-s2main">
-                @{
-                    Customer kh = (Customer)Session["Email"];
-                }
 
+         <div class="ck-s2 ck-s2main">
+             @{
+                 Customer kh = (Customer)Session["Email"];
+             }
+           
                
                 <h2 class="ck-tit-prod">2.Thông tin khách hàng</h2>
                 <p class="ck-s2-ibb">Bạn vui lòng nhập thông tin cá nhân của bạn (những ô có dấu * là những ô bắt buộc)</p>
@@ -99,17 +102,42 @@
                         <ul class="ck-s2-iul clearfix" id="ck-ifkh">
                             <li>
                                 <div class="ck-s2-form ck-s2-frm">
-                                    <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="@kh.name">
+                                @if (Session["Email"] != null)
+                                {
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="@kh.name">
+                                }
+                                else
+                                {
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="">
+
+                                }
                                 </div>
                             </li>
                             <li>
                                 <div class="ck-s2-form ck-s2-frm">
+@if (Session["Email"] != null)
+{
                                     <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="@kh.moblie">
-                                </div>
+}
+else
+{
+    <input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="">
+
+}
+                                                              </div>
                             </li>
                             <li>
                                 <div class="ck-s2-form">
+@if (Session["Email"] != null)
+{
+
                                     <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="@kh.email">
+}
+else
+{
+    <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="">
+
+}
                                 </div>
                             </li>
                         </ul>
@@ -130,7 +158,16 @@
 
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="form-group ck-s2-form">
-                                                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="@kh.address">
+                                                @if (Session["Email"] != null)
+                                                {
+                                                                                                     <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="@kh.address">
+
+                                                }
+                                                else
+                                                {
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="">
+
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -147,9 +184,9 @@
                             
                             <script>
                                 function goBack() {
-                                    alert("Giỏ hàng của bạn sẽ bị hủy trong 12h nếu bạn không đặt hàng");
-                                    window.history.back();
-                                }
+    alert("Giỏ hàng của bạn sẽ bị hủy trong 12h nếu bạn không đặt hàng");
+    window.history.back();
+}
                             </script>
                         <a href="@Url.Action("XoaTatcaGiohang", "ShoppingCart")" class="btn btn-warning ck-s3-btntt">Hủy đơn hàng</a>
                             

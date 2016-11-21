@@ -12963,6 +12963,7 @@ a:hover .kmt-sbartitle-right {
 
 .fs-ftcol2 {
     width: 40%;
+    float: right;
 }
 
 .fs-ftcol > h2 {

@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc
-@model List<webanhnguyen.Models.tbl_promotion>
+@model PagedList.IPagedList<webanhnguyen.Models.tbl_promotion>
 @{
     Layout = "~/Views/Shared/_LayoutPromotion.cshtml";
 }
@@ -31,44 +31,13 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="tin-tuc/Tin-khuyen-mai/bao-ve-may-tinh-cu-rinh-them-may-tinh-moi-voi-kaspersky-tai-fpt-shop-44642.html" title="Kaspersky S1" id="2907" class="banner_click">
-                                <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112840610538707_Kaspersky-S1.jpg" />
-                            </a>
+
+                                <img src="~/Content/636137578305043685_KMT11-S1.jpg" />  </a>
 
                         </div>
-                        <div class="swiper-slide">
-                            <a href="khuyen-mai/T10-2.html" title="Khuyến m&#227;i th&#225;ng S1" id="2910" class="banner_click">
-                                <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112830514308707_KMT10-S1.jpg" />
-                            </a>
-
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="may-tinh-xach-tay/nhu-cau-su-dung/san-pham-2-trong-1.html" title="Intel 2 trong 1 S1" id="2923" class="banner_click">
-                                <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/9/19/636098753232128643_S1-1200x300.jpg" />
-                            </a>
-
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="may-tinh-bang/samsung.html" title="Samsung Tab S1" id="3111" class="banner_click">
-                                <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/9/21/636100730943110015_tablet-ss-S1.jpg" />
-                            </a>
-
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="lenovo-hang-dep-gia-tot.html" title="Lenovo S1" id="3143" class="banner_click">
-                                <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/3/636110800950420454_S1-1200x300.jpg" />
-                            </a>
-
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="le-tung-bung-re-qua-chung.html" title="Halloween S1" id="3188" class="banner_click">
-                                <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/26/636130728964565553_Haloween-S1.jpg" />
-                            </a>
-
-                        </div>
+                        
                     </div>
-                    <div class="swiper-button-prev kmt-sbutton-prev"></div>
-                    <div class="swiper-button-next kmt-sbutton-next"></div>
-
+                    
                 </div>
             </div>
             <div class="row kms-list-kmhot">
@@ -97,4 +66,20 @@
 
                     </div>
 </div> 
+    <div class="ty-pagination__bottom" style="margin-left: 100px">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("khuyenmai", new { page = page }))
+
+        </div>
+        <style>
+            .MenuTrang li {
+                display: inline;
+            }
+        </style>
+    </div>
+
 </div>
+
+

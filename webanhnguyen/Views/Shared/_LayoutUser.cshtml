@@ -78,11 +78,11 @@
                                         <div class="owl-wrapper" style="width: 800px; height:364px; left: 0px; display: block;">
                                             <div class="owl-item" style="width: 800px;">
                                                 <div>
-                                                    <img style="height:364px" src="~/cdn.fptshop.com.vn/Uploads/Originals/636144224711496309_H1-iPhone7-Pre-P2.jpg" alt="iPhone 7 - Siêu ưu đãi" title="iPhone 7 - Siêu ưu đãi">
+                                                    <img style="height:364px" src="~/Content/636150650594040716_H1-iPhone7-Pre-P2-1.jpg" />
 
                                                 </div>
                                             </div>
-                                          
+
                                         </div>
                                     </div>
 
@@ -103,8 +103,10 @@
                             </div>
                             <div class="f-slright">
                                 <ul class="clearfix" data-id="ssss">
-                                    <li><a target="_blank" href="" title="Meizu U20"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/636137283875019950_meizu-u20-h2.jpg" alt="Meizu U20"></a> </li>
-                                    <li><a target="_blank" href="" title="Phu Kien"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/636137254306447950_H2-385x175.jpg" alt="Phu Kien"></a> </li>
+                                    <li><a target="_blank" href="" title="Meizu U20">
+                                            <img src="~/Content/636150650594040716_H1-iPhone7-Pre-P2-1.jpg" /></a> </li>
+                                    <li><a target="_blank" href="" title="Phu Kien">
+                                            <img src="~/Content/636149349376834335_on-7-h2.jpg" /></a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -112,7 +114,7 @@
                 </div>
 
                 <div>@RenderBody()</div>
-                
+
             </div>
 
 
@@ -120,47 +122,69 @@
 
         </div>
     </div>
-   
+
     @{Html.RenderAction("header", "Home");}
 
-    <footer class="fs-footer"> <div class="container-fluid"> <div class="fshop-mainbox"> <div class="fs-ftrow clearfix"> <div class="fs-ftcol fs-ftcol1"> <h2><a href="gioi-thieu.html">Giới thiệu về công ty</a></h2> <ul class="fs-ftul"> <li><a href="huong-dan/cau-hoi-thuong-gap.html" title="Câu hỏi thường gặp mua hàng">Câu hỏi thường gặp mua hàng</a></li> <li><a href="ho-tro/chinh-sach-bao-mat.html" title="">Các chính sách FPT Shop</a></li> <li><a href="ho-tro/chinh-sach-bao-hanh.html" title="">Hệ thống bảo hành</a></li> </ul> </div> <div class="fs-ftcol fs-ftcol1"> <h2><a href="http://vieclam.fptshop.com.vn/">Tin tuyển dụng</a></h2> <ul class="fs-ftul"> <li><a href="tin-tuc/Tin-khuyen-mai.html" title="">Tin khuyến mãi</a></li> <li><a href="huong-dan/huong-dan-mua-hang.html" title="">Hướng dẫn mua online</a></li> <li><a href="tra-gop.html" title="">Hướng dẫn mua trả góp</a></li> </ul> </div> <div class="fs-ftcol fs-ftcol1"> <h2><a href="cua-hang.html">Hệ thống cửa hàng</a></h2> <ul class="fs-ftul"> <li><a href="kiem-tra-hang-apple-chinh-hang.html" title="">Kiểm tra hàng Apple chính hãng</a></li> <li><a href="ho-tro/gioi-thieu-may-doi-tra.html" title="">Giới thiệu máy đổi trả</a></li> <li><a href="ho-tro/gioi-thieu-xa-hang.html" title="">Giới thiệu xả hàng</a></li> </ul> </div> <div class="fs-ftcol  fs-ftcol2"> <div class="fs-ftr1"> <span>Hỗ trợ thanh toán</span> <a class="fs-ftr-vs" href="#" title=""></a> <a class="fs-ftr-mt" href="#" title=""></a> <a class="fs-ftr-atm" href="#" title=""></a> </div> <ul class="fs-ftr2 clearfix"> <li> <p>Tư vẫn miễn phí (24/7)</p> <a href="javascript:;" title="">1800 6601</a> </li> <li> <p>Góp ý, phản ánh(8h00 - 22h00)</p> <a href="javascript:;" title="">1800 6616</a> </li> </ul> <div class="fs-ftr3"> <ul> <li><a class="fs-ftr-cthuong" href="javascript:;" title=""></a></li> <li><a class="fs-ftr-dmca" href="javascript:;" title=""></a></li> <li><a class="fs-ftr-sp" href="javascript:;" title=""></a></li> <li><a class="fs-ftr-thieuvn" href="javascript:;" title=""></a></li> </ul> </div> </div> </div> </div> </div>  <div class="fs-ftbott"> © 2007 - 2016 Công Ty Cổ Phần Bán Lẻ Kỹ Thuật Số FPT / Địa chỉ: 261 Khánh Hội, P5, Q4, TP. Hồ Chí Minh / GPĐKKD số 0311609355 do Sở KHĐT TP.HCM cấp ngày 08/03/2012. </div> </footer>
+    @{Html.RenderAction("footer", "Home");}
+
+
+
     
-    <div id="menuHeader"> 
-    <a id="m-nav">
-        <i class="icons m-nav-list-icon"></i> </a>
-     <a href="index.html" class="logo">
-        <img src="~/Content/v3/images/logo-black.png" /></a>
-     <div class="search-box">
-         <form> <input type="text" class="search-text-box tab-keyword" placeholder="Bạn muốn tìm gì?" /> 
-         <button type="submit" class="submit search-button search-button-btn"><i class="glyphicon glyphicon-search"></i>
-             </button>
-          <div class="asmr"> <ul class="fshop-search-cate"></ul> <ul class="fshop-search-prod"></ul> </div> </form> </div> <div class="header-hotline"> <a href="tel:18006601"> <p>Hotline miễn phí</p> <p><i class="icons red-phone-icon"></i> <strong>1800 6601</strong></p> </a> </div> <a href="tel:18006601" class="btn-fodp"> Đặt mua giá tốt <i class="icons cart-header"></i> </a> </div> <div id="menuWrapper"> <div id="menuBox"> <div id="scroller"> <ul id="menu"> <li class=""> <a href="dien-thoai.html"> <span> <label><i class="icons m-phone-icon"></i></label> </span> <label>Điện thoại</label> </a> </li> <li class=""> <a href="may-tinh-bang.html"> <span> <label><i class="icons m-tablet-icon"></i></label> </span> <label>Tablet</label> </a> </li> <li class=""> <a href="apple.html"> <span> <label><i class="icons m-apple-icon"></i></label> </span> <label>Apple</label> </a> </li> <li class=""> <a href="may-tinh-xach-tay.html"> <span> <label><i class="icons m-laptop-icon"></i></label> </span> <label>Laptop</label> </a> </li> <li> <a href="smartwatch.html" title="SmartWatch"> <span> <label><i class="icons m-swatch-icon"></i></label> </span> <label>SmartWatch</label> </a> </li> <li class=""> <a href="phu-kien.html"> <span> <label><i class="icons m-accessories-icon"></i></label> </span> <label>Phụ kiện</label> </a> </li> <li class=""> <a href="may-doi-tra.html"> <span> <label><i class="icons m-refresh-icon"></i></label> </span> <label>Máy đổi trả</label> </a> </li> <li class=""> <a href="xa-hang-2016.html" title="Xả hàng"> <span> <label><i class="icons m-saleoff-icon"></i></label> </span> <label>Xả hàng</label> </a> </li> <li class=""> <a href="San-khuyen-mai.html"> <span> <label><i class="icons m-promotion-icon"></i></label> </span> <label>Khuyến mãi</label> </a> </li> <li class=""> <a href="tin-tuc.html"> <span> <label><i class="icons m-paper-icon"></i></label> </span> <label>Tin hay</label> </a> </li> </ul> </div> </div> </div>
+    <div id="menuHeader">
+        <a id="m-nav">
+            <i class="icons m-nav-list-icon"></i>
+        </a>
+        <a href="@Url.Action("Index","Home")" class="logo"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@ViewBag.logo" style="width:140px;height:37px" alt="@ViewBag.shoptitle" /></a>
+        <div class="search-box">
+            <form>
+                <input type="text" class="search-text-box tab-keyword" placeholder="Bạn muốn tìm gì?" />
+                <button type="submit" class="submit search-button search-button-btn">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+                <div class="asmr"> <ul class="fshop-search-cate"></ul> <ul class="fshop-search-prod"></ul> </div>
+            </form>
+        </div> <div class="header-hotline"> <a href="tel:18006601"> <p>Hotline miễn phí</p> <p><i class="icons red-phone-icon"></i> <strong>@ViewBag.phoneshop</strong></p> </a> </div> <a href="tel:@ViewBag.phoneshop" class="btn-fodp"> Đặt mua giá tốt <i class="icons cart-header"></i> </a>
+    </div> 
+    <div id="menuWrapper"> 
+    <div id="menuBox"> <div id="scroller"> 
+        <ul id="menu"> <li class=""> <a href="dien-thoai.html"> <span> <label><i class="icons m-phone-icon"></i></label> </span> <label>Điện thoại</label> </a> </li> <li class=""> <a href="may-tinh-bang.html"> <span> <label><i class="icons m-tablet-icon"></i></label> </span> <label>Tablet</label> </a> </li><li class=""> <a href="San-khuyen-mai.html"> <span> <label><i class="icons m-promotion-icon"></i></label> </span> <label>Khuyến mãi</label> </a> </li> <li class=""> <a href="tin-tuc.html"> <span> <label><i class="icons m-paper-icon"></i></label> </span> <label>Tin hay</label> </a> </li> </ul> </div> </div> </div>
 
 
-    <div class="modal fade" id="modal-call-me" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="fshop-pucb-close b-close close-f-modal" data-dismiss="modal"><a onclick="ga('send', 'event', 'Tat Popup lay sdt sp bestseller mobile home page ', 'Tat Popup lay sdt sp bestseller mobile home page ', 'Tat Popup lay sdt sp bestseller mobile home page ')">&nbsp;</a></div><div class="fcm-box"><p class="fshop-pucb-line1"><img src="Content/Publishing/popup-callback/images/title-consult.png" alt=""></p><div class="fshop-pucb-line">Hãy để lại số điện thoại của bạn để được tư vấn miễn phí và nhận những thông tin ưu đãi, khuyến mại đặc biệt dành cho thành viên của FPT Shop!</div><div class="fshop-pucb-form"><form id="form-call-me"><input type="text" class="fshop-pucb-txt fcm_phone_txt" placeholder="Số điện thoại của bạn..."><input type="submit" class="fshop-pucb-bnt ppo_best_bnt" data-name="FPTShop" value="Gọi lại"></form></div></div><div class="fcm-thank"><p class="fshop-pucb-line1"><img src="Content/Publishing/popup-callback/images/pucb-title-thank.png" alt=""></p><p class="fshop-pucb-line">Bạn sẽ nhận được cuộc gọi của chúng tôi <strong>(8h-22h)</strong> từ số máy gọi đến <strong>08.73006606</strong></p><div class="fshop-pucb-form"><input type="button" class="b-close fshop-pucb-bnt close-f-modal" data-dismiss="modal" value="Đồng ý"></div></div></div></div></div></div><div class="button-bottom"><ul><li><a href="javascript:jfpts.homepage.modalCallMe();">Gọi ngay cho tôi</a></li><li><a href="tel:18006601">Gọi 1800 6601</a></li></ul></div>
 
+        <script>
+        var _scroll = null;
+        var _position = new Array();
+        _position[1] = ';left:0px; top:0px';
+        _position[2] = ';right:0px; top:0px';
+        _position[3] = ';right:0px; bottom:25px';
+        _position[4] = ';left:0px; bottom:25px';
 
-    <div class="back-to-top">
-        <a href="javascript:;"></a>
-    </div>
+        $(function () {
+
+            $('body').append('<img src="/Content/data-image-png;base….png" id="scroll_to_top" alt="@Session["title"]" style="margin:0px 10px 10px 0px;cursor:pointer; position:fixed; ' + _position[3] + '">');
+            _scroll = $('#scroll_to_top');
+            _scroll.fadeOut().click(function (event) {
+                event.preventDefault();
+
+                $("html, body").animate({ scrollTop: 0 }, "slow", function () { _scroll.fadeOut(); });
+            });
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 45) {
+                    _scroll.fadeIn();
+                } else {
+                    _scroll.fadeOut();
+                };
+            });
+        });
+        </script>
+
 
 
     <script src="~/bundles/scriptsv347d2?v=13uEMUJatrNilk4OdjCK_9_owp9-XHtlesnx6nHgflQ1"></script>
-
-
-
-    <meta name="adx:sections" content="Trang chủ" />
-    <meta name="adx:objects" content="0" />
-    <meta name="adx:authors" content="" />
-
-
     <script src="~/bundles/homev338b8?v=mMDHiWOFsPJuqV3rr3Ah0tX_nS3V63mYkGRr2YnHPTc1"></script>
 
     <script type="text/javascript" async src="~/e-vcdn.anthill.vn/delivery-ants/conversion.js"></script>
-    <script type="text/javascript">
-        var ants_analytic = ants_analytic || [];
-        ants_analytic.push({ conversionId: "c80ad084" });
-    </script>
 
 
 
@@ -194,7 +218,7 @@
         fbq('track', 'PageView');
     </script>
     <noscript>
-        <img height="1" width="1" style="display:none"src="https://www.facebook.com/tr?id=527503604082474&amp;ev=PageView&amp;noscript=1%22%20/>%20%20%20%20</noscript>%20%20%20%20<!--%20DO%20NOT%20MODIFY%20-->%20%20%20%20<!--%20End%20Facebook%20Pixel%20Code%20--><!--%20Google%20Tag%20Manager%20(noscript)%20--><noscript><iframe%20src="https//www.googletagmanager.com/ns.html?id=GTM-W84P7P" height="0" width="0" style="display:none;visibility:hidden" /></iframe>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=527503604082474&amp;ev=PageView&amp;noscript=1%22%20/>%20%20%20%20</noscript>%20%20%20%20<!--%20DO%20NOT%20MODIFY%20-->%20%20%20%20<!--%20End%20Facebook%20Pixel%20Code%20--><!--%20Google%20Tag%20Manager%20(noscript)%20--><noscript><iframe%20src=" https//www.googletagmanager.com/ns.html?id=GTM-W84P7P" height="0" width="0" style="display:none;visibility:hidden" /></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 </body>

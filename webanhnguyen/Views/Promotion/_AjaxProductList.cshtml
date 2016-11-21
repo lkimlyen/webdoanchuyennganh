@@ -1,5 +1,5 @@
-﻿@using MvcPaging
-@model IPagedList<webanhnguyen.Models.tbl_Product>
+﻿@using PagedList.Mvc;
+@model  PagedList.IPagedList<webanhnguyen.Models.tbl_Product>
 
 <table class="table table-bordered table-hover btl-list-bbli bg-white">
     <thead>
@@ -63,31 +63,23 @@
 
 </table>
 <div style="margin-left: 20px;margin-top: -20px">
+        @if (Model.PageCount > 1)
+        {
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("promotionView", new { page = page }))
 
-    <div class="pager1">
-        @Html.Raw(Ajax.Pager(
-            new Options
-            {
-                PageSize = Model.PageSize,
-                TotalItemCount = Model.TotalItemCount,
-                CurrentPage = Model.PageNumber,
-                ItemTexts = new ItemTexts() { Next = "Next", Previous = "Previous", Page = "P" },
-                ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
-                TooltipTitles = new TooltipTitles() { Next = "Next page", Previous = "Previous page", Page = "Page {0}." },
-                Size = Size.normal,
-                Alignment = Alignment.centered,
-                IsShowControls = true,
-                IsShowFirstLast = true,
-                CssClass = ""
-            },
-            new AjaxOptions
-            {
-                UpdateTargetId = "grid-list",
-                OnBegin = "beginPaging",
-                OnSuccess = "successPaging",
-                OnFailure = "failurePaging"
-            }, new { controller = "productPartial", action = "Promotion", keyword = ViewData["keyword"] }))
+            </div>
+                    <style>
+                        .MenuTrang li {
+                            display: inline;
+                        }
+                    </style>
+
+
+        }
+
     </div>
+
 </div>
     <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
 

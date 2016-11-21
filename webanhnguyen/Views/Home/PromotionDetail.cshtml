@@ -1,5 +1,5 @@
-﻿@using webanhnguyen.Models
-@model List<webanhnguyen.Controllers.DataHelper.PromotionAddItemModel>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<webanhnguyen.Controllers.DataHelper.PromotionAddItemModel>
 
 @{
     ViewBag.Title = "PromotionDetail";
@@ -30,8 +30,7 @@
             </div>
             <div class="row kms-bannermain">
                 <a>
-                    <img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/11/3/636137578305043685_KMT11-S1.jpg" alt="">
-                </a>
+                    <img src="~/Content/636137578305043685_KMT11-S1.jpg" />                </a>
             </div>
             <div class="row kms-filter-box">
                 <ul>
@@ -39,7 +38,7 @@
                         <div class="kmt-search-prod">
                             <div class="input-group">
                                 <input type="text" id="txtsearchPage" name="txtsearchPage" class="form-control" placeholder="Tìm kiếm sản phẩm...">
-                                <a style="text-align:center; height:30px;margin-top: 1px" href="@Url.Action( "PromotionDetail", "Home", new {id = ViewBag.alias,timkiem = "zzz"})" class="link btn btn-default input-group-btn">
+                                <a  href="@Url.Action( "PromotionDetail", "Home", new {id = ViewBag.alias,timkiem = "zzz"})" class="link btn btn-default input-group-btn">
     <i class="kmt-iconsearch"></i>
 </a>
                                 <script>
@@ -120,4 +119,16 @@
 </div>
         </div>
     </div>
+<div class="ty-pagination__bottom" style="margin-left: 100px">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
 
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("PromotionDetail", new { page = page }))
+
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+</div>

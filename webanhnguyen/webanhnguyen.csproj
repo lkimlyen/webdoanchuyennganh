@@ -2263,6 +2263,11 @@
     <Content Include="ckfinder\skins\v1\skin.js" />
     <Content Include="ckfinder\skins\v1\uipanel.css" />
     <Content Include="ckfinder\translations.txt" />
+    <Content Include="Content\636137578305043685_KMT11-S1.jpg" />
+    <Content Include="Content\636143896039556988_OPPO-F1s---H1 %281%29.jpg" />
+    <Content Include="Content\636148841583237768_meizuU20-H2.jpg" />
+    <Content Include="Content\636149349376834335_on-7-h2.jpg" />
+    <Content Include="Content\636150650594040716_H1-iPhone7-Pre-P2-1.jpg" />
     <Content Include="Content\arrow.png" />
     <Content Include="Content\bg-gtt.png" />
     <Content Include="Content\bg-sub-ttile.png" />
@@ -2275,6 +2280,7 @@
     <Content Include="Content\cssv36fb1.css" />
     <Content Include="Content\cup.png" />
     <Content Include="Content\dangky_nhap.css" />
+    <Content Include="Content\data-image-png%3bbase….png" />
     <Content Include="Content\fis.png" />
     <Content Include="Content\gio-hang.css" />
     <Content Include="Content\grabbing.png" />
@@ -2283,6 +2289,7 @@
     <Content Include="Content\icon-footer.png" />
     <Content Include="Content\icon-menus.png" />
     <Content Include="Content\icons.png" />
+    <Content Include="Content\icon_delete.png" />
     <Content Include="Content\icon_menu_check_apple.png" />
     <Content Include="Content\icon_success.png" />
     <Content Include="Content\icon_warning.png" />
@@ -2290,8 +2297,6 @@
     <Content Include="Content\Login.png" />
     <Content Include="Content\newsv34c36.css" />
     <Content Include="Content\newsv36316.css" />
-    <Content Include="Content\next-prev-arrow.png" />
-    <Content Include="Content\ng-hdblack.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\productcatelaptopv30fdd.css" />
     <Content Include="Content\productcatev33866.css" />
@@ -2557,7 +2562,6 @@
     <Content Include="Views\Home\header.cshtml" />
     <Content Include="Views\Home\tintuc.cshtml" />
     <Content Include="Views\Home\Reader.cshtml" />
-    <Content Include="Views\Home\monanmoingay.cshtml" />
     <Content Include="Views\Home\khuyenmai.cshtml" />
     <Content Include="Views\Admin\Image\Image.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -2606,7 +2610,6 @@
     <Content Include="Views\Admin\Promotion\Promotion.cshtml" />
     <Content Include="Views\Admin\Promotion\Promotion_m.cshtml" />
     <Content Include="Views\Promotion\productPartial.cshtml" />
-    <Content Include="Views\Admin\Promotion\productPartial.cshtml" />
     <Content Include="Views\Promotion\_AjaxProductList.cshtml" />
     <Content Include="Views\Shared\_LayoutPromotion.cshtml" />
     <Content Include="Views\Home\PromotionDetail.cshtml" />

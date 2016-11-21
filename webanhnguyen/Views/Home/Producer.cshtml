@@ -83,18 +83,23 @@
 
 
 <!--end product list box-->
-</div>                  <div class="ty-pagination__bottom">
+               
+    <div class="ty-pagination__bottom">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
 
-    <div class="MenuTrang">
-        @Html.PagedListPager(Model, page => Url.Action("Producer", new { page = page }))
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Producer", new { page = page }))
 
+        </div>
+        <style>
+            .MenuTrang li {
+                display: inline;
+            }
+        </style>
     </div>
-    <style>
-        .MenuTrang li {
-            display: inline;
-        }
-    </style>
-</div>
+
+
+  
 
 
 

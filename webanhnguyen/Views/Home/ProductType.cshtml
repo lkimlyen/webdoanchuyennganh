@@ -9,13 +9,14 @@
 <div class="fshop-cate-slides">
     <div class="p-item cell-4">
     <div class="swiper-container fshop-lprod-swiper">
-        <div class="swiper-wrapper"><div class="swiper-slide"><a class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/13/636119458713640887_j7prime-C1.jpg" alt="@ViewBag.shoptitle" title=""></a></div>
+        <div class="swiper-wrapper"><div class="swiper-slide"><a class="banner_click">
+                                                                  <img src="~/Content/636143896039556988_OPPO-F1s---H1 (1).jpg" alt="@ViewBag.shoptitle" title=""></a></div>
         <div class="swiper-slide"><a href=""  class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/26/636130728964365533_Haloween-C1.jpg" alt="" title=""></a></div>
         <div class="swiper-slide"><a href="" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636113078656338724_C1-800x290.jpg" alt="" title=""></a></div>
         <div class="swiper-slide"><a href="" class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/11/1/636136179879842189_C1-800x290-tri-an-khach-hang.jpg" alt="" title=""></a></div>
         <div class="swiper-slide"><a href=""  class="banner_click"><img src="~/cdn.fptshop.com.vn/Uploads/Originals/2016/10/24/636128966279407931_C1-800x290_1.jpg" alt="" title=""></a></div>
         <div class="swiper-slide"><a href="" class="banner_click"><img src="/cdn.fptshop.com.vn/Uploads/Originals/2016/10/5/636112828960418707_C1-800x290.jpg" alt="" title=""></a></div></div>
-        <div class="swiper-pagination"></div></div><div class="swiper-button-prev swiper-btncate"></div><div class="swiper-button-next swiper-btncate"></div></div>
+        <div class="swiper-pagination"></div></div></div>
 </div>
 <div class="fshop-mainbox">
     <div class="fshop-lprod-top">
@@ -72,14 +73,6 @@
                     <figure class="p-image"><span><a href="@Url.Action("Details","Home", new {id = item.alias })"><img src="~/cdn.fptshop.com.vn/Uploads/Thumbs/@item.UrlHinh" alt="@item.TenSP" /></a></span></figure><div class="p-info">
                             <div class="p-top-info"><div class="p-info-show"><div class="p-name"><a href="dien-thoai/iphone-6s-plus-64gb.html"><h3>@item.TenSP</h3></a></div><div class="p-price"><span class="p-current-price">@(((int)(item.GiaHienTai)).ToString("#,###", ViewBag.CurrentNumberFormat))<span>đ</span></span>                    </div></div></div><div class="p-hide-info">
                                 <div class="best-seller-order">
-                                    <p>Đặt Online nhận ngay khuyến m&atilde;i:</p>
-
-                                    <ul>
-                                        <li>Phiếu mua h&agrave;ng trị gi&aacute; <b>2.000.000đ</b> (kh&ocirc;ng &aacute;p dụng trả g&oacute;p 0%)</li>
-                                        <li>Trả g&oacute;p Home Credit, 0% l&atilde;i suất, trả trước 30%, kỳ hạn 8 th&aacute;ng</li>
-                                        <li>Phiếu mua Macbook trị gi&aacute; <b>500.000đ</b></li>
-                                        <li>Giảm 50% Bảo h&agrave;nh v&agrave;ng Xem chi tiết</li>
-                                    </ul>
                                 </div><div class="p-promotion"><div class='hightlight-des'><ul><li>Chipset: A9</li><li>M&agrave;n h&igrave;nh: 5.5 inch,&nbsp;1080 x 1920 pixels</li><li>Camera:&nbsp;12.0 MP/ 5.0 MP</li></ul></div></div>
                             </div>
                         </div>
@@ -90,18 +83,16 @@
 
 
     <!--end product list box-->
-</div>                  <div class="ty-pagination__bottom">
-                            
-                            <div class="MenuTrang">
-                                @Html.PagedListPager(Model, page => Url.Action("ProductType", new { page = page }))
+          <div class="ty-pagination__bottom">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
 
-                            </div>
-                            <style>
-                                .MenuTrang li {
-                                    display: inline;
-                                }
-                            </style>
-                        </div>
-                        
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("ProductType", new { page = page }))
 
-
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+</div>

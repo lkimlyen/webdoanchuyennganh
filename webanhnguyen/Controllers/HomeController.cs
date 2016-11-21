@@ -16,11 +16,13 @@ namespace webanhnguyen.Controllers
             return View();
         }
         #region lấy sản phẩm show lên trang chủ
-        public ActionResult Laysanpham()
+        public ActionResult Laysanpham(int ? page)
         {
-            var sp = from n in db.tbl_Products 
+            int pageNum = page ?? 1;
+            int pageSize = 20;
+            var sp = (from n in db.tbl_Products 
                      where n.Status == true && n.Sanphambanchay == false
-                     select n;
+                     select n).ToPagedList(pageNum, pageSize);
             return PartialView(sp);
         }
         #endregion
@@ -40,6 +42,7 @@ namespace webanhnguyen.Controllers
         public ActionResult Details(string id)
         {
             var CT_SP = (db.tbl_Products.First(sp => sp.alias == id));
+            int hang = int.Parse(CT_SP.Idhangsx.ToString());
             int loai = int.Parse(CT_SP.IDLoaiSP.ToString());
             ViewBag.TenLoai = ((
                                from l in db.tbl_product_types
@@ -49,17 +52,19 @@ namespace webanhnguyen.Controllers
                                from l in db.tbl_product_types
                                where l.ID == loai
                                select l).SingleOrDefault()).alias;
-            ViewBag.TenHangSX = ((from s in db.tbl_Products 
-                                from l in db.tbl_producers
-                                where l.Idloaisp == loai && l.Id == s.Idhangsx
-                                select l).First()).Tenhangsx;
+            ViewBag.TenHangSX = ((from l in db.tbl_producers
+                                where l.Id == hang
+                                select l).SingleOrDefault()).Tenhangsx;
             ViewBag.aliashang = ((
                             from l in db.tbl_producers
-                            where l.Idloaisp == loai
-                            select l).First()).alias;
+                            where l.Id == hang
+                            select l).SingleOrDefault()).alias;
+            var Tenhangsx = ((                              from l in db.tbl_producers
+                              where l.Id == hang
+                              select l).SingleOrDefault()).Tenhangsx;
             ViewBag.SP_cungloaihang = (from s in db.tbl_producers
                                        from n in db.tbl_Products
-                                       where n.Idhangsx == s.Id && s.alias != id && s.Idloaisp == loai && n.IDLoaiSP == loai 
+                                       where s.Tenhangsx.Equals(Tenhangsx) && n.Idhangsx == s.Id && n.ID != CT_SP.ID
                                        select n).ToList();
      
             //CT_SP.LuotXem += 1;
@@ -234,21 +239,24 @@ namespace webanhnguyen.Controllers
         #endregion
        
         #region khuyenmai
-        public ActionResult khuyenmai()
+        public ActionResult khuyenmai(int ? page)
         {
-           
+            int pageNum = page ?? 1;
+            int pageSize = 10;
             var km = (from k in db.tbl_promotions
                       where k.status == true && k.ngayketthuc > DateTime.Now
                       orderby k.ngaykhuyenmai descending 
                       select k);
             
-            return View(km.ToList());
+            return View(km.ToPagedList(pageNum,pageSize));
         }
 
         #endregion
         #region chi tiết khuyến mãi
-        public ActionResult PromotionDetail(string id, string timkiem)
+        public ActionResult PromotionDetail(string id, string timkiem, int ? page)
         {
+            int pageNum = page ?? 1;
+            int pageSize = 10;
             ViewBag.alias = id;
             string tukhoa = timkiem;
             if (String.IsNullOrEmpty(tukhoa))
@@ -279,17 +287,17 @@ namespace webanhnguyen.Controllers
                 CT_SP_CO_LUON_TEN_SP.Add(model);
             }
 
-            return View(CT_SP_CO_LUON_TEN_SP);
+            return View(CT_SP_CO_LUON_TEN_SP.ToPagedList(pageNum,pageSize));
         }
         #endregion
         #region footer
         [ChildActionOnly]
         public ActionResult footer()
         {
-            var footer = from mn in db.tbl_shops
-                         where mn.id == 1
+            var footer = from mn in db.tbl_informations
+                         where mn.Status == true
                          select mn;
-            return PartialView(footer.Single());
+            return PartialView(footer.ToList());
         }
 
         #endregion
@@ -387,7 +395,12 @@ namespace webanhnguyen.Controllers
             return PartialView(tin.Take(5).ToList());
         }
         #endregion
-
+        #region lien he
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        #endregion
         #region Chi tiết tin (Reader)
         public ActionResult Reader(string id)
         {
